@@ -96,7 +96,7 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
       <div className="flex flex-col gap-4">
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-border">
-          <ProductImage image={image} brandSlug={product.brandSlug} categorySlug={categorySlug} name={name} />
+          <ProductImage key={image ?? 'no-image'} image={image} brandSlug={product.brandSlug} categorySlug={categorySlug} name={name} />
         </div>
         <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" className="hidden" onChange={handleUpload} />
         <button

@@ -98,6 +98,30 @@ export function getRelatedProducts(product: Product, limit = 8): Product[] {
   return [...sameBrandCategory, ...sameCategory].slice(0, limit);
 }
 
+/** Selección para el inicio: reparte productos entre categorías (round-robin),
+ * priorizando dentro de cada una los que tienen foto real, para que la home
+ * muestre variedad en vez de que una sola categoría grande tape a las demás. */
+export function getFeaturedProducts(limit = 16): Product[] {
+  const products = getAllProducts().filter((p) => p.hasAnyPrice);
+  const byCategory = new Map<string, Product[]>();
+  for (const p of products) {
+    const arr = byCategory.get(p.categorySlug) ?? [];
+    arr.push(p);
+    byCategory.set(p.categorySlug, arr);
+  }
+  const buckets = [...byCategory.values()].map((arr) =>
+    [...arr].sort((a, b) => Number(b.image !== null) - Number(a.image !== null))
+  );
+  const result: Product[] = [];
+  for (let i = 0; result.length < limit && buckets.some((b) => i < b.length); i++) {
+    for (const bucket of buckets) {
+      if (result.length >= limit) break;
+      if (i < bucket.length) result.push(bucket[i]);
+    }
+  }
+  return result;
+}
+
 export function getOfferProducts(limit?: number): Product[] {
   const offers = getAllProducts().filter((p) => p.isOffer);
   return limit ? offers.slice(0, limit) : offers;

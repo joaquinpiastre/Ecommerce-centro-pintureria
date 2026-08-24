@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Tag } from 'lucide-react';
 import type { Product } from '@/lib/types';
-import { ProductCard } from '@/components/product/product-card';
+import { ProductCarousel } from './product-carousel';
 
 export function OffersSection({ products }: { products: Product[] }) {
   if (products.length === 0) return null;
@@ -18,11 +18,7 @@ export function OffersSection({ products }: { products: Product[] }) {
           Ver todas <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
-        {products.slice(0, 8).map((p) => (
-          <ProductCard key={p.id} product={p} />
-        ))}
-      </div>
+      <ProductCarousel products={products} />
     </section>
   );
 }
