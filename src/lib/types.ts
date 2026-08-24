@@ -1,0 +1,69 @@
+export interface ProductVariant {
+  codigo: string;
+  sizeLabel: string | null;
+  price: number;
+  priceDisplay: string;
+  hasPrice: boolean;
+}
+
+export interface Product {
+  id: string;
+  codigo: string;
+  allCodigos: string[];
+  name: string;
+  slug: string;
+  brand: string | null;
+  brandSlug: string | null;
+  category: string;
+  categorySlug: string;
+  subcategory: string | null;
+  isOffer: boolean;
+  variants: ProductVariant[];
+  priceMin: number;
+  priceMax: number;
+  hasAnyPrice: boolean;
+  image: string | null;
+}
+
+export interface CategorySub {
+  label: string;
+  slug: string;
+  count: number;
+}
+
+export interface CategoryBrand {
+  slug: string;
+  label: string;
+  count: number;
+}
+
+export interface Category {
+  slug: string;
+  label: string;
+  accent: string;
+  icon: string;
+  count: number;
+  subcategories: CategorySub[];
+  brands: CategoryBrand[];
+  priceMin: number;
+  priceMax: number;
+}
+
+export interface CategoriesFile {
+  categories: Category[];
+  totalProducts: number;
+  offerCount: number;
+}
+
+export interface CartLine {
+  productId: string;
+  codigo: string;
+  name: string;
+  brand: string | null;
+  sizeLabel: string | null;
+  price: number;
+  priceDisplay: string;
+  quantity: number;
+  image: string | null;
+  categorySlug: string;
+}
