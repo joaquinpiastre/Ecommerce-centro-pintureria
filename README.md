@@ -223,3 +223,5 @@ perfecto. Para que el panel de administración funcione de forma confiable y per
 
 Si querés que el catálogo (no las ediciones de admin) se regenere en cada deploy automáticamente desde
 un CSV actualizado, agregá `npm run build:catalog &&` antes de `next build` en el build command.
+#   E c o m m e r c e - c e n t r o - p i n t u r e r i a  
+ 
