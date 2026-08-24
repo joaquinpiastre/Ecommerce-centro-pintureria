@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Product } from './types';
 import { formatPriceARS } from './format';
+import { OVERRIDES_PATH } from './storage-paths';
 
 export interface ProductOverride {
   hidden?: boolean;
@@ -19,8 +20,6 @@ export interface ProductOverride {
 }
 
 export type OverridesFile = Record<string, ProductOverride>;
-
-const OVERRIDES_PATH = path.join(process.cwd(), 'data', 'overrides.json');
 
 export function readOverrides(): OverridesFile {
   try {

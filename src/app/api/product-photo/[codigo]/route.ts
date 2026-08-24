@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { NextResponse } from 'next/server';
+import { SEED_PRODUCTS_DIR, UPLOADS_DIR } from '@/lib/storage-paths';
 
 const CONTENT_TYPE: Record<string, string> = {
   jpg: 'image/jpeg',
@@ -9,7 +10,11 @@ const CONTENT_TYPE: Record<string, string> = {
   webp: 'image/webp',
 };
 
-const PRODUCTS_DIR = path.join(process.cwd(), 'public', 'products');
+// Se busca primero en UPLOADS_DIR (volumen persistente si hay uno configurado
+// vía RAILWAY_VOLUME_MOUNT_PATH, ver storage-paths.ts) y si no está ahí, en
+// SEED_PRODUCTS_DIR (fotos que vienen versionadas en el repo). Cuando no hay
+// volumen, ambas rutas son la misma carpeta.
+const SEARCH_DIRS = [...new Set([UPLOADS_DIR, SEED_PRODUCTS_DIR])];
 
 /**
  * Sirve fotos de producto leyendo el disco en cada request. `next start` saca
@@ -27,16 +32,18 @@ export async function GET(_request: Request, { params }: { params: Promise<{ cod
     return NextResponse.json({ error: 'Código inválido' }, { status: 400 });
   }
 
-  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
-    const filePath = path.join(PRODUCTS_DIR, `${codigo}.${ext}`);
-    if (fs.existsSync(filePath)) {
-      const buffer = fs.readFileSync(filePath);
-      return new NextResponse(new Uint8Array(buffer), {
-        headers: {
-          'Content-Type': CONTENT_TYPE[ext],
-          'Cache-Control': 'public, max-age=60, must-revalidate',
-        },
-      });
+  for (const dir of SEARCH_DIRS) {
+    for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+      const filePath = path.join(/*turbopackIgnore: true*/ dir, `${codigo}.${ext}`);
+      if (fs.existsSync(/*turbopackIgnore: true*/ filePath)) {
+        const buffer = fs.readFileSync(/*turbopackIgnore: true*/ filePath);
+        return new NextResponse(new Uint8Array(buffer), {
+          headers: {
+            'Content-Type': CONTENT_TYPE[ext],
+            'Cache-Control': 'public, max-age=60, must-revalidate',
+          },
+        });
+      }
     }
   }
 

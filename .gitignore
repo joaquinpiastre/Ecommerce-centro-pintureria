@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# ediciones de admin: locales o en el volumen persistente en prod, no en git
+/data/overrides.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
