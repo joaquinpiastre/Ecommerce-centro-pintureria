@@ -21,13 +21,13 @@
         "priceDisplay": "$5.354,58",
         "hasPrice": true,
         "option": null,
-        "image": "/products/2904.jpg"
+        "image": null
       }
     ],
     "priceMin": 5354.58,
     "priceMax": 5354.58,
     "hasAnyPrice": true,
-    "image": "/products/2904.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -363,13 +363,13 @@
         "priceDisplay": "$5.159,94",
         "hasPrice": true,
         "option": null,
-        "image": "/products/2955.jpg"
+        "image": null
       }
     ],
     "priceMin": 5159.94,
     "priceMax": 5159.94,
     "hasAnyPrice": true,
-    "image": "/products/2955.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -1379,13 +1379,13 @@
         "priceDisplay": "$19.687,20",
         "hasPrice": true,
         "option": null,
-        "image": "/products/41.jpg"
+        "image": null
       }
     ],
     "priceMin": 19687.2,
     "priceMax": 19687.2,
     "hasAnyPrice": true,
-    "image": "/products/41.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -1413,7 +1413,7 @@
         "priceDisplay": "$4.499,43",
         "hasPrice": true,
         "option": "Colgar",
-        "image": "/products/2010.jpg"
+        "image": null
       },
       {
         "codigo": "2011",
@@ -1431,13 +1431,13 @@
         "priceDisplay": "$4.348,33",
         "hasPrice": true,
         "option": "Plana",
-        "image": "/products/2012.jpg"
+        "image": null
       }
     ],
     "priceMin": 1390.74,
     "priceMax": 4499.43,
     "hasAnyPrice": true,
-    "image": "/products/2010.jpg",
+    "image": null,
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
   },
@@ -1723,13 +1723,13 @@
         "priceDisplay": "$3.421,63",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1381.jpg"
+        "image": null
       }
     ],
     "priceMin": 3421.63,
     "priceMax": 3421.63,
     "hasAnyPrice": true,
-    "image": "/products/1381.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -2360,7 +2360,7 @@
         "priceDisplay": "$2.634,28",
         "hasPrice": true,
         "option": "N° 18",
-        "image": "/products/1870.jpg"
+        "image": null
       },
       {
         "codigo": "1867",
@@ -2378,7 +2378,7 @@
         "priceDisplay": "$5.267,47",
         "hasPrice": true,
         "option": "N° 36",
-        "image": "/products/1868.jpg"
+        "image": null
       },
       {
         "codigo": "1869",
@@ -2387,13 +2387,13 @@
         "priceDisplay": "$7.023,29",
         "hasPrice": true,
         "option": "N° 48",
-        "image": "/products/1869.jpg"
+        "image": null
       }
     ],
     "priceMin": 2634.28,
     "priceMax": 7023.29,
     "hasAnyPrice": true,
-    "image": "/products/1870.jpg",
+    "image": null,
     "optionLabel": "Medida",
     "optionLabelPlural": "medidas"
   },
@@ -2564,7 +2564,7 @@
         "priceDisplay": "$10.431,77",
         "hasPrice": true,
         "option": "3 X 3 M",
-        "image": "/products/2013.jpg"
+        "image": null
       },
       {
         "codigo": "2014",
@@ -2573,13 +2573,13 @@
         "priceDisplay": "$12.934,77",
         "hasPrice": true,
         "option": "3 X 5 M",
-        "image": "/products/2014.jpg"
+        "image": null
       }
     ],
     "priceMin": 10431.77,
     "priceMax": 12934.77,
     "hasAnyPrice": true,
-    "image": "/products/2013.jpg",
+    "image": null,
     "optionLabel": "Medida",
     "optionLabelPlural": "medidas"
   },
@@ -3001,13 +3001,13 @@
         "priceDisplay": "$3.690,29",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1382.jpg"
+        "image": null
       }
     ],
     "priceMin": 3690.29,
     "priceMax": 3690.29,
     "hasAnyPrice": true,
-    "image": "/products/1382.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -3408,7 +3408,7 @@
         "priceDisplay": "$4.235,53",
         "hasPrice": true,
         "option": "2\"",
-        "image": "/products/3109.jpg"
+        "image": null
       },
       {
         "codigo": "3110",
@@ -3426,7 +3426,7 @@
         "priceDisplay": "$4.707,44",
         "hasPrice": true,
         "option": "3\"",
-        "image": "/products/3111.jpg"
+        "image": null
       },
       {
         "codigo": "3112",
@@ -3435,7 +3435,7 @@
         "priceDisplay": "$5.178,10",
         "hasPrice": true,
         "option": "4\"",
-        "image": "/products/3112.jpg"
+        "image": null
       },
       {
         "codigo": "3113",
@@ -3444,7 +3444,7 @@
         "priceDisplay": "$5.672,70",
         "hasPrice": true,
         "option": "5\"",
-        "image": "/products/3113.jpg"
+        "image": null
       },
       {
         "codigo": "3114",
@@ -3459,7 +3459,7 @@
     "priceMin": 3999.59,
     "priceMax": 6167.68,
     "hasAnyPrice": true,
-    "image": "/products/3109.jpg",
+    "image": null,
     "optionLabel": "Medida",
     "optionLabelPlural": "medidas"
   },
@@ -3485,13 +3485,13 @@
         "priceDisplay": "$1.669,59",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1365.jpg"
+        "image": null
       }
     ],
     "priceMin": 1669.59,
     "priceMax": 1669.59,
     "hasAnyPrice": true,
-    "image": "/products/1365.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -3559,13 +3559,13 @@
         "priceDisplay": "$15.830,10",
         "hasPrice": true,
         "option": null,
-        "image": "/products/2851.jpg"
+        "image": null
       }
     ],
     "priceMin": 15830.1,
     "priceMax": 15830.1,
     "hasAnyPrice": true,
-    "image": "/products/2851.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -4080,7 +4080,7 @@
         "priceDisplay": "$910,11",
         "hasPrice": true,
         "option": "N° 280",
-        "image": "/products/2617.jpg"
+        "image": null
       },
       {
         "codigo": "2618",
@@ -4107,7 +4107,7 @@
         "priceDisplay": "$910,11",
         "hasPrice": true,
         "option": "N° 400",
-        "image": "/products/2620.jpg"
+        "image": null
       },
       {
         "codigo": "2621",
@@ -4131,7 +4131,7 @@
     "priceMin": 910.11,
     "priceMax": 910.11,
     "hasAnyPrice": true,
-    "image": "/products/2617.jpg",
+    "image": null,
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
   },
@@ -4670,7 +4670,7 @@
         "priceDisplay": "$21.553,11",
         "hasPrice": true,
         "option": null,
-        "image": "/products/2712.jpg"
+        "image": null
       },
       {
         "codigo": "3402",
@@ -4685,7 +4685,7 @@
     "priceMin": 21553.11,
     "priceMax": 32329.69,
     "hasAnyPrice": true,
-    "image": "/products/2712.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -4713,7 +4713,7 @@
         "priceDisplay": "$10.694,13",
         "hasPrice": true,
         "option": null,
-        "image": "/products/2715.jpg"
+        "image": null
       },
       {
         "codigo": "2714",
@@ -4737,7 +4737,7 @@
     "priceMin": 10694.13,
     "priceMax": 162765.92,
     "hasAnyPrice": true,
-    "image": "/products/2715.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -4795,13 +4795,13 @@
         "priceDisplay": "$8.443,19",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1369.jpg"
+        "image": null
       }
     ],
     "priceMin": 8443.19,
     "priceMax": 8443.19,
     "hasAnyPrice": true,
-    "image": "/products/1369.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -5457,13 +5457,13 @@
         "priceDisplay": "$12.026,08",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1400.jpg"
+        "image": null
       }
     ],
     "priceMin": 12026.08,
     "priceMax": 12026.08,
     "hasAnyPrice": true,
-    "image": "/products/1400.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -5839,13 +5839,13 @@
         "priceDisplay": "$4.119,38",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1402.jpg"
+        "image": null
       }
     ],
     "priceMin": 4119.38,
     "priceMax": 4119.38,
     "hasAnyPrice": true,
-    "image": "/products/1402.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -5872,7 +5872,7 @@
         "priceDisplay": "$11.323,42",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1856.jpg"
+        "image": null
       },
       {
         "codigo": "1857",
@@ -5887,7 +5887,7 @@
     "priceMin": 11323.42,
     "priceMax": 41904.6,
     "hasAnyPrice": true,
-    "image": "/products/1856.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -6123,13 +6123,13 @@
         "priceDisplay": "$10.278,64",
         "hasPrice": true,
         "option": null,
-        "image": "/products/2049.jpg"
+        "image": null
       }
     ],
     "priceMin": 10278.64,
     "priceMax": 10278.64,
     "hasAnyPrice": true,
-    "image": "/products/2049.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -6445,13 +6445,13 @@
         "priceDisplay": "$7.265,30",
         "hasPrice": true,
         "option": null,
-        "image": "/products/1859.jpg"
+        "image": null
       }
     ],
     "priceMin": 7265.3,
     "priceMax": 7265.3,
     "hasAnyPrice": true,
-    "image": "/products/1859.jpg",
+    "image": null,
     "optionLabel": null,
     "optionLabelPlural": null
   },
@@ -6511,7 +6511,7 @@
         "priceDisplay": "$4.355,54",
         "hasPrice": true,
         "option": "Fina",
-        "image": "/products/1370.jpg"
+        "image": null
       },
       {
         "codigo": "1372",
@@ -6535,7 +6535,7 @@
     "priceMin": 4355.54,
     "priceMax": 4355.54,
     "hasAnyPrice": true,
-    "image": "/products/1370.jpg",
+    "image": null,
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
   }
