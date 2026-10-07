@@ -5,7 +5,7 @@
  * scripts/taxonomy.ts (build-time) y src/lib/categories-meta.ts (client).
  */
 export const BRAND_COLORS = {
-  verde: '#7AC514',
+  verde: '#6AC528', // verde del logo de Centro Pinturería (medido del archivo del logo)
   amarillo: '#F5C400',
   naranja: '#F47920',
   rojo: '#E03A3E',

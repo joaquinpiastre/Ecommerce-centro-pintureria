@@ -40,6 +40,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-cream: var(--cream);
+  --color-brand-ink: var(--brand-ink);
   --color-ink: var(--ink);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -62,18 +63,18 @@
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
-  --primary: #1b3f8a;
+  --primary: #6ac528;
   --primary-foreground: #ffffff;
   --secondary: #f2f4f8;
-  --secondary-foreground: #1b3f8a;
+  --secondary-foreground: #2f6b10;
   --muted: #f5f6f8;
   --muted-foreground: #5a5f6b;
-  --accent: #7ac514;
-  --accent-foreground: #143d00;
+  --accent: #6ac528;
+  --accent-foreground: #ffffff;
   --destructive: #e03a3e;
   --border: #e7e9ee;
   --input: #e7e9ee;
-  --ring: color-mix(in oklch, #1b3f8a, transparent 50%);
+  --ring: color-mix(in oklch, #6ac528, transparent 50%);
   --chart-1: #e03a3e;
   --chart-2: #1b3f8a;
   --chart-3: #f5c400;
@@ -81,15 +82,16 @@
   --chart-5: #7ac514;
   --radius: 0.75rem;
   --cream: #f7f8fb;
+  --brand-ink: #3d8a14; /* verde de marca oscurecido: solo para texto/íconos sobre fondo claro */
   --ink: #1a1a1a;
   --sidebar: #fafbfc;
   --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #1b3f8a;
+  --sidebar-primary: #6ac528;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f2f4f8;
-  --sidebar-accent-foreground: #1b3f8a;
+  --sidebar-accent-foreground: #2f6b10;
   --sidebar-border: #e7e9ee;
-  --sidebar-ring: color-mix(in oklch, #1b3f8a, transparent 50%);
+  --sidebar-ring: color-mix(in oklch, #6ac528, transparent 50%);
 }
 
 .dark {
@@ -99,24 +101,25 @@
   --card-foreground: #f2f3f5;
   --popover: #1b1e26;
   --popover-foreground: #f2f3f5;
-  --primary: #6f97e0;
-  --primary-foreground: #10192e;
+  --primary: #6ac528;
+  --primary-foreground: #ffffff;
   --secondary: #232733;
   --secondary-foreground: #f2f3f5;
   --muted: #20232c;
   --muted-foreground: #a3a8b5;
-  --accent: #97d93f;
-  --accent-foreground: #10230a;
+  --accent: #6ac528;
+  --accent-foreground: #ffffff;
   --destructive: #ef5b5e;
   --border: color-mix(in oklch, white, transparent 88%);
   --input: color-mix(in oklch, white, transparent 85%);
-  --ring: color-mix(in oklch, #6f97e0, transparent 50%);
+  --ring: color-mix(in oklch, #6ac528, transparent 50%);
   --chart-1: #ef5b5e;
   --chart-2: #6f97e0;
   --chart-3: #f7d449;
   --chart-4: #3fc1f2;
   --chart-5: #97d93f;
   --cream: #1e212a;
+  --brand-ink: #8fdc4f;
   --ink: #f2f3f5;
   --sidebar: #191c24;
   --sidebar-foreground: #f2f3f5;

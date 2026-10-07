@@ -19,7 +19,7 @@ export default function OpengraphImage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(155deg, #1a1a1a 0%, #1B3F8A 55%, #7AC514 130%)',
+          background: '#6AC528',
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}

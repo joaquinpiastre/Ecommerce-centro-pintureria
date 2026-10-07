@@ -72,7 +72,7 @@ export default function ContactoPage() {
 function InfoCard({ icon: Icon, title, children }: { icon: ComponentType<{ className?: string }>; title: string; children: ReactNode }) {
   return (
     <div className="flex gap-4 rounded-2xl border border-border p-4">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-brand-ink">
         <Icon className="h-5 w-5" />
       </span>
       <div>

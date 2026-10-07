@@ -70,7 +70,7 @@ export function ProductImage({ image, brandSlug, categorySlug, name, className =
     return (
       <div
         className={`relative flex h-full w-full items-center justify-center p-8 ${className}`}
-        style={{ background: `linear-gradient(155deg, ${meta.accent} 0%, color-mix(in oklch, ${meta.accent}, black 25%) 100%)` }}
+        style={{ background: meta.accent }}
       >
         <div className="flex max-h-[60%] max-w-[75%] items-center justify-center rounded-2xl bg-white/95 p-4 shadow-lg">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -90,7 +90,7 @@ export function ProductImage({ image, brandSlug, categorySlug, name, className =
   return (
     <div
       className={`relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden p-6 text-center ${className}`}
-      style={{ background: `linear-gradient(155deg, ${meta.accent} 0%, color-mix(in oklch, ${meta.accent}, black 30%) 100%)` }}
+      style={{ background: meta.accent }}
     >
       <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-white/10" />
       <div className="absolute -bottom-8 -left-8 h-28 w-28 rounded-full bg-black/10" />

@@ -3,7 +3,7 @@
     {
       "slug": "pinturas",
       "label": "Pinturas",
-      "accent": "#E03A3E",
+      "accent": "#6AC528",
       "icon": "PaintBucket",
       "count": 25,
       "subcategories": [
@@ -51,7 +51,7 @@
     {
       "slug": "automotor",
       "label": "Automotor",
-      "accent": "#1B3F8A",
+      "accent": "#6AC528",
       "icon": "Car",
       "count": 0,
       "subcategories": [],
@@ -62,7 +62,7 @@
     {
       "slug": "herramientas-y-accesorios",
       "label": "Herramientas y Accesorios",
-      "accent": "#F5C400",
+      "accent": "#6AC528",
       "icon": "Wrench",
       "count": 34,
       "subcategories": [
@@ -155,7 +155,7 @@
     {
       "slug": "impermeabilizantes-y-revestimientos",
       "label": "Impermeabilizantes y Revestimientos",
-      "accent": "#00AEEF",
+      "accent": "#6AC528",
       "icon": "Droplets",
       "count": 7,
       "subcategories": [
@@ -193,7 +193,7 @@
     {
       "slug": "maderas",
       "label": "Maderas",
-      "accent": "#F47920",
+      "accent": "#6AC528",
       "icon": "TreeDeciduous",
       "count": 9,
       "subcategories": [],
@@ -225,7 +225,7 @@
     {
       "slug": "preparacion-de-superficies",
       "label": "Preparación de superficies",
-      "accent": "#7B2D8B",
+      "accent": "#6AC528",
       "icon": "Layers",
       "count": 12,
       "subcategories": [
@@ -273,7 +273,7 @@
     {
       "slug": "aerosoles",
       "label": "Aerosoles",
-      "accent": "#E91E8C",
+      "accent": "#6AC528",
       "icon": "SprayCan",
       "count": 4,
       "subcategories": [],
@@ -305,7 +305,7 @@
     {
       "slug": "diluyentes-y-aditivos",
       "label": "Diluyentes y Aditivos",
-      "accent": "#00B388",
+      "accent": "#6AC528",
       "icon": "FlaskConical",
       "count": 3,
       "subcategories": [],
@@ -327,7 +327,7 @@
     {
       "slug": "adhesivos-y-selladores",
       "label": "Adhesivos y Selladores",
-      "accent": "#7AC514",
+      "accent": "#6AC528",
       "icon": "Droplet",
       "count": 6,
       "subcategories": [],
@@ -354,7 +354,7 @@
     {
       "slug": "construccion-en-seco",
       "label": "Construcción en seco",
-      "accent": "#5B6B8C",
+      "accent": "#6AC528",
       "icon": "Building2",
       "count": 0,
       "subcategories": [],

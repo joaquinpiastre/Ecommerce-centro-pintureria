@@ -121,7 +121,7 @@ export function SearchDialog({ open, onOpenChange }: { open: boolean; onOpenChan
                       {item.category}
                     </p>
                   </div>
-                  <span className="shrink-0 text-sm font-semibold text-primary">{item.priceDisplay}</span>
+                  <span className="shrink-0 text-sm font-semibold text-brand-ink">{item.priceDisplay}</span>
                 </Link>
               </li>
             ))}

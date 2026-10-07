@@ -37,7 +37,7 @@ export default function AdminDashboardPage() {
           const Icon = t.icon;
           const content = (
             <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-background p-4 transition-colors hover:border-primary/40">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-brand-ink">
                 <Icon className="h-4.5 w-4.5" />
               </span>
               <div className="mt-4">
@@ -95,7 +95,7 @@ export default function AdminDashboardPage() {
             {stats.recentlyEdited.map((p) => (
               <li key={p.id} className="flex items-center justify-between py-2.5 text-sm">
                 <span className="truncate">{p.name}</span>
-                <Link href={`/admin/productos/${p.id}`} className="shrink-0 text-primary hover:underline">
+                <Link href={`/admin/productos/${p.id}`} className="shrink-0 text-brand-ink hover:underline">
                   Editar
                 </Link>
               </li>

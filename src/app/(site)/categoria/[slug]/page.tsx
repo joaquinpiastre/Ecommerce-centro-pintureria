@@ -30,7 +30,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <div>
       <div
         className="relative overflow-hidden py-10 text-white sm:py-14"
-        style={{ background: `linear-gradient(150deg, ${category.accent}, color-mix(in oklch, ${category.accent}, black 35%))` }}
+        style={{ background: category.accent }}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">

@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="mx-auto flex min-h-[70vh] max-w-xl flex-col items-center justify-center px-4 text-center">
       <div className="relative mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-primary/10">
-        <PaintBucket className="h-11 w-11 rotate-[-18deg] text-primary" />
+        <PaintBucket className="h-11 w-11 rotate-[-18deg] text-brand-ink" />
         <span className="absolute -bottom-1 -right-1 h-5 w-8 rounded-full bg-accent/70 blur-[2px]" />
       </div>
       <h1 className="font-heading text-4xl font-bold">Se nos derramó la pintura</h1>

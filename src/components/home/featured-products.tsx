@@ -15,7 +15,7 @@ export function FeaturedProducts({ products, categories }: { products: Product[]
           <p className="mt-1 text-muted-foreground">Una selección de nuestro catálogo, con lo mejor de cada categoría.</p>
         </div>
         {topCategory && (
-          <Link href={`/categoria/${topCategory.slug}`} className="hidden items-center gap-1 text-sm font-medium text-primary hover:underline sm:flex">
+          <Link href={`/categoria/${topCategory.slug}`} className="hidden items-center gap-1 text-sm font-medium text-brand-ink hover:underline sm:flex">
             Ver catálogo completo <ArrowRight className="h-4 w-4" />
           </Link>
         )}

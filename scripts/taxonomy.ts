@@ -23,17 +23,17 @@ export interface Rule {
 // (ver src/lib/brand-palette.ts), así el sitio usa la paleta real de la marca
 // en vez de colores inventados.
 export const CATEGORIES: CategoryDef[] = [
-  { slug: 'pinturas', label: 'Pinturas', accent: BRAND_COLORS.rojo, icon: 'PaintBucket' },
-  { slug: 'automotor', label: 'Automotor', accent: BRAND_COLORS.azul, icon: 'Car' },
-  { slug: 'herramientas-y-accesorios', label: 'Herramientas y Accesorios', accent: BRAND_COLORS.amarillo, icon: 'Wrench' },
-  { slug: 'impermeabilizantes-y-revestimientos', label: 'Impermeabilizantes y Revestimientos', accent: BRAND_COLORS.celeste, icon: 'Droplets' },
-  { slug: 'maderas', label: 'Maderas', accent: BRAND_COLORS.naranja, icon: 'TreeDeciduous' },
-  { slug: 'preparacion-de-superficies', label: 'Preparación de superficies', accent: BRAND_COLORS.violeta, icon: 'Layers' },
-  { slug: 'aerosoles', label: 'Aerosoles', accent: BRAND_COLORS.rosa, icon: 'SprayCan' },
-  { slug: 'diluyentes-y-aditivos', label: 'Diluyentes y Aditivos', accent: BRAND_COLORS.verdeagua, icon: 'FlaskConical' },
+  { slug: 'pinturas', label: 'Pinturas', accent: BRAND_COLORS.verde, icon: 'PaintBucket' },
+  { slug: 'automotor', label: 'Automotor', accent: BRAND_COLORS.verde, icon: 'Car' },
+  { slug: 'herramientas-y-accesorios', label: 'Herramientas y Accesorios', accent: BRAND_COLORS.verde, icon: 'Wrench' },
+  { slug: 'impermeabilizantes-y-revestimientos', label: 'Impermeabilizantes y Revestimientos', accent: BRAND_COLORS.verde, icon: 'Droplets' },
+  { slug: 'maderas', label: 'Maderas', accent: BRAND_COLORS.verde, icon: 'TreeDeciduous' },
+  { slug: 'preparacion-de-superficies', label: 'Preparación de superficies', accent: BRAND_COLORS.verde, icon: 'Layers' },
+  { slug: 'aerosoles', label: 'Aerosoles', accent: BRAND_COLORS.verde, icon: 'SprayCan' },
+  { slug: 'diluyentes-y-aditivos', label: 'Diluyentes y Aditivos', accent: BRAND_COLORS.verde, icon: 'FlaskConical' },
   { slug: 'adhesivos-y-selladores', label: 'Adhesivos y Selladores', accent: BRAND_COLORS.verde, icon: 'Droplet' },
-  { slug: 'construccion-en-seco', label: 'Construcción en seco', accent: '#5B6B8C', icon: 'Building2' },
-  { slug: 'varios', label: 'Varios', accent: '#8A8F98', icon: 'Package' },
+  { slug: 'construccion-en-seco', label: 'Construcción en seco', accent: BRAND_COLORS.verde, icon: 'Building2' },
+  { slug: 'varios', label: 'Varios', accent: BRAND_COLORS.verde, icon: 'Package' },
 ];
 
 /** Tag transversal, NO excluye de su categoría real */

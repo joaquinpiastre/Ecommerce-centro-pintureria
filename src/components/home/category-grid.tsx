@@ -23,7 +23,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
             >
               <span
                 className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-white shadow-sm transition-transform duration-200 group-hover:-translate-y-1 group-hover:shadow-md sm:h-20 sm:w-20"
-                style={{ background: `linear-gradient(150deg, ${c.accent}, color-mix(in oklch, ${c.accent}, black 30%))` }}
+                style={{ background: c.accent }}
               >
                 <Icon className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={1.75} />
               </span>

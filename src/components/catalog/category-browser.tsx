@@ -216,7 +216,7 @@ function FilterRadio({ label, count, active, onClick }: { label: string; count?:
     <button
       onClick={onClick}
       className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-sm transition-colors ${
-        active ? 'bg-primary/10 font-medium text-primary' : 'text-foreground/80 hover:bg-muted'
+        active ? 'bg-primary/10 font-medium text-brand-ink' : 'text-foreground/80 hover:bg-muted'
       }`}
     >
       <span className="truncate">{label}</span>

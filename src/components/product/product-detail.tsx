@@ -60,7 +60,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </div>
 
       <div className="flex flex-col">
-        {product.brand && <p className="text-sm font-semibold uppercase tracking-wide text-primary">{product.brand}</p>}
+        {product.brand && <p className="text-sm font-semibold uppercase tracking-wide text-brand-ink">{product.brand}</p>}
         <h1 className="mt-1 font-heading text-2xl font-bold leading-tight sm:text-3xl">{product.name}</h1>
         <p className="mt-2 text-xs text-muted-foreground">Código {variant.codigo}</p>
 

@@ -128,7 +128,7 @@ export function Header({ categories }: { categories: Category[] }) {
 
             <Link
               href="/categoria/pinturas"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent/10"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-brand-ink transition-colors hover:bg-accent/10"
             >
               <Tag className="h-4 w-4" /> Ofertas
             </Link>
@@ -223,7 +223,7 @@ function MobileMenu({ categories, open, onClose }: { categories: Category[]; ope
               <Link
                 href="/categoria/pinturas"
                 onClick={onClose}
-                className="mb-1 flex items-center gap-3 rounded-xl bg-accent/10 px-3 py-3 text-sm font-semibold text-accent"
+                className="mb-1 flex items-center gap-3 rounded-xl bg-accent/10 px-3 py-3 text-sm font-semibold text-brand-ink"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-white">
                   <Tag className="h-4.5 w-4.5" />
