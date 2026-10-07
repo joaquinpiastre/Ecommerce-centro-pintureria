@@ -1,30 +1,40 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Plus, Check } from 'lucide-react';
 import { useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductImage } from './product-image';
 import { useCartStore } from '@/store/cart';
+import { formatPriceARS } from '@/lib/format';
 
 export function ProductCard({ product, priority }: { product: Product; priority?: boolean }) {
   const addItem = useCartStore((s) => s.addItem);
   const [justAdded, setJustAdded] = useState(false);
+  const router = useRouter();
 
   const defaultVariant = product.variants[0];
   const hasRange = product.variants.length > 1 && product.priceMin !== product.priceMax;
+  const optionCount = new Set(product.variants.map((v) => v.option).filter(Boolean)).size;
+  const hasOptions = optionCount > 1;
 
   function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
+    // Con varios colores/números hay que elegir primero: se abre la ficha.
+    if (hasOptions) {
+      router.push(`/producto/${product.codigo}`);
+      return;
+    }
     addItem(
       {
         productId: product.id,
         codigo: defaultVariant.codigo,
         name: product.name,
         brand: product.brand,
-        sizeLabel: defaultVariant.sizeLabel,
+        sizeLabel: [defaultVariant.option, defaultVariant.sizeLabel].filter(Boolean).join(' · ') || null,
         price: defaultVariant.price,
         priceDisplay: defaultVariant.priceDisplay,
         image: product.image,
@@ -63,15 +73,19 @@ export function ProductCard({ product, priority }: { product: Product; priority?
 
         <div className="flex flex-1 flex-col gap-1 p-3.5">
           <h3 className="line-clamp-2 min-h-[2.5rem] text-sm font-medium leading-snug text-foreground">{product.name}</h3>
-          {product.variants.length > 1 && (
-            <p className="text-xs text-muted-foreground">{product.variants.length} presentaciones</p>
+          {hasOptions ? (
+            <p className="text-xs text-muted-foreground">
+              {optionCount} {product.optionLabelPlural ?? 'opciones'}
+            </p>
+          ) : (
+            product.variants.length > 1 && <p className="text-xs text-muted-foreground">{product.variants.length} presentaciones</p>
           )}
           <div className="mt-auto flex items-end justify-between pt-2">
             <div>
-              {defaultVariant.hasPrice ? (
+              {product.hasAnyPrice ? (
                 <p className="font-heading text-base font-bold text-foreground">
                   {hasRange && <span className="mr-1 text-xs font-normal text-muted-foreground">Desde</span>}
-                  {defaultVariant.priceDisplay}
+                  {hasRange ? formatPriceARS(product.priceMin) : defaultVariant.priceDisplay}
                 </p>
               ) : (
                 <p className="text-sm font-medium text-muted-foreground">Consultar precio</p>

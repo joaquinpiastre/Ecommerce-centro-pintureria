@@ -17,6 +17,7 @@ interface SearchItem {
   priceDisplay: string;
   image: string | null;
   codes: string;
+  options?: string;
 }
 
 export function SearchDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
@@ -55,6 +56,7 @@ export function SearchDialog({ open, onOpenChange }: { open: boolean; onOpenChan
         { name: 'name', weight: 2 },
         { name: 'brand', weight: 1 },
         { name: 'codes', weight: 1.5 },
+        { name: 'options', weight: 1 },
       ],
       threshold: 0.32,
       ignoreLocation: true,

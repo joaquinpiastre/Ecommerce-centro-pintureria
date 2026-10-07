@@ -5,12 +5,12 @@
       "label": "Pinturas",
       "accent": "#E03A3E",
       "icon": "PaintBucket",
-      "count": 31,
+      "count": 25,
       "subcategories": [
         {
           "label": "Látex",
           "slug": "latex",
-          "count": 22
+          "count": 16
         },
         {
           "label": "Antióxido y convertidores",
@@ -20,16 +20,16 @@
         {
           "label": "Esmaltes",
           "slug": "esmaltes",
-          "count": 3
-        },
-        {
-          "label": "Cielorrasos",
-          "slug": "cielorrasos",
-          "count": 1
+          "count": 2
         },
         {
           "label": "Especiales",
           "slug": "especiales",
+          "count": 2
+        },
+        {
+          "label": "Cielorrasos",
+          "slug": "cielorrasos",
           "count": 1
         }
       ],
@@ -37,17 +37,12 @@
         {
           "slug": "alba",
           "label": "Alba",
-          "count": 26
+          "count": 21
         },
         {
           "slug": "emapi",
           "label": "Emapi",
-          "count": 3
-        },
-        {
-          "slug": "urbano",
-          "label": "Urbano",
-          "count": 2
+          "count": 4
         }
       ],
       "priceMin": 7198.11,
@@ -69,69 +64,69 @@
       "label": "Herramientas y Accesorios",
       "accent": "#F5C400",
       "icon": "Wrench",
-      "count": 36,
+      "count": 34,
       "subcategories": [
         {
           "label": "Pinceles y rodillos",
           "slug": "pinceles-y-rodillos",
-          "count": 10
-        },
-        {
-          "label": "Espátulas y bandejas",
-          "slug": "espatulas-y-bandejas",
-          "count": 9
+          "count": 11
         },
         {
           "label": "Lijas y abrasivos",
           "slug": "lijas-y-abrasivos",
-          "count": 7
+          "count": 9
+        },
+        {
+          "label": "Espátulas y bandejas",
+          "slug": "espatulas-y-bandejas",
+          "count": 5
         },
         {
           "label": "Envases y complementos",
           "slug": "envases-y-complementos",
-          "count": 5
+          "count": 4
         },
         {
           "label": "Cintas",
           "slug": "cintas",
-          "count": 4
+          "count": 3
         },
         {
           "label": "Protección personal",
           "slug": "proteccion-personal",
-          "count": 1
+          "count": 2
         }
       ],
       "brands": [
         {
           "slug": "rosarpin",
           "label": "Rosarpin",
-          "count": 7
+          "count": 8
         },
         {
           "slug": "el-galgo",
           "label": "El Galgo",
-          "count": 7
-        },
-        {
-          "slug": "norton",
-          "label": "Norton",
           "count": 6
-        },
-        {
-          "slug": "sherwin-williams",
-          "label": "Sherwin Williams",
-          "count": 4
-        },
-        {
-          "slug": "mota",
-          "label": "Mota",
-          "count": 4
         },
         {
           "slug": "fueguino",
           "label": "Fueguino",
+          "count": 4
+        },
+        {
+          "slug": "norton",
+          "label": "Norton",
+          "count": 4
+        },
+        {
+          "slug": "sherwin-williams",
+          "label": "Sherwin Williams",
           "count": 3
+        },
+        {
+          "slug": "rottweiler",
+          "label": "Rottweiler",
+          "count": 2
         },
         {
           "slug": "apeles",
@@ -139,12 +134,22 @@
           "count": 2
         },
         {
-          "slug": "rottweiler",
-          "label": "Rottweiler",
+          "slug": "mota",
+          "label": "Mota",
+          "count": 1
+        },
+        {
+          "slug": "sinteplast",
+          "label": "Sinteplast",
+          "count": 1
+        },
+        {
+          "slug": "3m",
+          "label": "3M",
           "count": 1
         }
       ],
-      "priceMin": 910.11,
+      "priceMin": 706.76,
       "priceMax": 15830.1
     },
     {
@@ -152,19 +157,34 @@
       "label": "Impermeabilizantes y Revestimientos",
       "accent": "#00AEEF",
       "icon": "Droplets",
-      "count": 4,
+      "count": 7,
       "subcategories": [
         {
           "label": "Impermeabilizantes",
           "slug": "impermeabilizantes",
-          "count": 4
+          "count": 6
+        },
+        {
+          "label": "Revestimientos texturados",
+          "slug": "revestimientos-texturados",
+          "count": 1
         }
       ],
       "brands": [
         {
           "slug": "merclin",
           "label": "Merclin",
-          "count": 4
+          "count": 5
+        },
+        {
+          "slug": "distincion",
+          "label": "Distinción",
+          "count": 1
+        },
+        {
+          "slug": "venezia",
+          "label": "Venezia",
+          "count": 1
         }
       ],
       "priceMin": 9044.99,
@@ -175,13 +195,18 @@
       "label": "Maderas",
       "accent": "#F47920",
       "icon": "TreeDeciduous",
-      "count": 6,
+      "count": 9,
       "subcategories": [],
       "brands": [
         {
           "slug": "cetol",
           "label": "Cetol",
-          "count": 4
+          "count": 5
+        },
+        {
+          "slug": "emapi",
+          "label": "Emapi",
+          "count": 2
         },
         {
           "slug": "geo",
@@ -195,19 +220,19 @@
         }
       ],
       "priceMin": 4081.77,
-      "priceMax": 96145.31
+      "priceMax": 103810.49
     },
     {
       "slug": "preparacion-de-superficies",
       "label": "Preparación de superficies",
       "accent": "#7B2D8B",
       "icon": "Layers",
-      "count": 9,
+      "count": 12,
       "subcategories": [
         {
           "label": "Enduidos y masillas",
           "slug": "enduidos-y-masillas",
-          "count": 4
+          "count": 6
         },
         {
           "label": "Selladores y fijadores",
@@ -218,18 +243,23 @@
           "label": "Fondos e imprimaciones",
           "slug": "fondos-e-imprimaciones",
           "count": 2
+        },
+        {
+          "label": "Alabastine",
+          "slug": "alabastine",
+          "count": 1
         }
       ],
       "brands": [
         {
           "slug": "alba",
           "label": "Alba",
-          "count": 6
+          "count": 8
         },
         {
           "slug": "sinteplast",
           "label": "Sinteplast",
-          "count": 2
+          "count": 3
         },
         {
           "slug": "fischer",
@@ -238,29 +268,39 @@
         }
       ],
       "priceMin": 5441.12,
-      "priceMax": 38322.14
+      "priceMax": 45143.07
     },
     {
       "slug": "aerosoles",
       "label": "Aerosoles",
       "accent": "#E91E8C",
       "icon": "SprayCan",
-      "count": 6,
+      "count": 4,
       "subcategories": [],
       "brands": [
-        {
-          "slug": "toke",
-          "label": "Toke",
-          "count": 5
-        },
         {
           "slug": "colorgin",
           "label": "Colorgin",
           "count": 1
+        },
+        {
+          "slug": "distincion",
+          "label": "Distinción",
+          "count": 1
+        },
+        {
+          "slug": "toke",
+          "label": "Toke",
+          "count": 1
+        },
+        {
+          "slug": "rust-oleum",
+          "label": "Rust Oleum",
+          "count": 1
         }
       ],
-      "priceMin": 6331.97,
-      "priceMax": 22484.16
+      "priceMin": 5265.33,
+      "priceMax": 26142.86
     },
     {
       "slug": "diluyentes-y-aditivos",
@@ -289,17 +329,17 @@
       "label": "Adhesivos y Selladores",
       "accent": "#7AC514",
       "icon": "Droplet",
-      "count": 5,
+      "count": 6,
       "subcategories": [],
       "brands": [
         {
-          "slug": "rottweiler",
-          "label": "Rottweiler",
-          "count": 1
-        },
-        {
           "slug": "tekbond",
           "label": "Tekbond",
+          "count": 2
+        },
+        {
+          "slug": "rottweiler",
+          "label": "Rottweiler",
           "count": 1
         },
         {
@@ -308,7 +348,7 @@
           "count": 1
         }
       ],
-      "priceMin": 7768.59,
+      "priceMin": 2755.01,
       "priceMax": 27362.77
     },
     {

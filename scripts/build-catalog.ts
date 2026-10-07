@@ -8,7 +8,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { CURATED_IDS } from './curated';
+import { FAMILIES, type Family } from './families';
 import { RULES, CATEGORIES, BRANDS, KEEP_UPPER, LOWER_CONNECTORS, OFFER_PATTERN, EXCLUDE_CODES } from './taxonomy';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -27,6 +27,8 @@ interface ProductVariant {
   price: number;
   priceDisplay: string;
   hasPrice: boolean;
+  option?: string | null; // color / número / grano dentro de un mismo producto
+  image?: string | null; // foto propia de la variante, si existe
 }
 
 interface Product {
@@ -46,6 +48,8 @@ interface Product {
   priceMax: number;
   hasAnyPrice: boolean;
   image: string | null; // ruta pública si existe foto real para alguna variante
+  optionLabel?: string | null; // "Color", "Número"…
+  optionLabelPlural?: string | null; // "colores", "números"…
 }
 
 // ---------- 1. Leer CSV detectando encoding y parsear ----------
@@ -209,6 +213,130 @@ function slugify(str: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+// ---------- 8. Familias curadas: agrupar variedades en un solo producto ----------
+
+function cleanOption(raw: string): string {
+  let o = raw
+    .replace(/\s+x\s*\d+(?:[.,]\d+)?\s*(?:g|gr|kg|ml|l|lt)\b/i, '')
+    .replace(/\s*-?\s*(?:el )?galgo$/i, '')
+    .replace(/\s*HE\d+$/i, '')
+    .replace(/\bProf\b/g, 'Profesional')
+    .replace(/\bBrill\b/g, 'Brillante')
+    .replace(/\bSat\b/g, 'Satinado')
+    .replace(/\bTrad\b/g, 'Tradicional')
+    .replace(/[\s.-]+$/g, '')
+    .replace(/^[\s.-]+/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  o = o.replace(/^(?:N°?|X)\s*(\d+)$/i, 'N° $1');
+  o = o.replace(/^(\d+)X(\d+)M$/i, '$1 x $2 m');
+  return o.replace(/(^|\s)([a-zñ])/g, (_m, sp: string, c: string) => sp + c.toUpperCase());
+}
+
+/** Normaliza presentaciones del CSV: "X 01 L" -> "1 L", "04 L" -> "4 L". */
+function cleanSize(raw: string | null): string | null {
+  if (!raw) return null;
+  return (
+    raw
+      .replace(/^X\s*/i, '')
+      .replace(/^0+(?=\d)/, '')
+      .replace(/(\d)(L|LT|LTS|KL|KG|ML|CC)\b/i, '$1 $2')
+      .trim() || null
+  );
+}
+
+/** Clave numérica para ordenar opciones tipo "N° 10", '1 1/2"' o "Grano 80". */
+function numericKey(opt: string): number | null {
+  const m = /(\d+)(?:\s+(\d+)\/(\d+))?/.exec(opt);
+  if (!m) return null;
+  return Number(m[1]) + (m[2] ? Number(m[2]) / Number(m[3]) : 0);
+}
+
+function mergeFamilies(all: Product[], families: Family[], realImages: Set<string>): Product[] {
+  const used = new Set<string>();
+  const out: Product[] = [];
+  const usedSlugs = new Set<string>();
+
+  for (const fam of families) {
+    const members = all.filter((p) => !used.has(p.id) && fam.match.test(p.name) && (!fam.brand || p.brand === fam.brand));
+    if (members.length === 0) {
+      console.warn(`ATENCIÓN: la familia "${fam.name}" no encontró productos en el CSV`);
+      continue;
+    }
+    members.forEach((m) => used.add(m.id));
+    const multi = members.length > 1 && !!fam.strip;
+
+    const variants: ProductVariant[] = [];
+    for (const m of members) {
+      const option = multi ? cleanOption(m.name.replace(fam.strip!, '')) || 'Estándar' : null;
+      for (const v of m.variants) {
+        variants.push({
+          ...v,
+          sizeLabel: cleanSize(v.sizeLabel),
+          option,
+          image: realImages.has(v.codigo) ? `/products/${v.codigo}.jpg` : null,
+        });
+      }
+    }
+
+    const optionOrder = [...new Set(variants.map((v) => v.option).filter((o): o is string => !!o))];
+    optionOrder.sort((a, b) => {
+      if (fam.order) {
+        const ia = fam.order.indexOf(a);
+        const ib = fam.order.indexOf(b);
+        if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+      }
+      const na = numericKey(a);
+      const nb = numericKey(b);
+      if (na !== null && nb !== null && na !== nb) return na - nb;
+      return a.localeCompare(b, 'es', { numeric: true });
+    });
+    // En familias por color, las opciones con foto van primero: la ficha y la tarjeta abren con una foto real.
+    if (fam.option?.[0] === 'Color') {
+      const withPhoto = new Set(variants.filter((v) => v.image).map((v) => v.option));
+      optionOrder.sort((a, b) => Number(withPhoto.has(b)) - Number(withPhoto.has(a)));
+    }
+    variants.sort((a, b) => {
+      const oa = a.option ? optionOrder.indexOf(a.option) : 0;
+      const ob = b.option ? optionOrder.indexOf(b.option) : 0;
+      if (oa !== ob) return oa - ob;
+      if (a.hasPrice !== b.hasPrice) return a.hasPrice ? -1 : 1;
+      return a.price - b.price;
+    });
+
+    const first = members[0];
+    const priced = variants.filter((v) => v.hasPrice);
+    const baseSlug = slugify(`${fam.name} ${first.brand ?? ''}`);
+    let slug = baseSlug;
+    for (let n = 2; usedSlugs.has(slug); n++) slug = `${baseSlug}-${n}`;
+    usedSlugs.add(slug);
+
+    out.push({
+      ...first,
+      id: slug,
+      slug,
+      name: fam.name,
+      codigo: variants[0].codigo,
+      allCodigos: variants.map((v) => v.codigo),
+      isOffer: members.some((m) => m.isOffer),
+      variants,
+      priceMin: priced.length ? Math.min(...priced.map((v) => v.price)) : 0,
+      priceMax: priced.length ? Math.max(...priced.map((v) => v.price)) : 0,
+      hasAnyPrice: priced.length > 0,
+      image: variants.find((v) => v.image)?.image ?? null,
+      optionLabel: multi ? (fam.option?.[0] ?? 'Opción') : null,
+      optionLabelPlural: multi ? (fam.option?.[1] ?? 'opciones') : null,
+    });
+
+    const preview = multi ? `  [${optionOrder.slice(0, 5).join(', ')}${optionOrder.length > 5 ? '…' : ''}]` : '';
+    console.log(`  ${String(members.length).padStart(2)} grupos / ${String(variants.length).padStart(2)} variantes  ${fam.name}${preview}`);
+  }
+
+  const leftover = all.filter((p) => !used.has(p.id)).length;
+  console.log(`Catálogo curado: ${out.length} productos (de ${all.length} grupos; ${leftover} sin incluir)`);
+  return out.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+}
+
 // ---------- Pipeline principal ----------
 
 function main() {
@@ -309,13 +437,9 @@ function main() {
 
   products.sort((a, b) => a.name.localeCompare(b.name, 'es'));
 
-  if (CURATED_IDS.size > 0) {
-    const total = products.length;
-    const kept = products.filter((p) => CURATED_IDS.has(p.id));
-    const missing = [...CURATED_IDS].filter((id) => !kept.some((p) => p.id === id));
-    if (missing.length) console.warn(`ATENCIÓN: ids curados sin match en el CSV: ${missing.join(', ')}`);
-    products.splice(0, products.length, ...kept);
-    console.log(`Catálogo curado: ${kept.length} de ${total} productos`);
+  if (FAMILIES.length > 0) {
+    const curated = mergeFamilies(products, FAMILIES, realImages);
+    products.splice(0, products.length, ...curated);
   }
 
   // ---------- categories.json ----------
@@ -368,6 +492,7 @@ function main() {
     priceDisplay: p.variants[0]?.priceDisplay ?? 'Consultar precio',
     image: p.image,
     codes: p.allCodigos.join(' '),
+    options: [...new Set(p.variants.map((v) => v.option).filter(Boolean))].join(' '),
   }));
   fs.writeFileSync(path.join(publicDataDir, 'search-index.json'), JSON.stringify(searchIndex));
 

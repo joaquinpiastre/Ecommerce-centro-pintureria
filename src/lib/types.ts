@@ -4,6 +4,10 @@ export interface ProductVariant {
   price: number;
   priceDisplay: string;
   hasPrice: boolean;
+  /** Color, número de pincel, grano de lija, etc. dentro de un mismo producto. */
+  option?: string | null;
+  /** Foto propia de esta variante (ej. el color elegido). */
+  image?: string | null;
 }
 
 export interface Product {
@@ -23,6 +27,10 @@ export interface Product {
   priceMax: number;
   hasAnyPrice: boolean;
   image: string | null;
+  /** "Color", "Número", "Grano"… (singular) cuando el producto tiene variedades. */
+  optionLabel?: string | null;
+  /** "colores", "números", "granos"… (plural). */
+  optionLabelPlural?: string | null;
 }
 
 export interface CategorySub {

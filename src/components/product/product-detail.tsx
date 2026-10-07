@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Minus, Plus, ShoppingCart, Check, Info } from 'lucide-react';
 import type { Product } from '@/lib/types';
@@ -9,13 +9,24 @@ import { useCartStore } from '@/store/cart';
 import { SITE } from '../../../config/site';
 
 export function ProductDetail({ product }: { product: Product }) {
-  const [variantIdx, setVariantIdx] = useState(0);
+  const [optionIdx, setOptionIdx] = useState(0);
+  const [sizeIdx, setSizeIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const addItem = useCartStore((s) => s.addItem);
   const openCart = useCartStore((s) => s.open);
 
-  const variant = product.variants[variantIdx];
+  // Variedades (color, número, grano…) y, dentro de cada una, sus presentaciones.
+  const options = useMemo(() => [...new Set(product.variants.map((v) => v.option).filter((o): o is string => !!o))], [product.variants]);
+  const currentOption = options.length > 0 ? options[Math.min(optionIdx, options.length - 1)] : null;
+  const sizes = useMemo(
+    () => (currentOption ? product.variants.filter((v) => v.option === currentOption) : product.variants),
+    [product.variants, currentOption]
+  );
+  const variant = sizes[Math.min(sizeIdx, sizes.length - 1)];
+  // Un color sin foto propia no hereda la foto de otro color; el resto de las variedades (grano, número, medida) se ven igual.
+  const variantImage = variant.image ?? (product.optionLabel === 'Color' ? null : product.image);
+  const fullLabel = [variant.option, variant.sizeLabel].filter(Boolean).join(' · ') || null;
 
   function handleAdd() {
     addItem(
@@ -24,10 +35,10 @@ export function ProductDetail({ product }: { product: Product }) {
         codigo: variant.codigo,
         name: product.name,
         brand: product.brand,
-        sizeLabel: variant.sizeLabel,
+        sizeLabel: fullLabel,
         price: variant.price,
         priceDisplay: variant.priceDisplay,
-        image: product.image,
+        image: variantImage,
         categorySlug: product.categorySlug,
       },
       qty
@@ -40,7 +51,7 @@ export function ProductDetail({ product }: { product: Product }) {
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-muted">
-        <ProductImage image={product.image} brandSlug={product.brandSlug} categorySlug={product.categorySlug} name={product.name} priority sizes="(min-width: 1024px) 45vw, 90vw" />
+        <ProductImage key={variantImage ?? 'none'} image={variantImage} brandSlug={product.brandSlug} categorySlug={product.categorySlug} name={product.name} priority sizes="(min-width: 1024px) 45vw, 90vw" />
         {product.isOffer && (
           <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-accent-foreground shadow">
             Oferta
@@ -64,16 +75,42 @@ export function ProductDetail({ product }: { product: Product }) {
           </p>
         </div>
 
-        {product.variants.length > 1 && (
+        {options.length > 1 && (
+          <div className="mt-6">
+            <h3 className="mb-2 text-sm font-semibold">
+              {product.optionLabel ?? 'Opción'}: <span className="font-normal text-muted-foreground">{currentOption}</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {options.map((o, i) => (
+                <button
+                  key={o}
+                  onClick={() => {
+                    setOptionIdx(i);
+                    setSizeIdx(0);
+                  }}
+                  className={`rounded-xl border px-3.5 py-2 text-sm font-medium transition-colors ${
+                    o === currentOption
+                      ? 'border-primary bg-primary text-primary-foreground'
+                      : 'border-border bg-background text-foreground hover:border-primary/50'
+                  }`}
+                >
+                  {o}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {sizes.length > 1 && (
           <div className="mt-6">
             <h3 className="mb-2 text-sm font-semibold">Presentación</h3>
             <div className="flex flex-wrap gap-2">
-              {product.variants.map((v, i) => (
+              {sizes.map((v, i) => (
                 <button
                   key={v.codigo}
-                  onClick={() => setVariantIdx(i)}
+                  onClick={() => setSizeIdx(i)}
                   className={`rounded-xl border px-4 py-2 text-sm font-medium transition-colors ${
-                    i === variantIdx
+                    v === variant
                       ? 'border-primary bg-primary text-primary-foreground'
                       : 'border-border bg-background text-foreground hover:border-primary/50'
                   }`}
