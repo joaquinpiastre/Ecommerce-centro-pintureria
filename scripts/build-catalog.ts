@@ -8,6 +8,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { CURATED_IDS } from './curated';
 import { RULES, CATEGORIES, BRANDS, KEEP_UPPER, LOWER_CONNECTORS, OFFER_PATTERN, EXCLUDE_CODES } from './taxonomy';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -307,6 +308,15 @@ function main() {
   }
 
   products.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+
+  if (CURATED_IDS.size > 0) {
+    const total = products.length;
+    const kept = products.filter((p) => CURATED_IDS.has(p.id));
+    const missing = [...CURATED_IDS].filter((id) => !kept.some((p) => p.id === id));
+    if (missing.length) console.warn(`ATENCIÓN: ids curados sin match en el CSV: ${missing.join(', ')}`);
+    products.splice(0, products.length, ...kept);
+    console.log(`Catálogo curado: ${kept.length} de ${total} productos`);
+  }
 
   // ---------- categories.json ----------
   const categoriesOut = CATEGORIES.filter((c) => c.label !== 'Varios' || products.some((p) => p.category === 'Varios')).map((c) => {

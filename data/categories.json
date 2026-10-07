@@ -5,31 +5,31 @@
       "label": "Pinturas",
       "accent": "#E03A3E",
       "icon": "PaintBucket",
-      "count": 148,
+      "count": 31,
       "subcategories": [
         {
           "label": "Látex",
           "slug": "latex",
-          "count": 85
-        },
-        {
-          "label": "Esmaltes",
-          "slug": "esmaltes",
-          "count": 43
+          "count": 22
         },
         {
           "label": "Antióxido y convertidores",
           "slug": "antioxido-y-convertidores",
-          "count": 12
+          "count": 4
         },
         {
-          "label": "Especiales",
-          "slug": "especiales",
-          "count": 7
+          "label": "Esmaltes",
+          "slug": "esmaltes",
+          "count": 3
         },
         {
           "label": "Cielorrasos",
           "slug": "cielorrasos",
+          "count": 1
+        },
+        {
+          "label": "Especiales",
+          "slug": "especiales",
           "count": 1
         }
       ],
@@ -37,27 +37,17 @@
         {
           "slug": "alba",
           "label": "Alba",
-          "count": 95
+          "count": 26
         },
         {
           "slug": "emapi",
           "label": "Emapi",
-          "count": 29
-        },
-        {
-          "slug": "farben",
-          "label": "Farben",
-          "count": 18
+          "count": 3
         },
         {
           "slug": "urbano",
           "label": "Urbano",
           "count": 2
-        },
-        {
-          "slug": "sinteplast",
-          "label": "Sinteplast",
-          "count": 1
         }
       ],
       "priceMin": 7198.11,
@@ -68,272 +58,130 @@
       "label": "Automotor",
       "accent": "#1B3F8A",
       "icon": "Car",
-      "count": 79,
-      "subcategories": [
-        {
-          "label": "Primers y masillas automotor",
-          "slug": "primers-y-masillas-automotor",
-          "count": 20
-        },
-        {
-          "label": "Catalizadores y endurecedores",
-          "slug": "catalizadores-y-endurecedores",
-          "count": 15
-        },
-        {
-          "label": "Pulido y accesorios",
-          "slug": "pulido-y-accesorios",
-          "count": 14
-        },
-        {
-          "label": "Bases y sistemas",
-          "slug": "bases-y-sistemas",
-          "count": 13
-        },
-        {
-          "label": "Barniz PU automotor",
-          "slug": "barniz-pu-automotor",
-          "count": 7
-        },
-        {
-          "label": "Accesorios de taller",
-          "slug": "accesorios-de-taller",
-          "count": 5
-        },
-        {
-          "label": "Lacas",
-          "slug": "lacas",
-          "count": 5
-        }
-      ],
-      "brands": [
-        {
-          "slug": "farben",
-          "label": "Farben",
-          "count": 31
-        },
-        {
-          "slug": "sikkens",
-          "label": "Sikkens",
-          "count": 17
-        },
-        {
-          "slug": "sinteplast",
-          "label": "Sinteplast",
-          "count": 11
-        },
-        {
-          "slug": "sherwin-williams",
-          "label": "Sherwin Williams",
-          "count": 8
-        },
-        {
-          "slug": "wanda",
-          "label": "Wanda",
-          "count": 7
-        },
-        {
-          "slug": "colorin",
-          "label": "Colorín",
-          "count": 2
-        },
-        {
-          "slug": "norton",
-          "label": "Norton",
-          "count": 2
-        }
-      ],
-      "priceMin": 339.74,
-      "priceMax": 207141.4
+      "count": 0,
+      "subcategories": [],
+      "brands": [],
+      "priceMin": 0,
+      "priceMax": 0
     },
     {
       "slug": "herramientas-y-accesorios",
       "label": "Herramientas y Accesorios",
       "accent": "#F5C400",
       "icon": "Wrench",
-      "count": 152,
+      "count": 36,
       "subcategories": [
-        {
-          "label": "Lijas y abrasivos",
-          "slug": "lijas-y-abrasivos",
-          "count": 78
-        },
         {
           "label": "Pinceles y rodillos",
           "slug": "pinceles-y-rodillos",
-          "count": 32
+          "count": 10
         },
         {
           "label": "Espátulas y bandejas",
           "slug": "espatulas-y-bandejas",
-          "count": 15
+          "count": 9
+        },
+        {
+          "label": "Lijas y abrasivos",
+          "slug": "lijas-y-abrasivos",
+          "count": 7
         },
         {
           "label": "Envases y complementos",
           "slug": "envases-y-complementos",
-          "count": 12
+          "count": 5
         },
         {
           "label": "Cintas",
           "slug": "cintas",
-          "count": 12
+          "count": 4
         },
         {
           "label": "Protección personal",
           "slug": "proteccion-personal",
-          "count": 3
+          "count": 1
         }
       ],
       "brands": [
         {
-          "slug": "norton",
-          "label": "Norton",
-          "count": 56
-        },
-        {
           "slug": "rosarpin",
           "label": "Rosarpin",
-          "count": 26
+          "count": 7
         },
         {
           "slug": "el-galgo",
           "label": "El Galgo",
-          "count": 21
+          "count": 7
+        },
+        {
+          "slug": "norton",
+          "label": "Norton",
+          "count": 6
         },
         {
           "slug": "sherwin-williams",
           "label": "Sherwin Williams",
-          "count": 11
+          "count": 4
         },
         {
           "slug": "mota",
           "label": "Mota",
-          "count": 7
-        },
-        {
-          "slug": "sinteplast",
-          "label": "Sinteplast",
-          "count": 6
+          "count": 4
         },
         {
           "slug": "fueguino",
           "label": "Fueguino",
-          "count": 5
-        },
-        {
-          "slug": "rottweiler",
-          "label": "Rottweiler",
-          "count": 4
+          "count": 3
         },
         {
           "slug": "apeles",
           "label": "Apeles",
-          "count": 4
+          "count": 2
         },
         {
-          "slug": "zeocar",
-          "label": "Zeocar",
-          "count": 3
-        },
-        {
-          "slug": "3m",
-          "label": "3M",
-          "count": 3
+          "slug": "rottweiler",
+          "label": "Rottweiler",
+          "count": 1
         }
       ],
-      "priceMin": 706.76,
-      "priceMax": 21095.76
+      "priceMin": 910.11,
+      "priceMax": 15830.1
     },
     {
       "slug": "impermeabilizantes-y-revestimientos",
       "label": "Impermeabilizantes y Revestimientos",
       "accent": "#00AEEF",
       "icon": "Droplets",
-      "count": 35,
+      "count": 4,
       "subcategories": [
         {
           "label": "Impermeabilizantes",
           "slug": "impermeabilizantes",
-          "count": 27
-        },
-        {
-          "label": "Revestimientos texturados",
-          "slug": "revestimientos-texturados",
-          "count": 8
+          "count": 4
         }
       ],
       "brands": [
         {
           "slug": "merclin",
           "label": "Merclin",
-          "count": 13
-        },
-        {
-          "slug": "distincion",
-          "label": "Distinción",
-          "count": 7
-        },
-        {
-          "slug": "venezia",
-          "label": "Venezia",
           "count": 4
-        },
-        {
-          "slug": "sinteplast",
-          "label": "Sinteplast",
-          "count": 3
-        },
-        {
-          "slug": "fischer",
-          "label": "Fischer",
-          "count": 2
-        },
-        {
-          "slug": "emapi",
-          "label": "Emapi",
-          "count": 2
-        },
-        {
-          "slug": "veniatex",
-          "label": "Veniatex",
-          "count": 1
-        },
-        {
-          "slug": "superflex",
-          "label": "Superflex",
-          "count": 1
-        },
-        {
-          "slug": "alba",
-          "label": "Alba",
-          "count": 1
         }
       ],
-      "priceMin": 7450.32,
-      "priceMax": 250819.25
+      "priceMin": 9044.99,
+      "priceMax": 186784.29
     },
     {
       "slug": "maderas",
       "label": "Maderas",
       "accent": "#F47920",
       "icon": "TreeDeciduous",
-      "count": 50,
+      "count": 6,
       "subcategories": [],
       "brands": [
         {
           "slug": "cetol",
           "label": "Cetol",
-          "count": 31
-        },
-        {
-          "slug": "emapi",
-          "label": "Emapi",
-          "count": 11
-        },
-        {
-          "slug": "alba",
-          "label": "Alba",
-          "count": 2
+          "count": 4
         },
         {
           "slug": "geo",
@@ -341,59 +189,34 @@
           "count": 1
         },
         {
-          "slug": "roberlo",
-          "label": "Roberlo",
-          "count": 1
-        },
-        {
-          "slug": "colorin",
-          "label": "Colorín",
-          "count": 1
-        },
-        {
-          "slug": "polacrin",
-          "label": "Polacrin",
-          "count": 1
-        },
-        {
-          "slug": "merclin",
-          "label": "Merclin",
-          "count": 1
-        },
-        {
-          "slug": "veniatex",
-          "label": "Veniatex",
+          "slug": "alba",
+          "label": "Alba",
           "count": 1
         }
       ],
       "priceMin": 4081.77,
-      "priceMax": 103810.49
+      "priceMax": 96145.31
     },
     {
       "slug": "preparacion-de-superficies",
       "label": "Preparación de superficies",
       "accent": "#7B2D8B",
       "icon": "Layers",
-      "count": 37,
+      "count": 9,
       "subcategories": [
-        {
-          "label": "Selladores y fijadores",
-          "slug": "selladores-y-fijadores",
-          "count": 16
-        },
         {
           "label": "Enduidos y masillas",
           "slug": "enduidos-y-masillas",
-          "count": 15
+          "count": 4
+        },
+        {
+          "label": "Selladores y fijadores",
+          "slug": "selladores-y-fijadores",
+          "count": 3
         },
         {
           "label": "Fondos e imprimaciones",
           "slug": "fondos-e-imprimaciones",
-          "count": 4
-        },
-        {
-          "label": "Alabastine",
-          "slug": "alabastine",
           "count": 2
         }
       ],
@@ -401,74 +224,34 @@
         {
           "slug": "alba",
           "label": "Alba",
-          "count": 13
-        },
-        {
-          "slug": "fischer",
-          "label": "Fischer",
           "count": 6
         },
         {
           "slug": "sinteplast",
           "label": "Sinteplast",
-          "count": 5
-        },
-        {
-          "slug": "zeocar",
-          "label": "Zeocar",
-          "count": 5
-        },
-        {
-          "slug": "emapi",
-          "label": "Emapi",
           "count": 2
         },
         {
-          "slug": "farben",
-          "label": "Farben",
-          "count": 2
-        },
-        {
-          "slug": "pinroll",
-          "label": "Pinroll",
-          "count": 2
-        },
-        {
-          "slug": "anclaflex",
-          "label": "Anclaflex",
+          "slug": "fischer",
+          "label": "Fischer",
           "count": 1
         }
       ],
-      "priceMin": 870.27,
-      "priceMax": 59188.92
+      "priceMin": 5441.12,
+      "priceMax": 38322.14
     },
     {
       "slug": "aerosoles",
       "label": "Aerosoles",
       "accent": "#E91E8C",
       "icon": "SprayCan",
-      "count": 20,
+      "count": 6,
       "subcategories": [],
       "brands": [
         {
           "slug": "toke",
           "label": "Toke",
-          "count": 11
-        },
-        {
-          "slug": "distincion",
-          "label": "Distinción",
-          "count": 3
-        },
-        {
-          "slug": "rust-oleum",
-          "label": "Rust Oleum",
-          "count": 2
-        },
-        {
-          "slug": "sikkens",
-          "label": "Sikkens",
-          "count": 2
+          "count": 5
         },
         {
           "slug": "colorgin",
@@ -476,96 +259,56 @@
           "count": 1
         }
       ],
-      "priceMin": 5265.33,
-      "priceMax": 37314.43
+      "priceMin": 6331.97,
+      "priceMax": 22484.16
     },
     {
       "slug": "diluyentes-y-aditivos",
       "label": "Diluyentes y Aditivos",
       "accent": "#00B388",
       "icon": "FlaskConical",
-      "count": 13,
+      "count": 3,
       "subcategories": [],
       "brands": [
-        {
-          "slug": "farben",
-          "label": "Farben",
-          "count": 3
-        },
-        {
-          "slug": "sinteplast",
-          "label": "Sinteplast",
-          "count": 2
-        },
         {
           "slug": "dixilina",
           "label": "Dixilina",
           "count": 2
         },
         {
-          "slug": "sikkens",
-          "label": "Sikkens",
-          "count": 2
-        },
-        {
-          "slug": "merclin",
-          "label": "Merclin",
-          "count": 1
-        },
-        {
           "slug": "geo",
           "label": "Geo",
-          "count": 1
-        },
-        {
-          "slug": "zeocar",
-          "label": "Zeocar",
-          "count": 1
-        },
-        {
-          "slug": "wanda",
-          "label": "Wanda",
           "count": 1
         }
       ],
       "priceMin": 5159.94,
-      "priceMax": 106967.67
+      "priceMax": 41904.6
     },
     {
       "slug": "adhesivos-y-selladores",
       "label": "Adhesivos y Selladores",
       "accent": "#7AC514",
       "icon": "Droplet",
-      "count": 13,
+      "count": 5,
       "subcategories": [],
       "brands": [
-        {
-          "slug": "tekbond",
-          "label": "Tekbond",
-          "count": 6
-        },
-        {
-          "slug": "pulpito",
-          "label": "Pulpito",
-          "count": 1
-        },
         {
           "slug": "rottweiler",
           "label": "Rottweiler",
           "count": 1
         },
         {
-          "slug": "fischer",
-          "label": "Fischer",
+          "slug": "tekbond",
+          "label": "Tekbond",
           "count": 1
         },
         {
-          "slug": "farben",
-          "label": "Farben",
+          "slug": "fischer",
+          "label": "Fischer",
           "count": 1
         }
       ],
-      "priceMin": 2755.01,
+      "priceMin": 7768.59,
       "priceMax": 27362.77
     },
     {
@@ -578,25 +321,8 @@
       "brands": [],
       "priceMin": 0,
       "priceMax": 0
-    },
-    {
-      "slug": "varios",
-      "label": "Varios",
-      "accent": "#8A8F98",
-      "icon": "Package",
-      "count": 1,
-      "subcategories": [],
-      "brands": [
-        {
-          "slug": "rosarpin",
-          "label": "Rosarpin",
-          "count": 1
-        }
-      ],
-      "priceMin": 19926.49,
-      "priceMax": 19926.49
     }
   ],
-  "totalProducts": 548,
+  "totalProducts": 100,
   "offerCount": 0
 }
