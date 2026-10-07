@@ -9,6 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { FAMILIES, type Family } from './families';
+import { DESCRIPTIONS } from './descriptions';
 import { RULES, CATEGORIES, BRANDS, KEEP_UPPER, LOWER_CONNECTORS, OFFER_PATTERN, EXCLUDE_CODES } from './taxonomy';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -48,6 +49,7 @@ interface Product {
   priceMax: number;
   hasAnyPrice: boolean;
   image: string | null; // ruta pública si existe foto real para alguna variante
+  description?: string | null;
   optionLabel?: string | null; // "Color", "Número"…
   optionLabelPlural?: string | null; // "colores", "números"…
 }
@@ -324,10 +326,12 @@ function mergeFamilies(all: Product[], families: Family[], realImages: Set<strin
       priceMax: priced.length ? Math.max(...priced.map((v) => v.price)) : 0,
       hasAnyPrice: priced.length > 0,
       image: variants.find((v) => v.image)?.image ?? null,
+      description: DESCRIPTIONS[fam.name] ?? null,
       optionLabel: multi ? (fam.option?.[0] ?? 'Opción') : null,
       optionLabelPlural: multi ? (fam.option?.[1] ?? 'opciones') : null,
     });
 
+    if (!DESCRIPTIONS[fam.name]) console.warn(`ATENCIÓN: falta descripción para "${fam.name}"`);
     const preview = multi ? `  [${optionOrder.slice(0, 5).join(', ')}${optionOrder.length > 5 ? '…' : ''}]` : '';
     console.log(`  ${String(members.length).padStart(2)} grupos / ${String(variants.length).padStart(2)} variantes  ${fam.name}${preview}`);
   }

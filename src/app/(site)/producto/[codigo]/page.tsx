@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
   const priceText = product.hasAnyPrice ? product.variants[0].priceDisplay : 'Consultar precio';
   return {
     title: product.name,
-    description: `${product.name}${product.brand ? ` de ${product.brand}` : ''} — ${priceText}. Pedilo por WhatsApp en ${SITE.name}, retiro en local en San Rafael.`,
+    description: product.description ?? `${product.name}${product.brand ? ` de ${product.brand}` : ''} — ${priceText}. Pedilo por WhatsApp en ${SITE.name}, retiro en local en San Rafael.`,
     openGraph: {
       images: product.image ? [{ url: product.image }] : undefined,
     },

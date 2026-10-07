@@ -158,6 +158,13 @@ export function ProductDetail({ product }: { product: Product }) {
           </motion.button>
         </div>
 
+        {product.description && (
+          <div className="mt-8">
+            <h2 className="mb-2 text-sm font-semibold">Descripción</h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+          </div>
+        )}
+
         <div className="mt-8 rounded-2xl bg-cream p-4 text-sm text-muted-foreground">
           Retiro en el local — {SITE.address}. El pedido se coordina y confirma por WhatsApp.
         </div>

@@ -27,6 +27,8 @@ export interface Product {
   priceMax: number;
   hasAnyPrice: boolean;
   image: string | null;
+  /** Descripción del producto que se muestra en la ficha. */
+  description?: string | null;
   /** "Color", "Número", "Grano"… (singular) cuando el producto tiene variedades. */
   optionLabel?: string | null;
   /** "colores", "números", "granos"… (plural). */

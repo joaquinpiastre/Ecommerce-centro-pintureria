@@ -14,6 +14,7 @@ export interface ProductOverride {
   subcategory?: string | null;
   isOffer?: boolean;
   image?: string | null;
+  description?: string | null;
   /** codigo de variante -> precio nuevo */
   variantPrices?: Record<string, number>;
   updatedAt?: string;
@@ -82,6 +83,7 @@ export function applyOverride(product: Product, override: ProductOverride | unde
     subcategory: override.subcategory !== undefined ? override.subcategory : product.subcategory,
     isOffer: override.isOffer !== undefined ? override.isOffer : product.isOffer,
     image: override.image !== undefined ? override.image : product.image,
+    description: override.description !== undefined ? override.description : product.description,
     variants,
     priceMin,
     priceMax,

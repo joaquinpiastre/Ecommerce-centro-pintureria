@@ -19,6 +19,7 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
   const [categorySlug, setCategorySlug] = useState(product.categorySlug);
   const [subcategory, setSubcategory] = useState(product.subcategory ?? '');
   const [isOffer, setIsOffer] = useState(product.isOffer);
+  const [description, setDescription] = useState(product.description ?? '');
   const [prices, setPrices] = useState<Record<string, string>>(
     Object.fromEntries(product.variants.map((v) => [v.codigo, v.hasPrice ? String(v.price) : '']))
   );
@@ -45,6 +46,7 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
         categorySlug,
         subcategory: subcategory.trim() || null,
         isOffer,
+        description: description.trim() || null,
         variantPrices,
       }),
     });
@@ -166,6 +168,15 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
               <input type="checkbox" checked={isOffer} onChange={(e) => setIsOffer(e.target.checked)} className="h-4 w-4 accent-primary" />
               Marcar como oferta / liquidación
             </label>
+            <Field label="Descripción (se muestra en la ficha del producto)" className="sm:col-span-2">
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={4}
+                placeholder="Sin descripción"
+                className="rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+              />
+            </Field>
           </div>
         </div>
 
@@ -175,7 +186,7 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
             {product.variants.map((v) => (
               <div key={v.codigo} className="flex items-center justify-between gap-4 py-2.5">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium">{v.sizeLabel ?? 'Presentación única'}</p>
+                  <p className="text-sm font-medium">{[v.option, v.sizeLabel].filter(Boolean).join(' · ') || 'Presentación única'}</p>
                   <p className="text-xs text-muted-foreground">Código {v.codigo}</p>
                 </div>
                 <div className="flex items-center gap-2">
