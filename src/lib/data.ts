@@ -70,7 +70,7 @@ export function getCategories(): Category[] {
       priceMin: prices.length ? Math.min(...prices) : 0,
       priceMax: prices.length ? Math.max(...prices) : 0,
     };
-  }).filter((c) => c.count > 0 || c.slug === 'varios');
+  }).filter((c) => c.count > 0);
 }
 
 export function getCategoryBySlug(slug: string): Category | undefined {

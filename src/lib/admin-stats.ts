@@ -17,7 +17,9 @@ export function getAdminStats() {
     label: meta.label,
     accent: meta.accent,
     count: visible.filter((p) => p.categorySlug === meta.slug).length,
-  })).sort((a, b) => b.count - a.count);
+  }))
+    .filter((c) => c.count > 0)
+    .sort((a, b) => b.count - a.count);
 
   const brandCounts = new Map<string, number>();
   for (const p of visible) if (p.brand) brandCounts.set(p.brand, (brandCounts.get(p.brand) ?? 0) + 1);

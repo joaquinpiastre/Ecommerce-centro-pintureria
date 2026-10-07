@@ -73,7 +73,7 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
         </div>
         <select name="category" defaultValue={sp.category ?? ''} className="h-10 rounded-xl border border-border bg-background px-3 text-sm">
           <option value="">Todas las categorías</option>
-          {CATEGORIES_META.map((c) => (
+          {CATEGORIES_META.filter((c) => c.slug !== 'varios').map((c) => (
             <option key={c.slug} value={c.slug}>
               {c.label}
             </option>
