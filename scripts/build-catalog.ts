@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { FAMILIES, type Family } from './families';
 import { DESCRIPTIONS } from './descriptions';
+import { OFFER_PCT } from './offers';
 import { RULES, CATEGORIES, BRANDS, KEEP_UPPER, LOWER_CONNECTORS, OFFER_PATTERN, EXCLUDE_CODES } from './taxonomy';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -50,6 +51,7 @@ interface Product {
   hasAnyPrice: boolean;
   image: string | null; // ruta pública si existe foto real para alguna variante
   description?: string | null;
+  offerPct?: number | null; // % de descuento de la oferta
   optionLabel?: string | null; // "Color", "Número"…
   optionLabelPlural?: string | null; // "colores", "números"…
 }
@@ -320,7 +322,8 @@ function mergeFamilies(all: Product[], families: Family[], realImages: Set<strin
       name: fam.name,
       codigo: variants[0].codigo,
       allCodigos: variants.map((v) => v.codigo),
-      isOffer: members.some((m) => m.isOffer),
+      isOffer: members.some((m) => m.isOffer) || !!OFFER_PCT[fam.name],
+      offerPct: OFFER_PCT[fam.name] ?? null,
       variants,
       priceMin: priced.length ? Math.min(...priced.map((v) => v.price)) : 0,
       priceMax: priced.length ? Math.max(...priced.map((v) => v.price)) : 0,

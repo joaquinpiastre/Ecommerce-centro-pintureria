@@ -7,7 +7,7 @@ import { ShoppingCart, Check, ListChecks } from 'lucide-react';
 import { useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductImage } from './product-image';
-import { PriceBlock } from './price-block';
+import { PriceBlock, OfferBadge } from './price-block';
 import { useCartStore } from '@/store/cart';
 
 export function ProductCard({ product, priority }: { product: Product; priority?: boolean }) {
@@ -17,6 +17,8 @@ export function ProductCard({ product, priority }: { product: Product; priority?
 
   const defaultVariant = product.variants[0];
   const hasRange = product.variants.length > 1 && product.priceMin !== product.priceMax;
+  const cheapest = hasRange ? product.variants.find((v) => v.price === product.priceMin) ?? defaultVariant : defaultVariant;
+  const offerPct = product.isOffer && product.offerPct ? product.offerPct : null;
   const optionCount = new Set(product.variants.map((v) => v.option).filter(Boolean)).size;
   const hasOptions = optionCount > 1;
   // Con varios colores/números hay que elegir primero: el botón abre la ficha.
@@ -59,13 +61,14 @@ export function ProductCard({ product, priority }: { product: Product; priority?
             <ProductImage image={product.image} brandSlug={product.brandSlug} categorySlug={product.categorySlug} name={product.name} priority={priority} />
           </div>
           <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
+            {offerPct && <OfferBadge pct={offerPct} />}
             {product.hasAnyPrice && (
               <span className="rounded-md bg-primary px-2 py-1 text-[11px] font-bold leading-none text-primary-foreground shadow">
                 10% OFF efectivo
               </span>
             )}
-            {product.isOffer && (
-              <span className="rounded-md bg-foreground px-2 py-1 text-[11px] font-bold uppercase leading-none tracking-wide text-background shadow">
+            {product.isOffer && !offerPct && (
+              <span className="rounded-md bg-offer px-2 py-1 text-[11px] font-bold uppercase leading-none tracking-wide text-white shadow">
                 Oferta
               </span>
             )}
@@ -88,7 +91,7 @@ export function ProductCard({ product, priority }: { product: Product; priority?
           )}
           <div className="mt-auto pt-1">
             {product.hasAnyPrice ? (
-              <PriceBlock price={hasRange ? product.priceMin : defaultVariant.price} from={hasRange} />
+              <PriceBlock price={cheapest.price} originalPrice={cheapest.originalPrice} from={hasRange} />
             ) : (
               <p className="text-sm font-medium text-muted-foreground">Consultar precio</p>
             )}

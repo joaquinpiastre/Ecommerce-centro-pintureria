@@ -6,6 +6,8 @@ import { priceBreakdown } from '@/lib/pricing';
 interface PriceBlockProps {
   /** Precio de lista. */
   price: number;
+  /** Precio de lista original, si el producto está en oferta (price ya trae el descuento). */
+  originalPrice?: number | null;
   /** Muestra "Desde" (producto con varias presentaciones o variedades). */
   from?: boolean;
   size?: 'card' | 'detail';
@@ -15,7 +17,20 @@ interface PriceBlockProps {
  * Los tres precios (efectivo, transferencia y lista) y el valor de la cuota sin interés.
  * Es el mismo bloque en tarjetas y ficha de producto para que siempre se lea igual.
  */
-export function PriceBlock({ price, from, size = 'card' }: PriceBlockProps) {
+/** Etiqueta grande y roja con el descuento de la oferta. */
+export function OfferBadge({ pct, big }: { pct: number; big?: boolean }) {
+  return (
+    <span
+      className={`inline-flex items-center rounded-md bg-offer font-extrabold uppercase leading-none tracking-tight text-white shadow-md ${
+        big ? 'px-3.5 py-2 text-3xl' : 'px-3 py-1.5 text-xl'
+      }`}
+    >
+      {pct}% OFF
+    </span>
+  );
+}
+
+export function PriceBlock({ price, originalPrice, from, size = 'card' }: PriceBlockProps) {
   const p = priceBreakdown(price);
   const detail = size === 'detail';
 
@@ -42,7 +57,10 @@ export function PriceBlock({ price, from, size = 'card' }: PriceBlockProps) {
         </div>
         <div className="flex items-baseline justify-between gap-2">
           <span className="text-sm font-medium text-muted-foreground">Precio de lista</span>
-          <span className="text-lg font-semibold text-muted-foreground">{formatPriceARS(p.list)}</span>
+          <span className="text-lg font-semibold text-muted-foreground">
+            {originalPrice ? <s className="mr-2 text-sm font-normal text-offer">{formatPriceARS(originalPrice)}</s> : null}
+            {formatPriceARS(p.list)}
+          </span>
         </div>
         <div className="mt-1 flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-2 text-sm font-semibold text-brand-ink">
           <CreditCard className="h-4 w-4 shrink-0" />
@@ -75,7 +93,10 @@ export function PriceBlock({ price, from, size = 'card' }: PriceBlockProps) {
       </div>
       <div className="flex items-center justify-between gap-1.5">
         <span className="text-[11px] font-medium text-muted-foreground">Lista</span>
-        <span className="text-[13px] font-semibold leading-none text-muted-foreground">{formatPriceARS(p.list)}</span>
+        <span className="text-[13px] font-semibold leading-none text-muted-foreground">
+          {originalPrice ? <s className="mr-1 text-[11px] font-normal text-offer">{formatPriceARS(originalPrice)}</s> : null}
+          {formatPriceARS(p.list)}
+        </span>
       </div>
       <p className="mt-0.5 rounded-md bg-primary/10 px-2 py-1 text-center text-[11px] font-semibold leading-tight text-brand-ink">
         {PAYMENT.installments} cuotas sin interés de {formatPriceARS(p.installment)}

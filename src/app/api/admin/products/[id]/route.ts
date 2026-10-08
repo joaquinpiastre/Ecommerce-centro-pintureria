@@ -11,6 +11,7 @@ interface EditBody {
   subcategory?: string | null;
   isOffer?: boolean;
   description?: string | null;
+  offerPct?: number | null;
   hidden?: boolean;
   variantPrices?: Record<string, number>;
 }
@@ -28,6 +29,10 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   if (body.brand !== undefined) patch.brand = body.brand?.trim() || null;
   if (typeof body.subcategory !== 'undefined') patch.subcategory = body.subcategory?.trim() || null;
   if (body.description !== undefined) patch.description = typeof body.description === 'string' ? body.description.trim() || null : null;
+  if (body.offerPct !== undefined) {
+    const n = Number(body.offerPct);
+    patch.offerPct = body.offerPct !== null && Number.isFinite(n) && n > 0 && n < 100 ? Math.round(n) : null;
+  }
   if (typeof body.isOffer === 'boolean') patch.isOffer = body.isOffer;
   if (typeof body.hidden === 'boolean') patch.hidden = body.hidden;
   if (body.variantPrices && typeof body.variantPrices === 'object') {

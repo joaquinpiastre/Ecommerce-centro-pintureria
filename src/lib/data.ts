@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Product, Category } from './types';
 import { CATEGORIES_META } from './categories-meta';
-import { readOverrides, applyOverride, applyOverrideForAdmin, type AdminProduct } from './overrides';
+import { readOverrides, applyOverride, applyOverrideForAdmin, applyOffer, type AdminProduct } from './overrides';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
@@ -26,7 +26,7 @@ export function invalidateDataCache(): void {}
 export function getAllProducts(): Product[] {
   const overrides = readOverrides();
   return getBaseProducts()
-    .map((p) => applyOverride(p, overrides[p.id]))
+    .map((p) => applyOffer(applyOverride(p, overrides[p.id])))
     .filter((p) => overrides[p.id]?.hidden !== true);
 }
 

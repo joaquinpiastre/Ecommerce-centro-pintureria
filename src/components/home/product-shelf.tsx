@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Tag } from 'lucide-react';
 import type { Product } from '@/lib/types';
 import { ProductCarousel } from './product-carousel';
 
@@ -7,16 +7,21 @@ interface ProductShelfProps {
   title: string;
   products: Product[];
   href?: string;
+  /** 'offer': título en rojo con ícono de etiqueta (sección de ofertas). */
+  tone?: 'offer';
   /** Panel destacado a la izquierda (como "Ofertas de la semana" en Rex). */
   promo?: { title: string; text: string; cta: string; href: string };
 }
 
-export function ProductShelf({ title, products, href, promo }: ProductShelfProps) {
+export function ProductShelf({ title, products, href, tone, promo }: ProductShelfProps) {
   if (products.length === 0) return null;
   return (
     <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-5 flex items-end justify-between">
-        <h2 className="font-heading text-xl font-bold text-foreground sm:text-2xl">{title}</h2>
+        <h2 className={`flex items-center gap-2 font-heading text-xl font-bold sm:text-2xl ${tone === 'offer' ? 'text-offer' : 'text-foreground'}`}>
+          {tone === 'offer' && <Tag className="h-6 w-6" />}
+          {title}
+        </h2>
         {href && (
           <Link href={href} className="flex items-center gap-1 text-sm font-semibold text-brand-ink hover:underline">
             Ver todo <ArrowRight className="h-4 w-4" />

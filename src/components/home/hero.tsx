@@ -29,7 +29,7 @@ export function Hero() {
     <section className="bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-12 lg:px-8 lg:py-14">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-widest text-white/85">Del Centro Pinturerías · San Rafael</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-white/85">Centro Pinturería · San Rafael</p>
           <h1 className="mt-3 font-heading text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
             Aprovechá <span className="block">las mejores condiciones de pago</span>
           </h1>

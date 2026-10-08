@@ -15,6 +15,7 @@ export interface ProductOverride {
   isOffer?: boolean;
   image?: string | null;
   description?: string | null;
+  offerPct?: number | null;
   /** codigo de variante -> precio nuevo */
   variantPrices?: Record<string, number>;
   updatedAt?: string;
@@ -84,6 +85,7 @@ export function applyOverride(product: Product, override: ProductOverride | unde
     isOffer: override.isOffer !== undefined ? override.isOffer : product.isOffer,
     image: override.image !== undefined ? override.image : product.image,
     description: override.description !== undefined ? override.description : product.description,
+    offerPct: override.offerPct !== undefined ? override.offerPct : product.offerPct,
     variants,
     priceMin,
     priceMax,
@@ -99,4 +101,26 @@ export interface AdminProduct extends Product {
 export function applyOverrideForAdmin(product: Product, override: ProductOverride | undefined): AdminProduct {
   const merged = applyOverride(product, override);
   return { ...merged, hidden: override?.hidden === true, hasOverride: !!override };
+}
+
+/**
+ * Aplica la oferta al precio de lista: `price` pasa a ser el precio con descuento y
+ * `originalPrice` guarda el de lista original. Solo para el catálogo público; el admin
+ * sigue viendo y editando los precios de lista originales.
+ */
+export function applyOffer(product: Product): Product {
+  const pct = product.offerPct;
+  if (!product.isOffer || !pct || pct <= 0 || pct >= 100) return product;
+  const variants = product.variants.map((v) => {
+    if (!v.hasPrice) return v;
+    const price = Math.round(v.price * (1 - pct / 100) * 100) / 100;
+    return { ...v, originalPrice: v.price, price, priceDisplay: formatPriceARS(price) };
+  });
+  const priced = variants.filter((v) => v.hasPrice);
+  return {
+    ...product,
+    variants,
+    priceMin: priced.length ? Math.min(...priced.map((v) => v.price)) : 0,
+    priceMax: priced.length ? Math.max(...priced.map((v) => v.price)) : 0,
+  };
 }

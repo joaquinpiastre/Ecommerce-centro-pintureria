@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Menu, X, ChevronDown, MapPin, Home, Mail } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X, ChevronDown, MapPin, Home, Mail, Tag } from 'lucide-react';
 import type { Category } from '@/lib/types';
 import { useCartCount, useCartStore } from '@/store/cart';
 import { SearchDialog } from '@/components/search/search-dialog';
@@ -11,7 +12,7 @@ import { getCategoryIcon } from '@/lib/icons';
 import { useMounted } from '@/lib/use-mounted';
 import { SITE } from '../../../config/site';
 
-export function Header({ categories }: { categories: Category[] }) {
+export function Header({ categories, hasOffers }: { categories: Category[]; hasOffers: boolean }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +37,7 @@ export function Header({ categories }: { categories: Category[] }) {
     };
   }, [menuOpen]);
 
-  const navCategories = categories.slice(0, 5);
+  const navCategories = categories.slice(0, 4);
 
   return (
     <>
@@ -52,12 +53,13 @@ export function Header({ categories }: { categories: Category[] }) {
           </button>
 
           {/* El logo grande tiene el mismo verde de fondo que el encabezado: se recorta al logotipo para que se funda. */}
-          <Link
-            href="/"
-            role="img"
-            aria-label={SITE.name}
-            className="block h-[56px] w-[158px] shrink-0 bg-[url(/logo-del-centro.jpg)] bg-[length:210px_210px] bg-[position:-21px_-76px] bg-no-repeat lg:h-[64px] lg:w-[176px] lg:bg-[length:234px_234px] lg:bg-[position:-24px_-82px]"
-          />
+          <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label={SITE.name}>
+            <Image src="/logo-flor.png" alt="" width={48} height={48} priority className="h-10 w-10 rounded-md lg:h-12 lg:w-12" />
+            <span className="flex flex-col leading-none">
+              <span className="font-heading text-xl font-extrabold tracking-tight lg:text-2xl">Centro</span>
+              <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.34em] lg:text-[10px]">Pinturería</span>
+            </span>
+          </Link>
 
           <button
             onClick={() => setSearchOpen(true)}
@@ -159,11 +161,17 @@ export function Header({ categories }: { categories: Category[] }) {
               <Link
                 key={c.slug}
                 href={`/categoria/${c.slug}`}
-                className="rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-white/15"
+                className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-white/15"
               >
                 {c.label}
               </Link>
             ))}
+
+            {hasOffers && (
+              <Link href="/ofertas" className="ml-2 flex items-center gap-1.5 rounded-full bg-offer px-3.5 py-1.5 text-sm font-bold text-white shadow-sm transition-transform hover:scale-105">
+                <Tag className="h-4 w-4" /> Ofertas
+              </Link>
+            )}
 
             <Link href="/contacto" className="ml-auto rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-white/15">
               Contacto
@@ -173,12 +181,12 @@ export function Header({ categories }: { categories: Category[] }) {
       </header>
 
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
-      <MobileMenu categories={categories} open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileMenu categories={categories} hasOffers={hasOffers} open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
   );
 }
 
-function MobileMenu({ categories, open, onClose }: { categories: Category[]; open: boolean; onClose: () => void }) {
+function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Category[]; hasOffers: boolean; open: boolean; onClose: () => void }) {
   return (
     <AnimatePresence>
       {open && (
@@ -210,6 +218,15 @@ function MobileMenu({ categories, open, onClose }: { categories: Category[]; ope
                 </span>
                 Inicio
               </Link>
+
+              {hasOffers && (
+                <Link href="/ofertas" onClick={onClose} className="mb-1 flex items-center gap-3 rounded-xl bg-offer/10 px-3 py-3 text-sm font-semibold text-offer">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-offer text-white">
+                    <Tag className="h-4.5 w-4.5" />
+                  </span>
+                  Ofertas
+                </Link>
+              )}
 
               <p className="mb-1 mt-2 px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Categorías</p>
               {categories.map((c) => {

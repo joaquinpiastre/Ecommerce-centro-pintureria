@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Minus, Plus, ShoppingCart, Check, Info, CreditCard, Banknote, Landmark, Store } from 'lucide-react';
 import type { Product } from '@/lib/types';
 import { ProductImage } from './product-image';
-import { PriceBlock } from './price-block';
+import { PriceBlock, OfferBadge } from './price-block';
 import { useCartStore } from '@/store/cart';
 import { PAYMENT, SITE } from '../../../config/site';
 
@@ -76,8 +76,12 @@ export function ProductDetail({ product }: { product: Product }) {
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-border bg-white">
           <ProductImage key={variantImage ?? 'none'} image={variantImage} brandSlug={product.brandSlug} categorySlug={product.categorySlug} name={product.name} priority sizes="(min-width: 1024px) 45vw, 90vw" />
           {product.isOffer && (
-            <span className="absolute left-4 top-4 rounded-md bg-foreground px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-background shadow">
-              Oferta
+            <span className="absolute left-4 top-4">
+              {product.offerPct ? (
+                <OfferBadge pct={product.offerPct} big />
+              ) : (
+                <span className="rounded-md bg-offer px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow">Oferta</span>
+              )}
             </span>
           )}
         </div>
@@ -89,7 +93,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
           <div className="mt-5 rounded-2xl border border-border bg-card p-5">
             {variant.hasPrice ? (
-              <PriceBlock price={variant.price} size="detail" />
+              <PriceBlock price={variant.price} originalPrice={variant.originalPrice} size="detail" />
             ) : (
               <p className="text-xl font-semibold text-muted-foreground">Consultar precio</p>
             )}

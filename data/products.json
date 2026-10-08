@@ -28,6 +28,7 @@
     "priceMax": 5354.58,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Aceite de lino de Geo para tratar y proteger madera. También se usa para diluir y preparar ciertas pinturas.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -61,6 +62,7 @@
     "priceMax": 6331.97,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Pintura en aerosol Colorgin para retoques y pequeños trabajos de decoración sobre metal, madera y plástico.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -114,6 +116,7 @@
     "priceMax": 5265.33,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Aerosoles de Distinción en colores jóvenes y pasteles, para manualidades y decoración.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -177,6 +180,7 @@
     "priceMax": 2755.01,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Pintura en aerosol de Tekbond para trabajos rápidos de decoración y retoque. Varios colores.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -204,7 +208,7 @@
     "category": "Aerosoles",
     "categorySlug": "aerosoles",
     "subcategory": null,
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "1826",
@@ -310,6 +314,7 @@
     "priceMax": 22484.16,
     "hasAnyPrice": true,
     "image": "/products/1826.jpg",
+    "offerPct": 10,
     "description": "Pintura en aerosol de Toke de secado rápido, en acabados mate, satinado y brillante. También hay versiones para alta temperatura y llantas. Elegí el color en la ficha.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -343,6 +348,7 @@
     "priceMax": 26142.86,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Aerosol Ultra Cover 2X de Rust-Oleum, con alta cobertura para pintar y renovar objetos del hogar.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -376,6 +382,7 @@
     "priceMax": 5159.94,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Aguarrás de Geo para diluir esmaltes sintéticos y barnices, y para limpiar pinceles y herramientas.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -419,6 +426,7 @@
     "priceMax": 16414.63,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Masilla de Alabastine (Alba) lista para usar, para reparar agujeros, golpes y fisuras en paredes interiores.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -438,7 +446,7 @@
     "category": "Pinturas",
     "categorySlug": "pinturas",
     "subcategory": "Látex",
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "129",
@@ -472,6 +480,7 @@
     "priceMax": 141395.01,
     "hasAnyPrice": true,
     "image": "/products/129.jpg",
+    "offerPct": 15,
     "description": "Látex mate para paredes y cielorrasos interiores, con acabado uniforme y propiedades antihongo. Ideal para renovar living, dormitorios y ambientes de uso diario.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -490,7 +499,7 @@
     "category": "Pinturas",
     "categorySlug": "pinturas",
     "subcategory": "Látex",
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "140",
@@ -515,6 +524,7 @@
     "priceMax": 180748.43,
     "hasAnyPrice": true,
     "image": "/products/140.jpg",
+    "offerPct": 20,
     "description": "Látex acrílico para exteriores: frentes, muros y medianeras. Protege la pared de la intemperie y deja un acabado mate parejo.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -638,6 +648,7 @@
     "priceMax": 150725.47,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Látex interior de Alba en una amplia gama de colores de tendencia. Elegí el tono en la ficha y combiná ambientes con color.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -741,6 +752,7 @@
     "priceMax": 297534.45,
     "hasAnyPrice": true,
     "image": "/products/194.jpg",
+    "offerPct": null,
     "description": "Línea de látex interior de Alba en distintos acabados (mate, satinado y ultra lavable). Para pintar paredes y cielorrasos con un acabado prolijo y fácil de limpiar.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -854,6 +866,7 @@
     "priceMax": 130077.35,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Esmalte sintético de Alba que combina protección antióxido y terminación. Disponible en acabados forja y martillado para rejas, portones y herrería.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -927,6 +940,7 @@
     "priceMax": 98465.58,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Esmalte al agua de Alba, de bajo olor y fácil limpieza de herramientas. Para madera y metal en interiores.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -1210,6 +1224,7 @@
     "priceMax": 112133.13,
     "hasAnyPrice": true,
     "image": "/products/305.jpg",
+    "offerPct": null,
     "description": "Esmalte sintético de Alba con tres funciones en uno: antióxido, convertidor y esmalte. Para proteger y decorar metales y maderas, en una gran variedad de colores.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -1243,6 +1258,7 @@
     "priceMax": 28168.97,
     "hasAnyPrice": true,
     "image": "/products/379.jpg",
+    "offerPct": null,
     "description": "Esmalte sintético mate de Alba para madera y metal, con terminación sin brillo.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1276,6 +1292,7 @@
     "priceMax": 21634.95,
     "hasAnyPrice": true,
     "image": "/products/385.jpg",
+    "offerPct": null,
     "description": "Barniz marino de Alba para madera expuesta al exterior. Protege de la humedad y del sol y deja un acabado brillante.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1339,6 +1356,7 @@
     "priceMax": 160802.3,
     "hasAnyPrice": true,
     "image": "/products/3457.jpg",
+    "offerPct": null,
     "description": "Látex mate de la línea Albaxpert de Alba para interiores. Una opción práctica para pintar grandes superficies.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1372,6 +1390,7 @@
     "priceMax": 5731.95,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Anteojo de seguridad de Fueguino, de policarbonato transparente, para proteger los ojos al lijar, pintar o cortar.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1405,6 +1424,7 @@
     "priceMax": 19687.2,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Fondo antióxido de Alba para proteger hierro y acero antes de pintar con esmalte. Previene la formación de óxido.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1458,6 +1478,7 @@
     "priceMax": 4499.43,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Bandejas de Rosarpin para cargar el rodillo. Hay modelo plano, mini y para colgar de la escalera.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -1521,6 +1542,7 @@
     "priceMax": 103810.49,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Pintura de Cetol (Brikol) para pisos. Protege y renueva el color en distintos tonos.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -1564,6 +1586,7 @@
     "priceMax": 16940.12,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Enduido plástico de nuestra marca para rellenar grietas y nivelar paredes interiores antes de pintar.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1607,6 +1630,7 @@
     "priceMax": 17005.5,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Fijador al agua de nuestra marca. Se aplica antes de la pintura para sellar la superficie y mejorar la adherencia.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1660,6 +1684,7 @@
     "priceMax": 154084.38,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Látex mate de nuestra marca para interiores, con protección antihongo. Para pintar paredes y cielorrasos.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1723,6 +1748,7 @@
     "priceMax": 100869.74,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Látex profesional de nuestra marca, apto para interior y exterior. Pensado para el pintor que necesita buen rendimiento en obra.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1756,6 +1782,7 @@
     "priceMax": 3421.63,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Cepillo de alambre de bronce de Fueguino con mango, para limpiar óxido y pintura suelta.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -1889,6 +1916,7 @@
     "priceMax": 96145.31,
     "hasAnyPrice": true,
     "image": "/products/837.jpg",
+    "offerPct": null,
     "description": "Protector de madera de Cetol con acabado brillante. Resalta la veta y protege aberturas, muebles y deck. Elegí el tono en la ficha.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -1914,7 +1942,7 @@
     "category": "Maderas",
     "categorySlug": "maderas",
     "subcategory": null,
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "855",
@@ -2002,6 +2030,7 @@
     "priceMax": 73958.98,
     "hasAnyPrice": true,
     "image": "/products/855.jpg",
+    "offerPct": 15,
     "description": "Protector de madera de Cetol con acabado satinado. Realza la veta y cuida la madera. Elegí el tono en la ficha.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -2035,6 +2064,7 @@
     "priceMax": 25634.06,
     "hasAnyPrice": true,
     "image": "/products/896.jpg",
+    "offerPct": null,
     "description": "Protector de Cetol pensado para decks y maderas de exterior sometidas a sol y lluvia.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -2238,6 +2268,7 @@
     "priceMax": 10203.78,
     "hasAnyPrice": true,
     "image": "/products/966.jpg",
+    "offerPct": null,
     "description": "Tintas universales de Cetol para dar color a la madera sin tapar la veta. Varios tonos.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -2291,6 +2322,7 @@
     "priceMax": 68341.45,
     "hasAnyPrice": true,
     "image": "/products/47.jpg",
+    "offerPct": null,
     "description": "Pintura látex blanca para cielorrasos. Cubre bien y deja un acabado mate uniforme que disimula imperfecciones.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -2364,6 +2396,7 @@
     "priceMax": 6701.55,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Cintas de enmascarar de Sherwin-Williams para pintura automotor, en distintos anchos.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -2384,7 +2417,7 @@
     "category": "Herramientas y Accesorios",
     "categorySlug": "herramientas-y-accesorios",
     "subcategory": "Cintas",
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "1870",
@@ -2427,6 +2460,7 @@
     "priceMax": 7023.29,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": 20,
     "description": "Cinta de enmascarar azul premium de Sherwin-Williams para delimitar y proteger al pintar. Se retira sin dejar residuos.",
     "optionLabel": "Medida",
     "optionLabelPlural": "medidas"
@@ -2500,6 +2534,7 @@
     "priceMax": 42863.56,
     "hasAnyPrice": true,
     "image": "/products/1435.jpg",
+    "offerPct": null,
     "description": "Antióxido de Emapi para proteger superficies metálicas antes del esmalte. Disponible en blanco, negro y rojo.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -2573,6 +2608,7 @@
     "priceMax": 62015.11,
     "hasAnyPrice": true,
     "image": "/products/1448.jpg",
+    "offerPct": null,
     "description": "Convertidor de óxido de Emapi: detiene el óxido y deja la base lista para el esmalte. Varios colores.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -2616,6 +2652,7 @@
     "priceMax": 12934.77,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Cobertor de plástico de Rosarpin para proteger pisos, muebles y aberturas de salpicaduras al pintar.",
     "optionLabel": "Medida",
     "optionLabelPlural": "medidas"
@@ -2709,6 +2746,7 @@
     "priceMax": 131439.17,
     "hasAnyPrice": true,
     "image": "/products/473.jpg",
+    "offerPct": null,
     "description": "Látex mate de Alba para paredes interiores y exteriores. Disponible en blanco y en varios colores.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -2752,6 +2790,7 @@
     "priceMax": 24608.99,
     "hasAnyPrice": true,
     "image": "/products/53.jpg",
+    "offerPct": null,
     "description": "Transforma el óxido superficial en una capa estable sobre la que se puede pintar. Para rejas, portones y estructuras de hierro.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -3015,6 +3054,7 @@
     "priceMax": 193212,
     "hasAnyPrice": true,
     "image": "/products/1462.jpg",
+    "offerPct": null,
     "description": "Esmalte sintético de Emapi para madera y metal en brillante, satinado y mate. Disponible en varios colores.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -3048,6 +3088,7 @@
     "priceMax": 3690.29,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Cutter metálico de Rottweiler para cortes precisos en cintas, cartón y papel.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3101,6 +3142,7 @@
     "priceMax": 2298.49,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Disco flap de óxido de aluminio de Rottweiler para amoladora, ideal para lijar y desbastar metal. Elegí el grano en la ficha.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -3204,6 +3246,7 @@
     "priceMax": 227970.57,
     "hasAnyPrice": true,
     "image": "/products/2999.jpg",
+    "offerPct": null,
     "description": "Pintura impermeabilizante de Alba para frentes y muros exteriores. Ayuda a proteger la pared de la humedad y la lluvia.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -3347,6 +3390,7 @@
     "priceMax": 57038.59,
     "hasAnyPrice": true,
     "image": "/products/496.jpg",
+    "offerPct": null,
     "description": "Látex acrílico de Alba para exteriores en varios colores. Resiste la intemperie y mantiene el color en frentes y muros.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -3380,6 +3424,7 @@
     "priceMax": 6018.41,
     "hasAnyPrice": true,
     "image": "/products/61.jpg",
+    "offerPct": null,
     "description": "Enduido de Alba para reparar y nivelar paredes interiores. Se lija fácilmente y deja la superficie lista para pintar.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3413,6 +3458,7 @@
     "priceMax": 9984.22,
     "hasAnyPrice": true,
     "image": "/products/57.jpg",
+    "offerPct": null,
     "description": "Enduido de Alba para reparar frentes y paredes exteriores antes de pintar.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3506,6 +3552,7 @@
     "priceMax": 6167.68,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Espátulas de acero de Mota para masillar, raspar y retirar pintura. Elegí el ancho en la ficha.",
     "optionLabel": "Medida",
     "optionLabelPlural": "medidas"
@@ -3539,6 +3586,7 @@
     "priceMax": 1669.59,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Estopa de Apeles de 350 gr para limpiar, lustrar y aplicar ceras y tratamientos.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3582,6 +3630,7 @@
     "priceMax": 19513.27,
     "hasAnyPrice": true,
     "image": "/products/100.jpg",
+    "offerPct": null,
     "description": "Fijador de Alba a base de solvente para consolidar paredes y mejorar la adherencia de la pintura. Disponible en Premium y Standard.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -3615,6 +3664,7 @@
     "priceMax": 15830.1,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Film plástico de Sherwin-Williams para enmascarar superficies amplias junto con cinta de papel.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3658,6 +3708,7 @@
     "priceMax": 20065.89,
     "hasAnyPrice": true,
     "image": "/products/109.jpg",
+    "offerPct": null,
     "description": "Fondo blanco de Alba para preparar madera y metal antes del esmalte. Mejora la cobertura y el acabado final.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3691,6 +3742,7 @@
     "priceMax": 23912.04,
     "hasAnyPrice": true,
     "image": "/products/114.jpg",
+    "offerPct": null,
     "description": "Fondo al agua de Alba para distintos tipos de superficie. Sin olor fuerte y fácil de aplicar.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -3734,6 +3786,7 @@
     "priceMax": 4381.02,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Guantes de Fueguino para trabajos de pintura, limpieza y obra. Modelos liviano y moteado.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -3837,6 +3890,7 @@
     "priceMax": 1883.66,
     "hasAnyPrice": true,
     "image": "/products/2609.jpg",
+    "offerPct": null,
     "description": "Hojas de tela esmeril Norton para lijar metal y madera, resistentes y flexibles. Elegí el grano en la ficha.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -3920,6 +3974,7 @@
     "priceMax": 9807.07,
     "hasAnyPrice": true,
     "image": "/products/2098.jpg",
+    "offerPct": null,
     "description": "Impermeabilizante para muros y medianeras de Distinción, en distintos colores. Protege la pared de la humedad.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -3973,6 +4028,7 @@
     "priceMax": 42378.36,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Kit de Sinteplast con lo necesario para reparar pequeños agujeros y desperfectos en paredes.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -4056,6 +4112,7 @@
     "priceMax": 2506.01,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Lija al agua de El Galgo para lijar pintura, masilla y metal. Elegí el grano en la ficha.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -4189,6 +4246,7 @@
     "priceMax": 910.11,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Lija al agua Norton T277 para lijado fino de pintura y terminaciones. Elegí el grano en la ficha.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -4222,7 +4280,7 @@
     "category": "Herramientas y Accesorios",
     "categorySlug": "herramientas-y-accesorios",
     "subcategory": "Lijas y abrasivos",
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "2636",
@@ -4382,6 +4440,7 @@
     "priceMax": 1864.45,
     "hasAnyPrice": true,
     "image": "/products/2638.jpg",
+    "offerPct": 10,
     "description": "Lija azul al agua de Norton, para lijar pintura, masilla y madera en seco o húmedo. Elegí el grano en la ficha: los números bajos son más gruesos y los altos más finos.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -4495,6 +4554,7 @@
     "priceMax": 1539.83,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Discos de lija Norton A275 para lijadora orbital. Elegí el grano en la ficha.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -4578,6 +4638,7 @@
     "priceMax": 706.76,
     "hasAnyPrice": true,
     "image": "/products/3470.jpg",
+    "offerPct": null,
     "description": "Lijas de Sinteplast en granos finos para preparar y pulir superficies antes de pintar.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -4631,6 +4692,7 @@
     "priceMax": 1199.64,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Lija de tela esmeril 3M para trabajos en metal y madera. Elegí el grano en la ficha.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"
@@ -4664,6 +4726,7 @@
     "priceMax": 186784.29,
     "hasAnyPrice": true,
     "image": "/products/3243.jpg",
+    "offerPct": null,
     "description": "Impermeabilizante de Merclin (línea Liquitech) tipo caucho-goma, para techos y terrazas. Forma una capa flexible que protege de las filtraciones.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -4707,6 +4770,7 @@
     "priceMax": 10286.42,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Tratamiento de Merclin (Liquitech) para ladrillos a la vista: protege de la humedad y realza el color. Natural o rojo.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -4750,6 +4814,7 @@
     "priceMax": 32329.69,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Membrana autoadhesiva de Merclin (Liquitech) en rollo para sellar juntas, uniones y reparaciones puntuales.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -4803,6 +4868,7 @@
     "priceMax": 162765.92,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Membrana poliuretánica en pasta de Merclin (Liquitech) para impermeabilizar techos y superficies expuestas.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -4836,6 +4902,7 @@
     "priceMax": 9044.99,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Producto de Merclin (Liquitech) para sellar goteras y fisuras en techos de forma rápida.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -4869,6 +4936,7 @@
     "priceMax": 8443.19,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Llana plástica de alto impacto de 12 x 30 cm para alisar enduido y masillas.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -4952,6 +5020,7 @@
     "priceMax": 38089.51,
     "hasAnyPrice": true,
     "image": "/products/1672.jpg",
+    "offerPct": null,
     "description": "Látex de la línea Look de Emapi para frentes y ambientes, en colores clásicos y de tendencia.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -4985,6 +5054,7 @@
     "priceMax": 20855.95,
     "hasAnyPrice": true,
     "image": "/products/2804.jpg",
+    "offerPct": null,
     "description": "Masilla universal de Sinteplast para correcciones menores y retoques de superficie.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5048,6 +5118,7 @@
     "priceMax": 45143.07,
     "hasAnyPrice": true,
     "image": "/products/2798.jpg",
+    "offerPct": null,
     "description": "Masilla poliéster de Sinteplast de dos componentes para reparar y nivelar superficies. Se lija una vez curada.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -5069,7 +5140,7 @@
     "category": "Herramientas y Accesorios",
     "categorySlug": "herramientas-y-accesorios",
     "subcategory": "Pinceles y rodillos",
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "2566",
@@ -5121,6 +5192,7 @@
     "priceMax": 9335.57,
     "hasAnyPrice": true,
     "image": "/products/2566.jpg",
+    "offerPct": 25,
     "description": "Pincel de El Galgo línea Gold, de buena terminación para esmaltes, barnices y látex. Elegí el número en la ficha.",
     "optionLabel": "Número",
     "optionLabelPlural": "números"
@@ -5194,6 +5266,7 @@
     "priceMax": 6582.51,
     "hasAnyPrice": true,
     "image": "/products/2571.jpg",
+    "offerPct": null,
     "description": "Pincel de El Galgo en formato persianero, para pintar con precisión en rincones, ventanas y rejas. Varios números.",
     "optionLabel": "Número",
     "optionLabelPlural": "números"
@@ -5267,6 +5340,7 @@
     "priceMax": 7910.5,
     "hasAnyPrice": true,
     "image": "/products/3471.jpg",
+    "offerPct": null,
     "description": "Pincel Yago de Rosarpin, versión V1 de cerda blanca, para uso general. Elegí el número en la ficha.",
     "optionLabel": "Número",
     "optionLabelPlural": "números"
@@ -5340,6 +5414,7 @@
     "priceMax": 9378.4,
     "hasAnyPrice": true,
     "image": "/products/3300.jpg",
+    "offerPct": null,
     "description": "Pincel Yago de Rosarpin, versión V2, de uso general para pintura al agua y sintéticos. Varios números.",
     "optionLabel": "Número",
     "optionLabelPlural": "números"
@@ -5373,6 +5448,7 @@
     "priceMax": 6604.42,
     "hasAnyPrice": true,
     "image": "/products/2577.jpg",
+    "offerPct": null,
     "description": "Pinceleta de El Galgo para pintar superficies grandes en obra con rapidez.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5426,6 +5502,7 @@
     "priceMax": 182464.29,
     "hasAnyPrice": true,
     "image": "/products/613.jpg",
+    "offerPct": null,
     "description": "Pintura de Alba para piletas de natación de hormigón o revoque. Se aplica sobre superficies preparadas y deja un acabado celeste.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -5509,6 +5586,7 @@
     "priceMax": 69554.02,
     "hasAnyPrice": true,
     "image": "/products/620.jpg",
+    "offerPct": null,
     "description": "Pintura látex acrílica de Alba para pisos: patios, garajes, veredas y contrapisos. Elegí el color en la ficha.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -5542,6 +5620,7 @@
     "priceMax": 12026.08,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Pistola de Rottweiler para aplicar siliconas y selladores en cartucho de forma pareja y con control.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5585,6 +5664,7 @@
     "priceMax": 27795.21,
     "hasAnyPrice": true,
     "image": "/products/639.jpg",
+    "offerPct": null,
     "description": "Pintura de Alba para crear superficies de pizarrón en pared o madera. Ideal para escuelas, comercios y habitaciones de chicos.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -5638,6 +5718,7 @@
     "priceMax": 27362.77,
     "hasAnyPrice": true,
     "image": "/products/1972.jpg",
+    "offerPct": null,
     "description": "Masa epoxi de dos componentes para reparar grietas y rellenar en exteriores.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5681,6 +5762,7 @@
     "priceMax": 27362.77,
     "hasAnyPrice": true,
     "image": "/products/1976.jpg",
+    "offerPct": null,
     "description": "Masa epoxi de dos componentes para reparaciones y fijaciones en interiores.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5784,6 +5866,7 @@
     "priceMax": 68145.57,
     "hasAnyPrice": true,
     "image": "/products/1765.jpg",
+    "offerPct": null,
     "description": "Barniz de Emapi para madera en acabados brillante, mate y satinado. Protege y realza la veta.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -5897,6 +5980,7 @@
     "priceMax": 68526.44,
     "hasAnyPrice": true,
     "image": "/products/1779.jpg",
+    "offerPct": null,
     "description": "Tratamiento protector de Emapi para madera, con color y acabado satinado o tradicional.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -5930,6 +6014,7 @@
     "priceMax": 4119.38,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Raspador de Fueguino para retirar pintura vieja, calcomanías y restos de superficies.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5973,6 +6058,7 @@
     "priceMax": 41904.6,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Removedor en gel de Dixilina para quitar pintura y barniz de madera y metal.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -5990,7 +6076,7 @@
     "category": "Herramientas y Accesorios",
     "categorySlug": "herramientas-y-accesorios",
     "subcategory": "Pinceles y rodillos",
-    "isOffer": false,
+    "isOffer": true,
     "variants": [
       {
         "codigo": "2047",
@@ -6006,6 +6092,7 @@
     "priceMax": 8217.21,
     "hasAnyPrice": true,
     "image": "/products/2047.jpg",
+    "offerPct": 15,
     "description": "Rodillo antigota de Rosarpin que reduce las salpicaduras al pintar paredes y cielorrasos.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6039,6 +6126,7 @@
     "priceMax": 14895.87,
     "hasAnyPrice": true,
     "image": "/products/2579.jpg",
+    "offerPct": null,
     "description": "Rodillo de lana de cuero de El Galgo para pintar con buena carga de pintura.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6102,6 +6190,7 @@
     "priceMax": 9936.37,
     "hasAnyPrice": true,
     "image": "/products/2048.jpg",
+    "offerPct": null,
     "description": "Rodillos de Rosarpin aptos para pinturas epoxi y de dos componentes. Disponibles en versión estándar, alto sólido y mini.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -6155,6 +6244,7 @@
     "priceMax": 6939.58,
     "hasAnyPrice": true,
     "image": "/products/2585.jpg",
+    "offerPct": null,
     "description": "Rodillos de espuma de El Galgo para acabados lisos con esmaltes y barnices. Elegí el tamaño en la ficha.",
     "optionLabel": "Número",
     "optionLabelPlural": "números"
@@ -6188,6 +6278,7 @@
     "priceMax": 13091.26,
     "hasAnyPrice": true,
     "image": "/products/3184.jpg",
+    "offerPct": null,
     "description": "Rodillo de Rosarpin con hilado de alta carga, para paredes y cielorrasos.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6221,6 +6312,7 @@
     "priceMax": 10278.64,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Rodillo sintético de Rosarpin para uso profesional, con buena absorción y terminación pareja.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6334,6 +6426,7 @@
     "priceMax": 90739.96,
     "hasAnyPrice": true,
     "image": "/products/695.jpg",
+    "offerPct": null,
     "description": "Esmalte sintético satinado de Alba para madera y metal. Deja un acabado suave y resistente.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -6377,6 +6470,7 @@
     "priceMax": 8984.25,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Sellador de Tekbond para canaletas, juntas y uniones exteriores. En aluminio o incoloro.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -6430,6 +6524,7 @@
     "priceMax": 10593.61,
     "hasAnyPrice": true,
     "image": "/products/2887.jpg",
+    "offerPct": null,
     "description": "Sellador de silicona neutra de Fischer, apto para más materiales que la silicona acética. Blanco, negro o transparente.",
     "optionLabel": "Color",
     "optionLabelPlural": "colores"
@@ -6463,6 +6558,7 @@
     "priceMax": 9966.37,
     "hasAnyPrice": true,
     "image": "/products/2889.jpg",
+    "offerPct": null,
     "description": "Silicona acética de Fischer para sellar juntas en vidrio, cerámica, aluminio y sanitarios. Incolora.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6516,6 +6612,7 @@
     "priceMax": 122830.38,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Revestimiento texturado de Venezia para dar terminación decorativa a frentes e interiores. Disponible en distintos granos y colores.",
     "optionLabel": "Tipo",
     "optionLabelPlural": "tipos"
@@ -6549,6 +6646,7 @@
     "priceMax": 7265.3,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Diluyente thinner de Dixilina para pinturas y lacas, y para limpieza de herramientas y equipos.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6582,6 +6680,7 @@
     "priceMax": 6139.37,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Trapo Cavalieri de 500 gr para limpieza y terminación en trabajos de pintura.",
     "optionLabel": null,
     "optionLabelPlural": null
@@ -6635,6 +6734,7 @@
     "priceMax": 4355.54,
     "hasAnyPrice": true,
     "image": null,
+    "offerPct": null,
     "description": "Viruta de acero de Apeles para lijar y pulir madera y metal. Fina, mediana y gruesa.",
     "optionLabel": "Grano",
     "optionLabelPlural": "granos"

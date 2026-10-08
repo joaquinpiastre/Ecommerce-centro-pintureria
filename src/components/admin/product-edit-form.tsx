@@ -19,6 +19,7 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
   const [categorySlug, setCategorySlug] = useState(product.categorySlug);
   const [subcategory, setSubcategory] = useState(product.subcategory ?? '');
   const [isOffer, setIsOffer] = useState(product.isOffer);
+  const [offerPct, setOfferPct] = useState(product.offerPct ? String(product.offerPct) : '');
   const [description, setDescription] = useState(product.description ?? '');
   const [prices, setPrices] = useState<Record<string, string>>(
     Object.fromEntries(product.variants.map((v) => [v.codigo, v.hasPrice ? String(v.price) : '']))
@@ -46,6 +47,7 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
         categorySlug,
         subcategory: subcategory.trim() || null,
         isOffer,
+        offerPct: isOffer && offerPct.trim() ? Number(offerPct) : null,
         description: description.trim() || null,
         variantPrices,
       }),
@@ -166,8 +168,21 @@ export function ProductEditForm({ product }: { product: AdminProduct }) {
             </Field>
             <label className="flex items-center gap-2 self-end pb-2 text-sm font-medium">
               <input type="checkbox" checked={isOffer} onChange={(e) => setIsOffer(e.target.checked)} className="h-4 w-4 accent-primary" />
-              Marcar como oferta / liquidación
+              Marcar como oferta
             </label>
+            {isOffer && (
+              <Field label="Descuento de la oferta (%) sobre el precio de lista">
+                <input
+                  type="number"
+                  min={1}
+                  max={99}
+                  value={offerPct}
+                  onChange={(e) => setOfferPct(e.target.value)}
+                  placeholder="Ej: 20"
+                  className={INPUT_CLASS}
+                />
+              </Field>
+            )}
             <Field label="Descripción (se muestra en la ficha del producto)" className="sm:col-span-2">
               <textarea
                 value={description}

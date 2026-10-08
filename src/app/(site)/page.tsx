@@ -13,31 +13,23 @@ export const dynamic = 'force-dynamic';
 export default function HomePage() {
   const categories = getCategories().filter((c) => c.slug !== 'varios');
   const offers = getOfferProducts(12);
-  const featured = getFeaturedProducts(12);
+  const offerIds = new Set(offers.map((p) => p.id));
+  // En la home solo van las ofertas y los destacados (sin repetir): el resto está en cada categoría.
+  const featured = getFeaturedProducts(24).filter((p) => !offerIds.has(p.id)).slice(0, 12);
   const brands = getFeaturedBrands();
-  const all = getAllProducts();
 
   // Foto de cada categoría: la de un producto de esa categoría que tenga foto real.
   const categoryImages: Record<string, string> = {};
-  for (const p of all) {
+  for (const p of getAllProducts()) {
     if (p.image && !categoryImages[p.categorySlug]) categoryImages[p.categorySlug] = p.image;
   }
-
-  // Una repisa por cada categoría grande, como las secciones de la home de Rex.
-  const shelves = categories
-    .filter((c) => c.count >= 4)
-    .slice(0, 4)
-    .map((c) => ({
-      category: c,
-      products: all.filter((p) => p.categorySlug === c.slug && p.hasAnyPrice).slice(0, 12),
-    }));
 
   return (
     <>
       <Hero />
       <InfoStrip />
       <CategoryGrid categories={categories} images={categoryImages} />
-      {offers.length > 0 && <ProductShelf title="Ofertas" products={offers} href="/categoria/pinturas?oferta=1" />}
+      <ProductShelf title="Ofertas" tone="offer" products={offers} href="/ofertas" />
       <ProductShelf
         title="Productos destacados"
         products={featured}
@@ -48,9 +40,6 @@ export default function HomePage() {
           href: '/categoria/pinturas',
         }}
       />
-      {shelves.map(({ category, products }) => (
-        <ProductShelf key={category.slug} title={category.label} products={products} href={`/categoria/${category.slug}`} />
-      ))}
       <TrustBadges />
       <FeaturedBrands brands={brands} />
     </>

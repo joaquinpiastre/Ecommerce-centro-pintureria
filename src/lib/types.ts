@@ -8,6 +8,8 @@ export interface ProductVariant {
   option?: string | null;
   /** Foto propia de esta variante (ej. el color elegido). */
   image?: string | null;
+  /** Precio de lista antes del descuento, solo si el producto está en oferta (price ya es el precio con descuento). */
+  originalPrice?: number | null;
 }
 
 export interface Product {
@@ -27,6 +29,8 @@ export interface Product {
   priceMax: number;
   hasAnyPrice: boolean;
   image: string | null;
+  /** % de descuento de la oferta (solo aplica si isOffer). */
+  offerPct?: number | null;
   /** Descripción del producto que se muestra en la ficha. */
   description?: string | null;
   /** "Color", "Número", "Grano"… (singular) cuando el producto tiene variedades. */
