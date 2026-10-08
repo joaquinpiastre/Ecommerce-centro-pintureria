@@ -2,9 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Menu, X, ChevronDown, Tag, Phone, Clock, MapPin, Home, Mail } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X, ChevronDown, MapPin, Home, Mail } from 'lucide-react';
 import type { Category } from '@/lib/types';
 import { useCartCount, useCartStore } from '@/store/cart';
 import { SearchDialog } from '@/components/search/search-dialog';
@@ -37,56 +36,86 @@ export function Header({ categories }: { categories: Category[] }) {
     };
   }, [menuOpen]);
 
+  const navCategories = categories.slice(0, 5);
+
   return (
     <>
-      {/* Barra superior de contexto — desktop only */}
-      <div className="hidden bg-primary text-primary-foreground lg:block">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6 text-xs lg:px-8">
-          <div className="flex items-center gap-5">
-            <span className="flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" /> {SITE.address}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5" /> {SITE.hours[0].days}: {SITE.hours[0].time}
-            </span>
-          </div>
-          <a href={`tel:${SITE.phone.replace(/\D/g, '')}`} className="flex items-center gap-1.5 hover:underline">
-            <Phone className="h-3.5 w-3.5" /> {SITE.phone}
-          </a>
-        </div>
-      </div>
-
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
-        <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 sm:gap-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-40 bg-primary text-primary-foreground shadow-md">
+        {/* Fila principal: logo, buscador, ubicación y carrito */}
+        <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:gap-5 sm:px-6 lg:h-[72px] lg:px-8">
           <button
-            className="-ml-2 rounded-lg p-2 text-foreground lg:hidden"
+            className="-ml-2 rounded-lg p-2 text-primary-foreground lg:hidden"
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menú"
           >
             <Menu className="h-6 w-6" />
           </button>
 
-          <Link href="/" className="flex shrink-0 items-center gap-2">
-            <Image src="/logo-icon.png" alt="" width={40} height={40} priority className="h-9 w-9 rounded-lg sm:h-10 sm:w-10" />
-            <span className="hidden font-heading text-base font-bold leading-tight text-foreground sm:block">
-              {SITE.shortName}
-            </span>
-          </Link>
+          {/* El logo grande tiene el mismo verde de fondo que el encabezado: se recorta al logotipo para que se funda. */}
+          <Link
+            href="/"
+            role="img"
+            aria-label={SITE.name}
+            className="block h-[56px] w-[158px] shrink-0 bg-[url(/logo-del-centro.jpg)] bg-[length:210px_210px] bg-[position:-21px_-76px] bg-no-repeat lg:h-[64px] lg:w-[176px] lg:bg-[length:234px_234px] lg:bg-[position:-24px_-82px]"
+          />
 
-          <nav className="hidden items-center gap-1 lg:flex" ref={menuRef}>
-            <Link
-              href="/"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-foreground/85 transition-colors hover:bg-muted hover:text-foreground"
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="hidden h-11 flex-1 items-center gap-2 rounded-full bg-white px-4 text-sm text-muted-foreground shadow-inner transition-colors hover:bg-white/95 sm:flex"
+            aria-label="Buscar productos"
+          >
+            <Search className="h-4 w-4 shrink-0" />
+            <span className="truncate">¿Qué estás buscando?</span>
+          </button>
+
+          <div className="ml-auto flex items-center gap-1 sm:ml-0 sm:gap-3">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/15 sm:hidden"
+              aria-label="Buscar productos"
             >
-              Inicio
+              <Search className="h-5 w-5" />
+            </button>
+            <Link
+              href="/contacto"
+              className="hidden items-center gap-1.5 rounded-lg px-2 py-2 text-sm font-semibold hover:bg-white/15 lg:flex"
+            >
+              <MapPin className="h-4.5 w-4.5" /> Dónde estamos
             </Link>
+            <button
+              onClick={openCart}
+              className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/15"
+              aria-label="Abrir carrito"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              <AnimatePresence>
+                {mounted && count > 0 && (
+                  <motion.span
+                    key={count}
+                    initial={{ scale: 0.4, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.4, opacity: 0 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+                    className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-[11px] font-bold text-brand-ink"
+                  >
+                    {count}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
+        </div>
 
+        {/* Fila de navegación — escritorio */}
+        <div className="hidden border-t border-white/20 lg:block">
+          <nav className="mx-auto flex h-11 max-w-7xl items-center gap-1 px-8" ref={menuRef}>
             <div className="relative">
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-foreground/85 transition-colors hover:bg-muted hover:text-foreground"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold transition-colors hover:bg-white/15"
                 aria-expanded={menuOpen}
               >
+                <Menu className="h-4 w-4" />
                 Categorías
                 <ChevronDown className={`h-4 w-4 transition-transform ${menuOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -97,7 +126,7 @@ export function Header({ categories }: { categories: Category[] }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-0 top-full z-50 mt-2 w-[640px] rounded-2xl border border-border bg-popover p-4 shadow-xl"
+                    className="absolute left-0 top-full z-50 mt-1 w-[640px] rounded-2xl border border-border bg-popover p-4 text-foreground shadow-xl"
                   >
                     <div className="grid grid-cols-2 gap-1">
                       {categories.map((c) => {
@@ -126,59 +155,20 @@ export function Header({ categories }: { categories: Category[] }) {
               </AnimatePresence>
             </div>
 
-            <Link
-              href="/categoria/pinturas"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-brand-ink transition-colors hover:bg-accent/10"
-            >
-              <Tag className="h-4 w-4" /> Ofertas
-            </Link>
+            {navCategories.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/categoria/${c.slug}`}
+                className="rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-white/15"
+              >
+                {c.label}
+              </Link>
+            ))}
 
-            <Link
-              href="/contacto"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-foreground/85 transition-colors hover:bg-muted hover:text-foreground"
-            >
+            <Link href="/contacto" className="ml-auto rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-white/15">
               Contacto
             </Link>
           </nav>
-
-          <div className="ml-auto flex items-center gap-1 sm:gap-2">
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="hidden h-10 items-center gap-2 rounded-full border border-border bg-muted/60 px-3 text-sm text-muted-foreground transition-colors hover:bg-muted sm:flex sm:w-56"
-              aria-label="Buscar productos"
-            >
-              <Search className="h-4 w-4 shrink-0" />
-              <span className="truncate">Buscar productos…</span>
-            </button>
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground hover:bg-muted sm:hidden"
-              aria-label="Buscar productos"
-            >
-              <Search className="h-5 w-5" />
-            </button>
-            <button
-              onClick={openCart}
-              className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground hover:bg-muted"
-              aria-label="Abrir carrito"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              <AnimatePresence>
-                {mounted && count > 0 && (
-                  <motion.span
-                    key={count}
-                    initial={{ scale: 0.4, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.4, opacity: 0 }}
-                    transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                    className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 text-[11px] font-bold text-accent-foreground"
-                  >
-                    {count}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
-          </div>
         </div>
       </header>
 
@@ -219,16 +209,6 @@ function MobileMenu({ categories, open, onClose }: { categories: Category[]; ope
                   <Home className="h-4.5 w-4.5" />
                 </span>
                 Inicio
-              </Link>
-              <Link
-                href="/categoria/pinturas"
-                onClick={onClose}
-                className="mb-1 flex items-center gap-3 rounded-xl bg-accent/10 px-3 py-3 text-sm font-semibold text-brand-ink"
-              >
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-white">
-                  <Tag className="h-4.5 w-4.5" />
-                </span>
-                Ofertas
               </Link>
 
               <p className="mb-1 mt-2 px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Categorías</p>

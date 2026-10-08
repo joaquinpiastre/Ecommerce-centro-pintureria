@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, Phone, Clock } from 'lucide-react';
-import { SITE } from '../../../config/site';
+import { MapPin, Phone, Clock, CreditCard, Banknote, Landmark } from 'lucide-react';
+import { PAYMENT, SITE } from '../../../config/site';
 import type { Category } from '@/lib/types';
 import { InstagramIcon } from '@/components/icons/instagram-icon';
 
@@ -87,7 +87,35 @@ export function Footer({ categories }: { categories: Category[] }) {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+        <div className="mt-10 rounded-2xl border border-border bg-background p-5">
+          <h3 className="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-foreground/80">Medios de pago</h3>
+          <ul className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+            <li className="flex items-center gap-2.5">
+              <CreditCard className="h-5 w-5 shrink-0 text-brand-ink" />
+              <span>
+                <strong>{PAYMENT.installments} cuotas sin interés</strong>
+                <span className="block text-xs text-muted-foreground">con {PAYMENT.cardsLabel}</span>
+              </span>
+            </li>
+            <li className="flex items-center gap-2.5">
+              <Banknote className="h-5 w-5 shrink-0 text-brand-ink" />
+              <span>
+                <strong>{PAYMENT.cashDiscountPct}% de descuento</strong>
+                <span className="block text-xs text-muted-foreground">pagando en efectivo</span>
+              </span>
+            </li>
+            <li className="flex items-center gap-2.5">
+              <Landmark className="h-5 w-5 shrink-0 text-brand-ink" />
+              <span>
+                <strong>{PAYMENT.transferDiscountPct}% de descuento</strong>
+                <span className="block text-xs text-muted-foreground">pagando por transferencia</span>
+              </span>
+            </li>
+          </ul>
+          <p className="mt-3 text-xs text-muted-foreground">Los descuentos se calculan sobre el precio de lista.</p>
+        </div>
+
+        <div className="mt-6 border-t border-border pt-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} {SITE.name}. Retiro en local — {SITE.address}.
         </div>
       </div>

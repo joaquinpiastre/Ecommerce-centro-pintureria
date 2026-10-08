@@ -18,10 +18,18 @@ export const SITE = {
   differentiators: [
     'Asesoramiento personalizado',
     'Amplio stock permanente',
-    'Hasta 24 cuotas',
+    '6 cuotas sin interés',
     'Retiro en local',
   ],
   priceDisclaimer: 'Precios sujetos a confirmación. Coordiná el pedido final por WhatsApp.',
+} as const;
+
+/** Condiciones de pago: el precio de lista es el que figura en la lista de precios; los demás se calculan a partir de él. */
+export const PAYMENT = {
+  installments: 6,
+  cashDiscountPct: 10,
+  transferDiscountPct: 5,
+  cardsLabel: 'todas las tarjetas bancarizadas',
 } as const;
 
 export function whatsappOrderLink(message: string): string {

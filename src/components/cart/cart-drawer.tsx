@@ -10,6 +10,7 @@ import { useMounted } from '@/lib/use-mounted';
 import { formatPriceARS } from '@/lib/format';
 import { buildOrderWhatsappUrl, cartTotal } from '@/lib/whatsapp';
 import { SITE } from '../../../config/site';
+import { CartTotals } from './cart-totals';
 
 export function CartDrawer() {
   const mounted = useMounted();
@@ -92,10 +93,7 @@ export function CartDrawer() {
             </div>
 
             <SheetFooter className="gap-3 border-t">
-              <div className="flex items-center justify-between text-base font-semibold">
-                <span>Total estimado</span>
-                <span>{formatPriceARS(total)}</span>
-              </div>
+              <CartTotals total={total} />
               <p className="text-xs text-muted-foreground">{SITE.priceDisclaimer}</p>
               <Button
                 size="lg"

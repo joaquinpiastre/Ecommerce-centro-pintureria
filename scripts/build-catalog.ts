@@ -219,7 +219,7 @@ function slugify(str: string): string {
 
 function cleanOption(raw: string): string {
   let o = raw
-    .replace(/\s+x\s*\d+(?:[.,]\d+)?\s*(?:g|gr|kg|ml|l|lt)\b/i, '')
+    .replace(/\s+(?:x\s*)?\d+(?:[.,]\d+)?\s*(?:g|gr|kg|ml|l|lt)\b/i, '')
     .replace(/\s*-?\s*(?:el )?galgo$/i, '')
     .replace(/\s*HE\d+$/i, '')
     .replace(/\bProf\b/g, 'Profesional')

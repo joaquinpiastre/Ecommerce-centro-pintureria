@@ -1,4 +1,5 @@
-import { SITE, whatsappOrderLink } from '../../config/site';
+import { PAYMENT, SITE, whatsappOrderLink } from '../../config/site';
+import { priceBreakdown } from './pricing';
 import type { CartLine } from './types';
 import { formatPriceARS } from './format';
 
@@ -25,9 +26,13 @@ export function buildOrderMessage(items: CartLine[]): string {
   });
 
   lines.push('');
-  lines.push(`💰 *Total estimado: ${formatPriceARS(total)}*`);
+  const t = priceBreakdown(total);
+  lines.push(`💵 *Efectivo (${PAYMENT.cashDiscountPct}% OFF): ${formatPriceARS(t.cash)}*`);
+  lines.push(`🏦 Transferencia (${PAYMENT.transferDiscountPct}% OFF): ${formatPriceARS(t.transfer)}`);
+  lines.push(`🏷️ Precio de lista: ${formatPriceARS(t.list)}`);
+  lines.push(`💳 ${PAYMENT.installments} cuotas sin interés de ${formatPriceARS(t.installment)}`);
   lines.push('');
-  lines.push('Retiro en el local. ¿Me confirman disponibilidad y precio final? ¡Gracias!');
+  lines.push('Retiro en el local. ¿Me confirman disponibilidad y precio final? Te aviso cómo voy a pagar. ¡Gracias!');
 
   return lines.join('\n');
 }

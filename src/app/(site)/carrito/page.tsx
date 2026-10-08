@@ -9,6 +9,7 @@ import { useMounted } from '@/lib/use-mounted';
 import { formatPriceARS } from '@/lib/format';
 import { buildOrderWhatsappUrl, cartTotal } from '@/lib/whatsapp';
 import { SITE } from '../../../../config/site';
+import { CartTotals } from '@/components/cart/cart-totals';
 
 export default function CartPage() {
   const mounted = useMounted();
@@ -90,9 +91,8 @@ export default function CartPage() {
 
           <div className="h-fit rounded-2xl border border-border p-5">
             <h2 className="font-heading text-lg font-bold">Resumen</h2>
-            <div className="mt-4 flex items-center justify-between text-base font-semibold">
-              <span>Total estimado</span>
-              <span>{formatPriceARS(total)}</span>
+            <div className="mt-4">
+              <CartTotals total={total} />
             </div>
             <p className="mt-1.5 text-xs text-muted-foreground">{SITE.priceDisclaimer}</p>
 
