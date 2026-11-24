@@ -1,4 +1,4 @@
-import { getAllProducts, getCategories, getOfferProducts, getFeaturedBrands, getFeaturedProducts } from '@/lib/data';
+import { getCategories, getOfferProducts, getFeaturedBrands, getFeaturedProducts, getSubcategoryTiles } from '@/lib/data';
 import { Hero } from '@/components/home/hero';
 import { InfoStrip } from '@/components/home/info-strip';
 import { CategoryGrid } from '@/components/home/category-grid';
@@ -19,17 +19,14 @@ export default function HomePage() {
   const featured = getFeaturedProducts(24).filter((p) => !offerIds.has(p.id)).slice(0, 12);
   const brands = getFeaturedBrands();
 
-  // Foto de cada categoría: la de un producto de esa categoría que tenga foto real.
-  const categoryImages: Record<string, string> = {};
-  for (const p of getAllProducts()) {
-    if (p.image && !categoryImages[p.categorySlug]) categoryImages[p.categorySlug] = p.image;
-  }
+  // Rubros (subcategorías) con más productos, cada uno con la foto de uno de sus productos.
+  const tiles = getSubcategoryTiles(12);
 
   return (
     <>
       <Hero />
       <InfoStrip />
-      <CategoryGrid categories={categories} images={categoryImages} />
+      <CategoryGrid tiles={tiles} />
       <ProductShelf title="Ofertas" tone="offer" products={offers} href="/ofertas" />
       <CategoryBanners categories={categories} />
       <ProductShelf

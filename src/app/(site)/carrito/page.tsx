@@ -7,7 +7,7 @@ import { ProductImage } from '@/components/product/product-image';
 import { useCartStore } from '@/store/cart';
 import { useMounted } from '@/lib/use-mounted';
 import { formatPriceARS } from '@/lib/format';
-import { buildOrderWhatsappUrl, cartTotal } from '@/lib/whatsapp';
+import { buildOrderWhatsappUrl, cartTotal, unpricedCount } from '@/lib/whatsapp';
 import { SITE } from '../../../../config/site';
 import { CartTotals } from '@/components/cart/cart-totals';
 
@@ -19,6 +19,7 @@ export default function CartPage() {
   const clear = useCartStore((s) => s.clear);
 
   const total = mounted ? cartTotal(items) : 0;
+  const unpriced = mounted ? unpricedCount(items) : 0;
   const empty = !mounted || items.length === 0;
 
   return (
@@ -75,7 +76,9 @@ export default function CartPage() {
                         <Plus className="h-3.5 w-3.5" />
                       </button>
                     </div>
-                    <span className="text-sm font-semibold">{formatPriceARS(item.price * item.quantity)}</span>
+                    <span className="text-sm font-semibold">
+                          {item.price > 0 ? formatPriceARS(item.price * item.quantity) : <span className="font-medium text-muted-foreground">Consultar precio</span>}
+                        </span>
                   </div>
                 </div>
                 <button
@@ -92,7 +95,7 @@ export default function CartPage() {
           <div className="h-fit rounded-2xl border border-border p-5">
             <h2 className="font-heading text-lg font-bold">Resumen</h2>
             <div className="mt-4">
-              <CartTotals total={total} />
+              <CartTotals total={total} unpriced={unpriced} />
             </div>
             <p className="mt-1.5 text-xs text-muted-foreground">{SITE.priceDisclaimer}</p>
 

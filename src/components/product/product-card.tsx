@@ -16,8 +16,11 @@ export function ProductCard({ product, priority }: { product: Product; priority?
   const router = useRouter();
 
   const defaultVariant = product.variants[0];
-  const hasRange = product.variants.length > 1 && product.priceMin !== product.priceMax;
-  const cheapest = hasRange ? product.variants.find((v) => v.price === product.priceMin) ?? defaultVariant : defaultVariant;
+  // Puede haber presentaciones sin precio cargado ("Consultar precio"): el precio de la
+  // tarjeta sale siempre de la más barata que SÍ tiene precio.
+  const priced = product.variants.filter((v) => v.hasPrice);
+  const cheapest = priced.reduce((min, v) => (v.price < min.price ? v : min), priced[0] ?? defaultVariant);
+  const hasRange = product.variants.length > 1 && (product.priceMin !== product.priceMax || priced.length < product.variants.length);
   const offerPct = product.isOffer && product.offerPct ? product.offerPct : null;
   const optionCount = new Set(product.variants.map((v) => v.option).filter(Boolean)).size;
   const hasOptions = optionCount > 1;

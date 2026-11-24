@@ -8,7 +8,7 @@ import { ProductImage } from '@/components/product/product-image';
 import { useCartStore } from '@/store/cart';
 import { useMounted } from '@/lib/use-mounted';
 import { formatPriceARS } from '@/lib/format';
-import { buildOrderWhatsappUrl, cartTotal } from '@/lib/whatsapp';
+import { buildOrderWhatsappUrl, cartTotal, unpricedCount } from '@/lib/whatsapp';
 import { SITE } from '../../../config/site';
 import { CartTotals } from './cart-totals';
 
@@ -22,6 +22,7 @@ export function CartDrawer() {
   const clear = useCartStore((s) => s.clear);
 
   const total = mounted ? cartTotal(items) : 0;
+  const unpriced = mounted ? unpricedCount(items) : 0;
   const empty = !mounted || items.length === 0;
 
   return (
@@ -77,7 +78,9 @@ export function CartDrawer() {
                             <Plus className="h-3.5 w-3.5" />
                           </button>
                         </div>
-                        <span className="text-sm font-semibold">{formatPriceARS(item.price * item.quantity)}</span>
+                        <span className="text-sm font-semibold">
+                          {item.price > 0 ? formatPriceARS(item.price * item.quantity) : <span className="font-medium text-muted-foreground">Consultar precio</span>}
+                        </span>
                       </div>
                     </div>
                     <button
@@ -93,7 +96,7 @@ export function CartDrawer() {
             </div>
 
             <SheetFooter className="gap-3 border-t">
-              <CartTotals total={total} />
+              <CartTotals total={total} unpriced={unpriced} />
               <p className="text-xs text-muted-foreground">{SITE.priceDisclaimer}</p>
               <Button
                 size="lg"

@@ -128,27 +128,43 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-0 top-full z-50 mt-1 w-[640px] rounded-2xl border border-border bg-popover p-4 text-foreground shadow-xl"
+                    className="absolute left-0 top-full z-50 mt-1 w-[900px] rounded-2xl border border-border bg-popover p-4 text-foreground shadow-xl"
                   >
-                    <div className="grid grid-cols-2 gap-1">
+                    {/* Una columna por categoría, con sus subcategorías debajo. */}
+                    <div className="grid grid-cols-3 gap-x-4 gap-y-6">
                       {categories.map((c) => {
                         const Icon = getCategoryIcon(c.icon);
                         return (
-                          <Link
-                            key={c.slug}
-                            href={`/categoria/${c.slug}`}
-                            onClick={() => setMenuOpen(false)}
-                            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-foreground/90 transition-colors hover:bg-muted"
-                          >
-                            <span
-                              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
-                              style={{ background: c.accent }}
+                          <div key={c.slug} className="min-w-0">
+                            <Link
+                              href={`/categoria/${c.slug}`}
+                              onClick={() => setMenuOpen(false)}
+                              className="flex items-center gap-3 rounded-xl px-2 py-2 text-sm font-bold text-foreground transition-colors hover:bg-muted"
                             >
-                              <Icon className="h-4.5 w-4.5" />
-                            </span>
-                            <span className="min-w-0 flex-1 truncate">{c.label}</span>
-                            <span className="shrink-0 text-xs text-muted-foreground">{c.count}</span>
-                          </Link>
+                              <span
+                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
+                                style={{ background: c.accent }}
+                              >
+                                <Icon className="h-4.5 w-4.5" />
+                              </span>
+                              <span className="min-w-0 flex-1 truncate">{c.label}</span>
+                              <span className="shrink-0 text-xs font-normal text-muted-foreground">{c.count}</span>
+                            </Link>
+                            <ul className="ml-6 mt-1 flex flex-col border-l border-border pl-2">
+                              {c.subcategories.map((s) => (
+                                <li key={s.slug}>
+                                  <Link
+                                    href={`/categoria/${c.slug}?sub=${s.slug}`}
+                                    onClick={() => setMenuOpen(false)}
+                                    className="flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-sm text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+                                  >
+                                    <span className="truncate">{s.label}</span>
+                                    <span className="shrink-0 text-xs text-muted-foreground">{s.count}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         );
                       })}
                     </div>
@@ -187,6 +203,8 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
 }
 
 function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Category[]; hasOffers: boolean; open: boolean; onClose: () => void }) {
+  // Categoría desplegada (muestra sus subcategorías). Una sola a la vez.
+  const [expanded, setExpanded] = useState<string | null>(null);
   return (
     <AnimatePresence>
       {open && (
@@ -231,22 +249,48 @@ function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Cate
               <p className="mb-1 mt-2 px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Categorías</p>
               {categories.map((c) => {
                 const Icon = getCategoryIcon(c.icon);
+                const isOpen = expanded === c.slug;
                 return (
-                  <Link
-                    key={c.slug}
-                    href={`/categoria/${c.slug}`}
-                    onClick={onClose}
-                    className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium hover:bg-muted"
-                  >
-                    <span
-                      className="flex h-9 w-9 items-center justify-center rounded-lg text-white"
-                      style={{ background: c.accent }}
-                    >
-                      <Icon className="h-4.5 w-4.5" />
-                    </span>
-                    {c.label}
-                    <span className="ml-auto text-xs text-muted-foreground">{c.count}</span>
-                  </Link>
+                  <div key={c.slug}>
+                    <div className="flex items-center rounded-xl hover:bg-muted">
+                      <Link href={`/categoria/${c.slug}`} onClick={onClose} className="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 text-sm font-medium">
+                        <span
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
+                          style={{ background: c.accent }}
+                        >
+                          <Icon className="h-4.5 w-4.5" />
+                        </span>
+                        <span className="truncate">{c.label}</span>
+                        <span className="ml-auto text-xs text-muted-foreground">{c.count}</span>
+                      </Link>
+                      {c.subcategories.length > 1 && (
+                        <button
+                          onClick={() => setExpanded(isOpen ? null : c.slug)}
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-muted-foreground"
+                          aria-label={`${isOpen ? 'Ocultar' : 'Ver'} subcategorías de ${c.label}`}
+                          aria-expanded={isOpen}
+                        >
+                          <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                      )}
+                    </div>
+                    {isOpen && (
+                      <ul className="mb-2 ml-7 flex flex-col border-l border-border pl-3">
+                        {c.subcategories.map((s) => (
+                          <li key={s.slug}>
+                            <Link
+                              href={`/categoria/${c.slug}?sub=${s.slug}`}
+                              onClick={onClose}
+                              className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 text-sm text-foreground/80 hover:bg-muted"
+                            >
+                              <span className="truncate">{s.label}</span>
+                              <span className="shrink-0 text-xs text-muted-foreground">{s.count}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 );
               })}
 

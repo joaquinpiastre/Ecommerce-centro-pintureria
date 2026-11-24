@@ -50,9 +50,9 @@ partir del CSV). En cambio, se guardan como una capa aparte en **`data/overrides
 (`{ "<id-del-producto>": { ...cambios } }`), que se combina con el catálogo generado al leerlo. Esto
 significa que:
 
-- Correr `npm run build:catalog` de nuevo (para actualizar precios desde un CSV nuevo) **no borra** las
-  ediciones de admin — se vuelven a aplicar automáticamente sobre el catálogo nuevo. Si un producto que
-  tenías editado deja de existir en el CSV nuevo, su override queda huérfano sin efecto (no rompe nada).
+- Correr `npm run build:catalog` de nuevo (lista o precios nuevos) **no borra** las ediciones de admin —
+  se vuelven a aplicar automáticamente sobre el catálogo nuevo. Si un producto que tenías editado deja
+  de existir en la lista nueva, su override queda huérfano sin efecto (no rompe nada).
 - Las fotos subidas desde el admin se guardan en `public/products/{código}.*`, igual que las fotos que
   agregás a mano (sección 2). Se sirven por una ruta propia (`/api/product-photo/...`) en vez de la
   estática, a propósito: el servidor de producción de Next.js no detecta archivos nuevos agregados a
@@ -63,103 +63,116 @@ significa que:
 
 ---
 
-## 1. Actualizar precios (sin tocar código)
+## 1. Actualizar el catálogo (productos, precios y categorías)
 
-Los precios y productos salen de un único archivo: **`LISTA DE PRECIOS ECOMERCE.csv`**, en la raíz del
-proyecto. Cuando el proveedor/lista de precios cambie:
+El catálogo sale de **dos planillas** y una carpeta de fotos. Nada de esto requiere tocar código.
 
-1. Reemplazá ese archivo por el nuevo CSV (mismo nombre, o pasá la ruta como parámetro — ver abajo).
-   - **Encoding:** se detecta solo (UTF-8 o ISO-8859-1/Latin1) — no hace falta convertir nada a mano.
-   - **Separador:** punto y coma (`;`).
-   - **Columnas esperadas:** `Código;Artículo;P. Venta L2;<precio con IVA>` (la 4ta columna es el precio
-     de venta, sea cual sea su nombre exacto — "P. Venta c/IVA", "P. VENTA + IVA", etc.; la 3ra columna
-     se ignora siempre).
-   - **Decimales:** también se detectan solos, con coma ("27650,88") o con punto ("9221.57").
-2. Corré:
-   ```bash
-   npm run build:catalog
-   ```
-3. Volvé a generar el sitio (`npm run build`) o, si ya está desplegado en Vercel conectado a un
-   repositorio Git, hacé commit + push de los `data/*.json` actualizados y Vercel lo redespliega solo.
+### 1.1 La lista de productos (qué se vende)
 
-Si el CSV no se llama `LISTA DE PRECIOS ECOMERCE.csv` o está en otra carpeta, pasale la ruta:
+Es un CSV en la **raíz del proyecto** con estas columnas (separadas por `;`):
 
-```bash
-npm run build:catalog -- "C:\ruta\a\Lista de precios.csv"
+```
+Código;Descripción;Marca;Categorias;Sub Categorias
 ```
 
-El script (`scripts/build-catalog.ts`):
+- **Todos** los artículos de esa lista se publican, y lo que no está en la lista no aparece en el sitio.
+- El nombre del archivo no importa: se toma el CSV más nuevo de la raíz que tenga esas columnas (hoy es
+  `LISTA DE PRECIOS ECOMERCE (1).csv`). Para cambiar la lista, reemplazá ese archivo por la nueva
+  exportación — o dejá la nueva al lado y borrá la vieja.
+- **Encoding:** se detecta solo (UTF-8 o el Windows-1252 que exporta el sistema de gestión / Excel).
+- **Categorías y subcategorías:** son las de las columnas `Categorias` y `Sub Categorias`, tal cual. El
+  menú, los filtros y la home ("Explorá por rubro") se arman solos a partir de ahí. Cómo se escribe cada
+  una, su orden y su ícono están en `scripts/taxonomy.ts`; una categoría nueva que aparezca en la lista
+  se publica igual (con ícono genérico) y el build avisa por consola.
 
-- Detecta el encoding (UTF-8 o Latin1) y el formato de decimales (coma o punto) solo, y parsea el CSV.
-- **Excluye automáticamente** filas que no son productos reales (asientos administrativos del sistema
-  de gestión: pagos, fletes, saldos, impuestos, etc. — se identifican porque tienen precio $0 y no son
-  artículos de pinturería). La lista de códigos excluidos está en `scripts/taxonomy.ts` → `EXCLUDE_CODES`,
-  por si en el futuro aparecen filas nuevas de este tipo y hay que sumarlas ahí.
-- Detecta la **marca** (contra una lista blanca en `scripts/taxonomy.ts` → `BRANDS`, para no confundir
-  colores o variantes como "NEGRO" con la marca real).
-- Detecta el **tamaño/variante** (`01 L`, `240 CC`, `3,6 L`, etc.) y agrupa como **un solo producto con
-  selector de tamaño** todas las filas que comparten el mismo nombre base y marca (ej. "Enduido Ext
-  Premium" en 01/04/10/20 L).
-- Clasifica cada producto en una **categoría y subcategoría** según palabras clave (reglas en
-  `scripts/taxonomy.ts` → `RULES`, evaluadas en orden — la primera que matchea gana). Todo lo que no
-  matchea cae en **"Varios"** (nunca rompe el build). Si aparecen productos mal categorizados o querés
-  sumar una categoría nueva, se edita ese archivo — no hace falta tocar el resto del código.
-- Formatea el precio a formato argentino (`$9.221,57`).
-- Genera:
-  - `data/products.json` — fuente de verdad del catálogo (no se sube al navegador tal cual).
-  - `data/categories.json` — categorías con conteos, subcategorías, marcas y rango de precios (para los
-    filtros).
-  - `public/search-index.json` — índice liviano para el buscador (nombre, marca, código, categoría).
+### 1.2 Los precios
 
-### ¿Cómo sé si algo quedó mal categorizado?
+La lista de productos no trae precios: se cruzan por **código** con **`data/precios.csv`**
+(`Código;Descripción;Precio con IVA`).
 
-Al correr `npm run build:catalog` vas a ver en la consola el conteo final por categoría y cuántos
-productos quedaron en "Varios". Si querés ajustar una regla, abrí `scripts/taxonomy.ts`, buscá el array
-`RULES` y agregá o modificá la palabra clave correspondiente, después volvé a correr el script.
+- Para cargar o cambiar precios: abrí `data/precios.csv` con Excel, completá la columna
+  **Precio con IVA** y guardalo como CSV (separado por `;`). Acepta coma o punto decimal
+  ("27650,88" o "27650.88").
+- Un artículo **sin precio** se publica igual y muestra **"Consultar precio"**.
+- También sirve pegar ahí una exportación del sistema con otros nombres de columna: alcanza con que
+  tenga una columna de código y una de precio (se usa la que diga "IVA"; si no, "Precio" o "Venta").
+- Si algún día la lista de productos trae su propia columna de precio, esa columna manda.
+- Otra opción, sin planillas: editar el precio de cada presentación desde `/admin`.
+
+### 1.3 Regenerar
+
+```bash
+npm run build:catalog    # lee la lista, los precios y las fotos
+npm run build            # (lo corre solo antes de compilar el sitio)
+```
+
+Si la lista está en otra carpeta: `npm run build:catalog -- "C:\ruta\a\lista.csv"`.
+
+Al terminar, la consola muestra el resumen: productos por categoría y subcategoría, cuántos artículos
+quedaron sin precio, **qué productos no tienen foto** y qué artículos no entraron en ninguna regla de
+agrupado.
+
+### 1.4 Cómo se agrupan los artículos (colores, medidas, granos)
+
+Cada producto del sitio junta los artículos de la lista que solo cambian en color, número de pincel,
+grano de lija, medida o presentación (litros, kilos), para que el cliente elija en la misma ficha:
+"Albalux Diamante 3 en 1" es un producto con 7 colores, no 7 productos.
+
+Las reglas están en **`scripts/families.ts`**: una entrada por producto, con el nombre que se muestra y
+una expresión que reconoce sus artículos en la lista. Un artículo nuevo de un producto que ya existe
+(otro color, otro tamaño) se suma solo. Un artículo que no entra en ninguna regla **se publica igual**
+como producto propio, con el nombre de la lista, y el build lo lista para sumarlo a ese archivo.
+
+Las descripciones están en `scripts/descriptions.ts` y las ofertas de ejemplo en `scripts/offers.ts`
+(ambas por nombre de producto); también se pueden editar desde `/admin`.
+
+El script genera:
+
+- `data/products.json` — el catálogo (no editar a mano).
+- `data/categories.json` — categorías, subcategorías, marcas y rango de precios.
+- `public/search-index.json` — índice liviano del buscador (nombre, marca, códigos, variedades).
 
 ---
 
-## 2. Agregar fotos reales de productos
+## 2. Fotos de los productos
 
-**191 productos ya tienen foto real** (envase/lata verdadera del producto, bajada de los catálogos
-oficiales de Alba, Cetol y Emapi y emparejada automáticamente por nombre con `scripts` puntuales — no
-son parte del pipeline de `build-catalog.ts`, así que si se vuelve a correr todo desde cero esas fotos
-puntuales no se regeneran solas, pero los archivos ya están en `public/products/` y el build las sigue
-detectando). El resto de los productos usa un placeholder prolijo (ícono de categoría + colores de
-marca) o el logo de marca (sección siguiente). Para agregar una foto real a mano:
+Las fotos viven en **`public/products/`** y se llaman como el **código** del artículo:
 
-1. Fijate el **código** del producto (aparece en su ficha, debajo del nombre — ej. `Código 1234`).
-2. Guardá la imagen en `public/products/` con el código como nombre de archivo:
-   ```
-   public/products/1234.jpg
-   public/products/1234.webp
-   public/products/1234.png
-   ```
-3. Volvé a correr `npm run build:catalog` (así el catálogo detecta qué productos tienen foto) y
-   `npm run build`/`npm run dev`.
+```
+public/products/1234.jpg      (también .png o .webp)
+```
 
-No hace falta editar código ni el CSV — con soltar el archivo con el nombre correcto alcanza. Si un
-producto tiene varias variantes de tamaño (varios códigos agrupados), alcanza con poner la foto en el
-código de **cualquiera** de sus variantes.
+Para agregar o cambiar una foto a mano:
 
-### Logos de marca (fallback nivel 2)
+1. Fijate el **código** del artículo (aparece en su ficha, debajo del nombre — ej. `Código 1234`).
+2. Guardá la imagen en `public/products/` con ese código como nombre de archivo.
+3. Corré `npm run build:catalog`.
 
-Ya están cargados los logos oficiales (bajados de los sitios reales de cada fabricante) de las 17
-marcas más grandes del catálogo — Alba, Sikkens, Emapi, Sinteplast, Cetol, Wanda, Merclin, Distinción,
-Rosarpin, Venezia, Zeocar, El Galgo, Einhell, Fischer, Mota, Toke y Rust-Oleum — que cubren
-aproximadamente el 72% de los productos con marca. El resto (Farben, Norton, Tekbond y las marcas más
-chicas) todavía no tiene logo y muestra el placeholder de categoría; para completarlas o para actualizar
-alguna, agregá el archivo en:
+Desde `/admin` también se puede subir la foto de un producto sin tocar archivos.
+
+Cómo se reparte una foto entre las variantes de un producto:
+
+- Las **presentaciones** de una misma variedad comparten foto (la lata de 4 L y la de 20 L): alcanza con
+  la foto de una.
+- Los **granos, números y medidas** se ven iguales: usan la foto del producto.
+- Los **colores** pueden tener cada uno su foto (ej. cada aerosol con su tapa). Un color que todavía no
+  tiene foto propia muestra la foto general del producto con la leyenda "Foto ilustrativa".
+
+Las fotos se muestran siempre enteras (sin recortar) sobre fondo blanco. Lo ideal: producto solo, fondo
+blanco, 600 px o más de lado.
+
+### Logos de marca (cuando un producto no tiene foto)
+
+Si un producto no tiene foto se muestra el logo de su marca, y si tampoco hay logo, un ícono de la
+categoría. Los logos están en:
 
 ```
 public/brands/{marca-en-minusculas-y-guiones}.{svg|png|jpg|webp}
 ```
 
-Por ejemplo, para Alba: `public/brands/alba.png` (ya está). El componente prueba automáticamente
-`.svg`, `.png`, `.jpg` y `.webp` en ese orden, así que no importa el formato del archivo que consigas.
-El slug exacto de cada marca sale de `scripts/taxonomy.ts` → `BRANDS` (pasando el nombre a minúsculas y
-reemplazando espacios por guiones,
-ej. "Sherwin Williams" → `sherwin-williams.svg`).
+Por ejemplo `public/brands/alba.png` o `public/brands/sherwin-williams.png`. El nombre sale de la marca
+tal como se muestra en el sitio (`scripts/taxonomy.ts` → `BRAND_LABELS`), en minúsculas, sin tildes y
+con guiones en vez de espacios.
 
 ---
 
@@ -177,16 +190,21 @@ Cambiar cualquiera de esos valores no requiere tocar ningún otro archivo.
 ## 4. Estructura del proyecto
 
 ```
-LISTA DE PRECIOS ECOMERCE.csv    → planilla de precios (se reemplaza para actualizar)
-scripts/build-catalog.ts         → pipeline CSV -> JSON
-scripts/taxonomy.ts              → reglas de categorización, marcas, exclusiones
-data/products.json               → catálogo generado por el CSV (no editar a mano)
+LISTA DE PRECIOS ECOMERCE (1).csv → lista de productos: código, descripción, marca, categoría y subcategoría
+data/precios.csv                 → precios por código (se completa con Excel)
+scripts/build-catalog.ts         → pipeline lista + precios + fotos -> JSON
+scripts/families.ts              → cómo se agrupan los artículos en productos (colores, medidas, granos)
+scripts/taxonomy.ts              → categorías, subcategorías y marcas: etiquetas, orden e íconos
+scripts/descriptions.ts          → descripción de cada producto
+scripts/offers.ts                → ofertas (% de descuento por producto)
+data/products.json               → catálogo generado (no editar a mano)
 data/categories.json             → categorías generadas (no editar a mano)
 data/overrides.json              → ediciones hechas desde /admin (se genera solo)
 public/search-index.json         → índice de búsqueda generado (no editar a mano)
-public/products/{codigo}.*       → fotos reales de producto (drop-in o subidas desde /admin)
-public/brands/{marca}.*          → logos de marca (17 ya cargados, resto drop-in)
-config/site.ts                   → datos del negocio (WhatsApp, dirección, horarios)
+public/products/{codigo}.*       → fotos de producto (se agregan a mano o desde /admin)
+public/brands/{marca}.*          → logos de marca (para productos sin foto)
+public/home/*.jpg                → fotos de los banners de categoría de la home
+config/site.ts                   → datos del negocio (WhatsApp, dirección, horarios, condiciones de pago)
 .env.local                       → ADMIN_PASSWORD y ADMIN_SESSION_SECRET (no se sube a git)
 src/middleware.ts                → protege /admin y /api/admin con la cookie de sesión
 src/app/(site)/                  → páginas públicas (home, categoría, producto, carrito, contacto)
@@ -201,8 +219,8 @@ src/store/cart.ts                → estado del carrito (Zustand + localStorage)
 
 - No procesa pagos online.
 - No calcula ni cobra envíos — el modelo es **retiro en local**.
-- No tiene base de datos: el catálogo sale del CSV y las ediciones de admin viven en un archivo JSON
-  aparte (ver sección 0). `/admin` no aparece indexado en buscadores (metadata `noindex`) ni enlazado
+- No tiene base de datos: el catálogo sale de las planillas (sección 1) y las ediciones de admin viven
+  en un archivo JSON aparte (ver sección 0). `/admin` no aparece indexado en buscadores (metadata `noindex`) ni enlazado
   desde el sitio público.
 
 ## 6. Deploy
@@ -221,7 +239,8 @@ perfecto. Para que el panel de administración funcione de forma confiable y per
   gran cosa de reescribir (`src/lib/overrides.ts` es el único lugar que sabe leer/escribir overrides),
   pero es trabajo que no está hecho todavía.
 
-Si querés que el catálogo (no las ediciones de admin) se regenere en cada deploy automáticamente desde
-un CSV actualizado, agregá `npm run build:catalog &&` antes de `next build` en el build command.
-#   E c o m m e r c e - c e n t r o - p i n t u r e r i a  
+El catálogo se regenera solo en cada deploy: `npm run build` corre `build:catalog` antes de compilar,
+así que alcanza con subir la lista, los precios o las fotos nuevas.
+#   E c o m m e r c e - c e n t r o - p i n t u r e r i a 
+ 
  

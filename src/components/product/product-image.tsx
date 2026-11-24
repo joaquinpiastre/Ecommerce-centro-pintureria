@@ -60,7 +60,8 @@ export function ProductImage({ image, brandSlug, categorySlug, name, className =
         sizes={sizes ?? '(min-width: 1024px) 25vw, 50vw'}
         priority={priority}
         placeholder="empty"
-        className={`object-cover ${className}`}
+        // contain: la foto del producto se ve siempre entera (latas altas, aerosoles, pinceles), nunca recortada.
+        className={`bg-white object-contain ${className}`}
         onError={() => setTier(brandSlug ? 1 : 2)}
       />
     );

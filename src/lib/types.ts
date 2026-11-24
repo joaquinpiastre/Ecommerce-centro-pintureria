@@ -63,6 +63,17 @@ export interface Category {
   priceMax: number;
 }
 
+/** Rubro (subcategoría) destacado en la home: link a su categoría ya filtrada. */
+export interface SubcategoryTile {
+  label: string;
+  href: string;
+  count: number;
+  /** Foto de un producto del rubro, si alguno tiene. */
+  image: string | null;
+  icon: string;
+  accent: string;
+}
+
 export interface CategoriesFile {
   categories: Category[];
   totalProducts: number;

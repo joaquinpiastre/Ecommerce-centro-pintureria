@@ -26,8 +26,10 @@ export function ProductDetail({ product }: { product: Product }) {
     [product.variants, currentOption]
   );
   const variant = sizes[Math.min(sizeIdx, sizes.length - 1)];
-  // Un color sin foto propia no hereda la foto de otro color; el resto de las variedades (grano, número, medida) se ven igual.
-  const variantImage = variant.image ?? (product.optionLabel === 'Color' ? null : product.image);
+  // Cada variante trae su foto desde el catálogo. Si un color todavía no tiene foto propia se
+  // muestra la foto general del producto, aclarando que es ilustrativa (el envase es el mismo).
+  const variantImage = variant.image ?? product.image;
+  const isIllustrative = !variant.image && !!product.image && options.length > 1;
   const fullLabel = [variant.option, variant.sizeLabel].filter(Boolean).join(' · ') || null;
 
   function handleAdd() {
@@ -75,6 +77,11 @@ export function ProductDetail({ product }: { product: Product }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-border bg-white">
           <ProductImage key={variantImage ?? 'none'} image={variantImage} brandSlug={product.brandSlug} categorySlug={product.categorySlug} name={product.name} priority sizes="(min-width: 1024px) 45vw, 90vw" />
+          {isIllustrative && (
+            <span className="absolute inset-x-0 bottom-0 bg-background/85 px-3 py-1.5 text-center text-xs text-muted-foreground backdrop-blur">
+              Foto ilustrativa del producto · {product.optionLabel?.toLowerCase() ?? 'opción'}: {currentOption}
+            </span>
+          )}
           {product.isOffer && (
             <span className="absolute left-4 top-4">
               {product.offerPct ? (

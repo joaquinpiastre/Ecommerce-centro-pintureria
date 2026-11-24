@@ -14,7 +14,7 @@ function regenerateSearchIndex(): void {
     brand: p.brand,
     category: p.category,
     categorySlug: p.categorySlug,
-    priceDisplay: p.variants[0]?.priceDisplay ?? 'Consultar precio',
+    priceDisplay: p.variants.find((v) => v.hasPrice)?.priceDisplay ?? 'Consultar precio',
     image: p.image,
     codes: p.allCodigos.join(' '),
     options: [...new Set(p.variants.map((v) => v.option).filter(Boolean))].join(' '),

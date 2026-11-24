@@ -1,8 +1,9 @@
 import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { Product, Category } from './types';
-import { CATEGORIES_META } from './categories-meta';
+import type { Product, Category, SubcategoryTile } from './types';
+import { CATEGORIES_META, SUBCATEGORY_ORDER } from './categories-meta';
+import { slugify } from './slug';
 import { readOverrides, applyOverride, applyOverrideForAdmin, applyOffer, type AdminProduct } from './overrides';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -61,9 +62,16 @@ export function getCategories(): Category[] {
       accent: meta.accent,
       icon: meta.icon,
       count: inCat.length,
+      // Orden de la lista de productos (scripts/taxonomy.ts); las que no estén ahí, por cantidad.
       subcategories: [...subMap.entries()]
-        .map(([label, count]) => ({ label, slug: label.toLowerCase().replace(/\s+/g, '-'), count }))
-        .sort((a, b) => b.count - a.count),
+        .map(([label, count]) => ({ label, slug: slugify(label), count }))
+        .sort((a, b) => {
+          const order = SUBCATEGORY_ORDER[meta.slug] ?? [];
+          const ia = order.indexOf(a.label);
+          const ib = order.indexOf(b.label);
+          if (ia !== -1 || ib !== -1) return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+          return b.count - a.count;
+        }),
       brands: [...brandMap.entries()]
         .map(([slug, v]) => ({ slug, label: v.label, count: v.count }))
         .sort((a, b) => b.count - a.count),
@@ -120,6 +128,35 @@ export function getFeaturedProducts(limit = 16): Product[] {
     }
   }
   return result;
+}
+
+/**
+ * Subcategorías para la home ("Explorá por rubro"): las de más productos de cada
+ * categoría, intercaladas para que se vean todas las categorías, cada una con la foto
+ * de uno de sus productos.
+ */
+export function getSubcategoryTiles(limit = 12): SubcategoryTile[] {
+  const products = getAllProducts();
+  const perCategory = getCategories().map((c) =>
+    [...c.subcategories]
+      .sort((a, b) => b.count - a.count)
+      .map((s) => ({
+        label: s.label,
+        href: `/categoria/${c.slug}?sub=${s.slug}`,
+        count: s.count,
+        image: products.find((p) => p.categorySlug === c.slug && p.subcategory === s.label && p.image)?.image ?? null,
+        icon: c.icon,
+        accent: c.accent,
+      }))
+  );
+  const tiles: SubcategoryTile[] = [];
+  for (let i = 0; tiles.length < limit && perCategory.some((list) => i < list.length); i++) {
+    for (const list of perCategory) {
+      if (tiles.length >= limit) break;
+      if (i < list.length) tiles.push(list[i]);
+    }
+  }
+  return tiles;
 }
 
 export function getOfferProducts(limit?: number): Product[] {

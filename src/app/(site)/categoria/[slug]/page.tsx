@@ -18,10 +18,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ sub?: string | string[] }>;
+}) {
   const { slug } = await params;
   const category = getCategoryBySlug(slug);
   if (!category) notFound();
+
+  // ?sub=<slug> abre la categoría ya filtrada por esa subcategoría (links del menú y de la home).
+  const { sub } = await searchParams;
+  const subSlug = Array.isArray(sub) ? sub[0] : sub;
+  const initialSubcategory = category.subcategories.find((s) => s.slug === subSlug)?.label ?? null;
 
   const products = getProductsByCategory(slug);
   const Icon = getCategoryIcon(category.icon);
@@ -43,7 +54,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <CategoryBrowser category={category} products={products} />
+        {/* key: al cambiar de subcategoría desde el menú, el listado arranca con ese filtro. */}
+        <CategoryBrowser key={initialSubcategory ?? 'todas'} category={category} products={products} initialSubcategory={initialSubcategory} />
       </div>
     </div>
   );

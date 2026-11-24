@@ -12,8 +12,17 @@ type SortKey = 'relevancia' | 'precio-asc' | 'precio-desc' | 'alfabetico';
 
 const PAGE_SIZE = 24;
 
-export function CategoryBrowser({ category, products }: { category: Category; products: Product[] }) {
-  const [subcategory, setSubcategory] = useState<string | null>(null);
+export function CategoryBrowser({
+  category,
+  products,
+  initialSubcategory = null,
+}: {
+  category: Category;
+  products: Product[];
+  /** Subcategoría preseleccionada (viene de ?sub= en la URL). */
+  initialSubcategory?: string | null;
+}) {
+  const [subcategory, setSubcategory] = useState<string | null>(initialSubcategory);
   const [brand, setBrand] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState<number>(category.priceMax);
   const [sort, setSort] = useState<SortKey>('relevancia');

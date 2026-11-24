@@ -3,7 +3,7 @@ export const SITE = {
   shortName: 'Centro',
   tagline: 'Más de 40 años transformando espacios en San Rafael',
   description:
-    'Catálogo de pinturas, herramientas, revestimientos y construcción en seco en San Rafael, Mendoza. Armá tu pedido y coordinalo por WhatsApp — retiro en local.',
+    'Catálogo de pinturas, línea automotor y accesorios en San Rafael, Mendoza. Armá tu pedido y coordinalo por WhatsApp — retiro en local.',
   url: 'https://centropintureria.com.ar',
   address: 'Av. Hipólito Yrigoyen 621, San Rafael, Mendoza',
   mapsQuery: 'Av. Hipólito Yrigoyen 621, San Rafael, Mendoza',
