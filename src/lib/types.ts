@@ -70,8 +70,8 @@ export interface SubcategoryTile {
   count: number;
   /** Foto de un producto del rubro, si alguno tiene. */
   image: string | null;
-  icon: string;
-  accent: string;
+  /** Foto de portada de su categoría (se usa si ningún producto del rubro tiene foto). */
+  cover: string;
 }
 
 export interface CategoriesFile {

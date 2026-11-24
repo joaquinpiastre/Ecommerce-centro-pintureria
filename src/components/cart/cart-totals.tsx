@@ -1,4 +1,4 @@
-import { Banknote, CreditCard, Landmark } from 'lucide-react';
+import { Bank, CreditCard, Money } from '@/components/icons';
 import { PAYMENT } from '../../../config/site';
 import { formatPriceARS } from '@/lib/format';
 import { priceBreakdown } from '@/lib/pricing';
@@ -23,13 +23,13 @@ export function CartTotals({ total, unpriced = 0 }: { total: number; unpriced?: 
       {unpricedNote}
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-1.5 font-semibold text-brand-ink">
-          <Banknote className="h-4 w-4" /> Efectivo ({PAYMENT.cashDiscountPct}% OFF)
+          <Money weight="duotone" className="h-4 w-4" /> Efectivo ({PAYMENT.cashDiscountPct}% OFF)
         </span>
         <span className="font-heading text-lg font-bold">{formatPriceARS(t.cash)}</span>
       </div>
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-1.5 font-medium text-foreground/80">
-          <Landmark className="h-4 w-4" /> Transferencia ({PAYMENT.transferDiscountPct}% OFF)
+          <Bank weight="duotone" className="h-4 w-4" /> Transferencia ({PAYMENT.transferDiscountPct}% OFF)
         </span>
         <span className="font-semibold">{formatPriceARS(t.transfer)}</span>
       </div>
@@ -38,7 +38,7 @@ export function CartTotals({ total, unpriced = 0 }: { total: number; unpriced?: 
         <span className="font-semibold">{formatPriceARS(t.list)}</span>
       </div>
       <div className="flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-2 font-semibold text-brand-ink">
-        <CreditCard className="h-4 w-4 shrink-0" />
+        <CreditCard weight="duotone" className="h-4 w-4 shrink-0" />
         <span>
           {PAYMENT.installments} cuotas sin interés de <strong>{formatPriceARS(t.installment)}</strong>
         </span>

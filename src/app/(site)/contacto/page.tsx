@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import type { ComponentType, ReactNode } from 'react';
-import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { Clock, MapPin, Phone, WhatsappLogo } from '@/components/icons';
 import { SITE, whatsappOrderLink } from '../../../../config/site';
 import { InstagramIcon } from '@/components/icons/instagram-icon';
 
@@ -25,20 +25,20 @@ export default function ContactoPage() {
 
       <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
         <div className="flex flex-col gap-6">
-          <InfoCard icon={MapPin} title="Dirección">
+          <InfoCard icon={<MapPin weight="duotone" className="h-6 w-6" />} title="Dirección">
             {SITE.address}
           </InfoCard>
-          <InfoCard icon={Clock} title="Horarios">
+          <InfoCard icon={<Clock weight="duotone" className="h-6 w-6" />} title="Horarios">
             {SITE.hours.map((h) => (
               <span key={h.days} className="block">
                 {h.days}: {h.time}
               </span>
             ))}
           </InfoCard>
-          <InfoCard icon={Phone} title="Teléfono">
+          <InfoCard icon={<Phone weight="duotone" className="h-6 w-6" />} title="Teléfono">
             {SITE.phone}
           </InfoCard>
-          <InfoCard icon={InstagramIcon} title="Instagram">
+          <InfoCard icon={<InstagramIcon className="h-5 w-5" />} title="Instagram">
             <a href={SITE.instagramUrl} target="_blank" rel="noreferrer" className="hover:underline">
               {SITE.instagram}
             </a>
@@ -50,7 +50,7 @@ export default function ContactoPage() {
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.02]"
           >
-            <MessageCircle className="h-4.5 w-4.5" /> Escribirnos por WhatsApp
+            <WhatsappLogo weight="fill" className="h-4.5 w-4.5" /> Escribirnos por WhatsApp
           </a>
         </div>
 
@@ -69,12 +69,10 @@ export default function ContactoPage() {
   );
 }
 
-function InfoCard({ icon: Icon, title, children }: { icon: ComponentType<{ className?: string }>; title: string; children: ReactNode }) {
+function InfoCard({ icon, title, children }: { icon: ReactNode; title: string; children: ReactNode }) {
   return (
     <div className="flex gap-4 rounded-2xl border border-border p-4">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-brand-ink">
-        <Icon className="h-5 w-5" />
-      </span>
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-brand-ink">{icon}</span>
       <div>
         <p className="text-sm font-semibold">{title}</p>
         <div className="mt-0.5 text-sm text-muted-foreground">{children}</div>

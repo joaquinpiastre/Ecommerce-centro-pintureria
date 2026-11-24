@@ -1,7 +1,8 @@
-import { Award, Warehouse, CreditCard, Store } from 'lucide-react';
+import { CreditCard, Handshake, Storefront, Warehouse } from '@/components/icons';
 import { SITE } from '../../../config/site';
 
-const ICONS = [Award, Warehouse, CreditCard, Store];
+// Un ícono por cada diferencial de config/site.ts, en el mismo orden.
+const ICONS = [Handshake, Warehouse, CreditCard, Storefront];
 
 export function TrustBadges() {
   return (
@@ -11,10 +12,10 @@ export function TrustBadges() {
           const Icon = ICONS[i % ICONS.length];
           return (
             <div key={d} className="flex items-center gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-brand-ink">
-                <Icon className="h-5 w-5" />
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-background text-brand-ink shadow-sm ring-1 ring-border">
+                <Icon weight="duotone" className="h-8 w-8" />
               </span>
-              <span className="text-sm font-medium leading-snug">{d}</span>
+              <span className="text-sm font-semibold leading-snug">{d}</span>
             </div>
           );
         })}

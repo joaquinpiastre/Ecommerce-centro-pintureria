@@ -3,9 +3,10 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Minus, Plus, ShoppingCart, Check, Info, CreditCard, Banknote, Landmark, Store } from 'lucide-react';
+import { Bank, Check, CreditCard, Info, Minus, Money, Plus, ShoppingCartSimple, Storefront } from '@/components/icons';
 import type { Product } from '@/lib/types';
 import { ProductImage } from './product-image';
+import { CardLogos } from './card-logos';
 import { PriceBlock, OfferBadge } from './price-block';
 import { useCartStore } from '@/store/cart';
 import { PAYMENT, SITE } from '../../../config/site';
@@ -105,7 +106,7 @@ export function ProductDetail({ product }: { product: Product }) {
               <p className="text-xl font-semibold text-muted-foreground">Consultar precio</p>
             )}
             <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Info className="h-3.5 w-3.5 shrink-0" /> {SITE.priceDisclaimer}
+              <Info weight="duotone" className="h-3.5 w-3.5 shrink-0" /> {SITE.priceDisclaimer}
             </p>
           </div>
 
@@ -163,7 +164,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
                 aria-label="Restar cantidad"
               >
-                <Minus className="h-4 w-4" />
+                <Minus weight="bold" className="h-4 w-4" />
               </button>
               <span className="w-8 text-center text-base font-semibold">{qty}</span>
               <button
@@ -171,7 +172,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 onClick={() => setQty((q) => q + 1)}
                 aria-label="Sumar cantidad"
               >
-                <Plus className="h-4 w-4" />
+                <Plus weight="bold" className="h-4 w-4" />
               </button>
             </div>
 
@@ -182,11 +183,11 @@ export function ProductDetail({ product }: { product: Product }) {
             >
               {added ? (
                 <>
-                  <Check className="h-4.5 w-4.5" /> Agregado
+                  <Check weight="bold" className="h-4.5 w-4.5" /> Agregado
                 </>
               ) : (
                 <>
-                  <ShoppingCart className="h-4.5 w-4.5" /> Agregar al carrito
+                  <ShoppingCartSimple weight="bold" className="h-4.5 w-4.5" /> Agregar al carrito
                 </>
               )}
             </motion.button>
@@ -197,23 +198,24 @@ export function ProductDetail({ product }: { product: Product }) {
               <h3 className="mb-2 text-sm font-semibold">Medios de pago</h3>
               <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CreditCard className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
+                  <CreditCard weight="duotone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-ink" />
                   {PAYMENT.installments} cuotas sin interés con {PAYMENT.cardsLabel}
                 </li>
                 <li className="flex items-start gap-2">
-                  <Banknote className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
+                  <Money weight="duotone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-ink" />
                   {PAYMENT.cashDiscountPct}% de descuento en efectivo
                 </li>
                 <li className="flex items-start gap-2">
-                  <Landmark className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
+                  <Bank weight="duotone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-ink" />
                   {PAYMENT.transferDiscountPct}% de descuento por transferencia
                 </li>
               </ul>
+              <CardLogos className="mt-3" />
             </div>
             <div className="rounded-2xl border border-border p-4">
               <h3 className="mb-2 text-sm font-semibold">Retiro en el local</h3>
               <p className="flex items-start gap-2 text-sm text-muted-foreground">
-                <Store className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
+                <Storefront weight="duotone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-ink" />
                 <span>
                   {SITE.address}
                   <span className="mt-1 block text-xs">El pedido se coordina y confirma por WhatsApp.</span>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Tag } from 'lucide-react';
+import { ArrowRight, Tag } from '@/components/icons';
 import type { Product } from '@/lib/types';
 import { ProductCarousel } from './product-carousel';
 
@@ -19,12 +19,12 @@ export function ProductShelf({ title, products, href, tone, promo }: ProductShel
     <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-5 flex items-end justify-between">
         <h2 className={`flex items-center gap-2 font-heading text-xl font-bold sm:text-2xl ${tone === 'offer' ? 'text-offer' : 'text-foreground'}`}>
-          {tone === 'offer' && <Tag className="h-6 w-6" />}
+          {tone === 'offer' && <Tag weight="fill" className="h-6 w-6" />}
           {title}
         </h2>
         {href && (
           <Link href={href} className="flex items-center gap-1 text-sm font-semibold text-brand-ink hover:underline">
-            Ver todo <ArrowRight className="h-4 w-4" />
+            Ver todo <ArrowRight weight="bold" className="h-4 w-4" />
           </Link>
         )}
       </div>

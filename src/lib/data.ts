@@ -4,6 +4,7 @@ import path from 'node:path';
 import type { Product, Category, SubcategoryTile } from './types';
 import { CATEGORIES_META, SUBCATEGORY_ORDER } from './categories-meta';
 import { slugify } from './slug';
+import { getCategoryCover } from './covers';
 import { readOverrides, applyOverride, applyOverrideForAdmin, applyOffer, type AdminProduct } from './overrides';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -145,8 +146,7 @@ export function getSubcategoryTiles(limit = 12): SubcategoryTile[] {
         href: `/categoria/${c.slug}?sub=${s.slug}`,
         count: s.count,
         image: products.find((p) => p.categorySlug === c.slug && p.subcategory === s.label && p.image)?.image ?? null,
-        icon: c.icon,
-        accent: c.accent,
+        cover: getCategoryCover(c.slug),
       }))
   );
   const tiles: SubcategoryTile[] = [];

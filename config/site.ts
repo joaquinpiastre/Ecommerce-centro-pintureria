@@ -30,6 +30,14 @@ export const PAYMENT = {
   cashDiscountPct: 10,
   transferDiscountPct: 5,
   cardsLabel: 'todas las tarjetas bancarizadas',
+  /** Tarjetas del carrusel de la home (logos en /public/cards). Para sumar una, agregar el logo y una línea acá. */
+  cards: [
+    { name: 'Visa', logo: '/cards/visa.png' },
+    { name: 'Mastercard', logo: '/cards/mastercard.png' },
+    { name: 'American Express', logo: '/cards/american-express.png' },
+    { name: 'Cabal', logo: '/cards/cabal.png' },
+    { name: 'Diners Club', logo: '/cards/diners-club.png' },
+  ],
 } as const;
 
 export function whatsappOrderLink(message: string): string {

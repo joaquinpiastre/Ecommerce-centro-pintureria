@@ -2,12 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { getCategoryIcon } from '@/lib/icons';
-import { getCategoryMeta } from '@/lib/categories-meta';
 
 interface ProductImageProps {
   image: string | null;
   brandSlug: string | null;
+  /** Se mantiene por compatibilidad con los llamadores; la imagen ya no depende de la categoría. */
   categorySlug: string;
   name: string;
   className?: string;
@@ -20,14 +19,12 @@ const LOGO_EXTS = ['svg', 'png', 'jpg', 'webp'];
 /**
  * Sistema de imagen en 3 niveles:
  * 1) Foto real en /public/products/{codigo}.*
- * 2) Logo de marca en /public/brands/{marca}.{svg|png|jpg|webp} sobre fondo con el acento de la categoría
- * 3) Placeholder generado con ícono de categoría + degradé de marca
+ * 2) Logo de marca en /public/brands/{marca}.{svg|png|jpg|webp} sobre fondo claro
+ * 3) Logo de Centro Pinturería y el nombre del producto, sobre fondo claro
  */
-export function ProductImage({ image, brandSlug, categorySlug, name, className = '', sizes, priority }: ProductImageProps) {
+export function ProductImage({ image, brandSlug, name, className = '', sizes, priority }: ProductImageProps) {
   const [tier, setTier] = useState<0 | 1 | 2>(image ? 0 : brandSlug ? 1 : 2);
   const [logoExtIdx, setLogoExtIdx] = useState(0);
-  const meta = getCategoryMeta(categorySlug);
-  const Icon = getCategoryIcon(meta.icon);
   const imgRef = useRef<HTMLImageElement>(null);
 
   function failLogo() {
@@ -69,35 +66,27 @@ export function ProductImage({ image, brandSlug, categorySlug, name, className =
 
   if (tier === 1 && brandSlug) {
     return (
-      <div
-        className={`relative flex h-full w-full items-center justify-center p-8 ${className}`}
-        style={{ background: meta.accent }}
-      >
-        <div className="flex max-h-[60%] max-w-[75%] items-center justify-center rounded-2xl bg-white/95 p-4 shadow-lg">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            key={logoExtIdx}
-            ref={imgRef}
-            src={`/brands/${brandSlug}.${LOGO_EXTS[logoExtIdx]}`}
-            alt={name}
-            className="max-h-20 max-w-full object-contain"
-            onError={failLogo}
-          />
-        </div>
+      <div className={`relative flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-50 to-zinc-100 p-[12%] ${className}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={logoExtIdx}
+          ref={imgRef}
+          src={`/brands/${brandSlug}.${LOGO_EXTS[logoExtIdx]}`}
+          alt={name}
+          className="max-h-[45%] max-w-[80%] object-contain"
+          onError={failLogo}
+        />
       </div>
     );
   }
 
   return (
+    // @container: en miniaturas chicas (carrito, buscador) se ve solo el logo, sin el nombre.
     <div
-      className={`relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden p-6 text-center ${className}`}
-      style={{ background: meta.accent }}
+      className={`@container relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-zinc-50 to-zinc-100 p-[10%] text-center ${className}`}
     >
-      <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-white/10" />
-      <div className="absolute -bottom-8 -left-8 h-28 w-28 rounded-full bg-black/10" />
-      {/* eslint-disable-next-line react-hooks/static-components -- Icon viene de un lookup estable en un Record de módulo */}
-      <Icon className="h-10 w-10 shrink-0 text-white/90" strokeWidth={1.5} />
-      <span className="line-clamp-3 text-xs font-medium leading-snug text-white/90">{name}</span>
+      <Image src="/logo-flor-transparente.png" alt="" width={64} height={64} className="h-auto w-1/3 max-w-16 opacity-80" />
+      <span className="hidden text-xs font-medium leading-snug text-muted-foreground line-clamp-3 @[140px]:block">{name}</span>
     </div>
   );
 }

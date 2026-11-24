@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Minus, Plus, Trash2, ShoppingCart, MessageCircle } from 'lucide-react';
+import { Minus, Plus, ShoppingCartSimple, Trash, WhatsappLogo } from '@/components/icons';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { ProductImage } from '@/components/product/product-image';
@@ -30,14 +30,14 @@ export function CartDrawer() {
       <SheetContent side="right" className="w-full sm:max-w-md">
         <SheetHeader className="border-b">
           <SheetTitle className="flex items-center gap-2">
-            <ShoppingCart className="h-4 w-4" /> Tu carrito
+            <ShoppingCartSimple weight="bold" className="h-4 w-4" /> Tu carrito
           </SheetTitle>
         </SheetHeader>
 
         {empty ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-              <ShoppingCart className="h-7 w-7 text-muted-foreground" />
+              <ShoppingCartSimple weight="bold" className="h-7 w-7 text-muted-foreground" />
             </div>
             <p className="font-medium">Todavía no agregaste productos</p>
             <p className="text-sm text-muted-foreground">Explorá el catálogo y armá tu pedido para coordinarlo por WhatsApp.</p>
@@ -67,7 +67,7 @@ export function CartDrawer() {
                             onClick={() => setQuantity(item.codigo, item.quantity - 1)}
                             aria-label="Restar"
                           >
-                            <Minus className="h-3.5 w-3.5" />
+                            <Minus weight="bold" className="h-3.5 w-3.5" />
                           </button>
                           <span className="w-6 text-center text-sm font-medium">{item.quantity}</span>
                           <button
@@ -75,7 +75,7 @@ export function CartDrawer() {
                             onClick={() => setQuantity(item.codigo, item.quantity + 1)}
                             aria-label="Sumar"
                           >
-                            <Plus className="h-3.5 w-3.5" />
+                            <Plus weight="bold" className="h-3.5 w-3.5" />
                           </button>
                         </div>
                         <span className="text-sm font-semibold">
@@ -88,7 +88,7 @@ export function CartDrawer() {
                       className="h-fit shrink-0 rounded-full p-1.5 text-muted-foreground hover:bg-muted hover:text-destructive"
                       aria-label="Quitar del carrito"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash weight="bold" className="h-4 w-4" />
                     </button>
                   </li>
                 ))}
@@ -104,7 +104,7 @@ export function CartDrawer() {
                 nativeButton={false}
                 render={<a href={buildOrderWhatsappUrl(items)} target="_blank" rel="noreferrer" />}
               >
-                <MessageCircle className="h-4.5 w-4.5" /> Finalizar pedido por WhatsApp
+                <WhatsappLogo weight="fill" className="h-4.5 w-4.5" /> Finalizar pedido por WhatsApp
               </Button>
               <div className="flex gap-2">
                 <Button variant="outline" className="flex-1" onClick={close} nativeButton={false} render={<Link href="/carrito" />}>

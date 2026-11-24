@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, Phone, Clock, CreditCard, Banknote, Landmark } from 'lucide-react';
+import { Bank, Clock, CreditCard, MapPin, Money, Phone } from '@/components/icons';
 import { PAYMENT, SITE } from '../../../config/site';
 import type { Category } from '@/lib/types';
 import { InstagramIcon } from '@/components/icons/instagram-icon';
+import { CardLogos } from '@/components/product/card-logos';
 
 export function Footer({ categories }: { categories: Category[] }) {
   return (
@@ -47,15 +48,15 @@ export function Footer({ categories }: { categories: Category[] }) {
             </h3>
             <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                <MapPin weight="duotone" className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{SITE.address}</span>
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0" />
+                <Phone weight="duotone" className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{SITE.phone}</span>
               </li>
               <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0" />
+                <Clock weight="duotone" className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
                   {SITE.hours.map((h) => (
                     <span key={h.days} className="block">
@@ -91,28 +92,31 @@ export function Footer({ categories }: { categories: Category[] }) {
           <h3 className="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-foreground/80">Medios de pago</h3>
           <ul className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
             <li className="flex items-center gap-2.5">
-              <CreditCard className="h-5 w-5 shrink-0 text-brand-ink" />
+              <CreditCard weight="duotone" className="h-5 w-5 shrink-0 text-brand-ink" />
               <span>
                 <strong>{PAYMENT.installments} cuotas sin interés</strong>
                 <span className="block text-xs text-muted-foreground">con {PAYMENT.cardsLabel}</span>
               </span>
             </li>
             <li className="flex items-center gap-2.5">
-              <Banknote className="h-5 w-5 shrink-0 text-brand-ink" />
+              <Money weight="duotone" className="h-5 w-5 shrink-0 text-brand-ink" />
               <span>
                 <strong>{PAYMENT.cashDiscountPct}% de descuento</strong>
                 <span className="block text-xs text-muted-foreground">pagando en efectivo</span>
               </span>
             </li>
             <li className="flex items-center gap-2.5">
-              <Landmark className="h-5 w-5 shrink-0 text-brand-ink" />
+              <Bank weight="duotone" className="h-5 w-5 shrink-0 text-brand-ink" />
               <span>
                 <strong>{PAYMENT.transferDiscountPct}% de descuento</strong>
                 <span className="block text-xs text-muted-foreground">pagando por transferencia</span>
               </span>
             </li>
           </ul>
-          <p className="mt-3 text-xs text-muted-foreground">Los descuentos se calculan sobre el precio de lista.</p>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <CardLogos />
+            <p className="text-xs text-muted-foreground">Los descuentos se calculan sobre el precio de lista.</p>
+          </div>
         </div>
 
         <div className="mt-6 border-t border-border pt-6 text-center text-xs text-muted-foreground">

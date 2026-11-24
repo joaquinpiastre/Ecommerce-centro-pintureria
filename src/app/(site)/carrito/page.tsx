@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Minus, Plus, Trash2, ShoppingCart, MessageCircle, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Minus, Plus, ShoppingCartSimple, Trash, WhatsappLogo } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { ProductImage } from '@/components/product/product-image';
 import { useCartStore } from '@/store/cart';
@@ -25,14 +25,14 @@ export default function CartPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
       <Link href="/" className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-4 w-4" /> Seguir comprando
+        <ArrowLeft weight="bold" className="h-4 w-4" /> Seguir comprando
       </Link>
       <h1 className="font-heading text-3xl font-bold">Tu carrito</h1>
 
       {empty ? (
         <div className="mt-16 flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-border py-20 text-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-muted">
-            <ShoppingCart className="h-9 w-9 text-muted-foreground" />
+            <ShoppingCartSimple weight="bold" className="h-9 w-9 text-muted-foreground" />
           </div>
           <div>
             <p className="text-lg font-semibold">Tu carrito está vacío</p>
@@ -65,7 +65,7 @@ export default function CartPage() {
                         onClick={() => setQuantity(item.codigo, item.quantity - 1)}
                         aria-label="Restar"
                       >
-                        <Minus className="h-3.5 w-3.5" />
+                        <Minus weight="bold" className="h-3.5 w-3.5" />
                       </button>
                       <span className="w-7 text-center text-sm font-medium">{item.quantity}</span>
                       <button
@@ -73,7 +73,7 @@ export default function CartPage() {
                         onClick={() => setQuantity(item.codigo, item.quantity + 1)}
                         aria-label="Sumar"
                       >
-                        <Plus className="h-3.5 w-3.5" />
+                        <Plus weight="bold" className="h-3.5 w-3.5" />
                       </button>
                     </div>
                     <span className="text-sm font-semibold">
@@ -86,7 +86,7 @@ export default function CartPage() {
                   className="h-fit shrink-0 rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-destructive"
                   aria-label="Quitar del carrito"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash weight="bold" className="h-4 w-4" />
                 </button>
               </li>
             ))}
@@ -105,7 +105,7 @@ export default function CartPage() {
               nativeButton={false}
               render={<a href={buildOrderWhatsappUrl(items)} target="_blank" rel="noreferrer" />}
             >
-              <MessageCircle className="h-4.5 w-4.5" /> Finalizar pedido por WhatsApp
+              <WhatsappLogo weight="fill" className="h-4.5 w-4.5" /> Finalizar pedido por WhatsApp
             </Button>
             <Button variant="ghost" className="mt-2 w-full text-muted-foreground" onClick={clear}>
               Vaciar carrito

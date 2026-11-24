@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { SlidersHorizontal, X, PackageSearch } from 'lucide-react';
+import { Package, SlidersHorizontal, X } from '@/components/icons';
 import type { Category, Product } from '@/lib/types';
 import { ProductCard } from '@/components/product/product-card';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -85,7 +85,7 @@ export function CategoryBrowser({
               className="gap-2 lg:hidden"
               onClick={() => setMobileFiltersOpen(true)}
             >
-              <SlidersHorizontal className="h-4 w-4" />
+              <SlidersHorizontal weight="bold" className="h-4 w-4" />
               Filtros
               {activeFilterCount > 0 && (
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
@@ -109,7 +109,7 @@ export function CategoryBrowser({
 
         {visibleProducts.length === 0 ? (
           <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border py-20 text-center">
-            <PackageSearch className="h-10 w-10 text-muted-foreground" />
+            <Package weight="duotone" className="h-10 w-10 text-muted-foreground" />
             <p className="font-medium">No hay productos con esos filtros</p>
             <Button variant="outline" size="sm" onClick={resetFilters}>
               Limpiar filtros
@@ -138,7 +138,7 @@ export function CategoryBrowser({
           <SheetHeader className="flex-row items-center justify-between border-b">
             <SheetTitle>Filtros</SheetTitle>
             <button onClick={() => setMobileFiltersOpen(false)} className="rounded-full p-1.5 hover:bg-muted" aria-label="Cerrar filtros">
-              <X className="h-4 w-4" />
+              <X weight="bold" className="h-4 w-4" />
             </button>
           </SheetHeader>
           <div className="overflow-y-auto px-4 pb-4">{filtersPanel}</div>

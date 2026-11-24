@@ -204,6 +204,9 @@ public/search-index.json         → índice de búsqueda generado (no editar a 
 public/products/{codigo}.*       → fotos de producto (se agregan a mano o desde /admin)
 public/brands/{marca}.*          → logos de marca (para productos sin foto)
 public/home/*.jpg                → fotos de los banners de categoría de la home
+public/covers/*.jpg              → portada de la home (portada.jpg) y cabecera de cada categoría ({slug}.jpg)
+public/cards/*.png               → logos de las tarjetas del carrusel (la lista está en config/site.ts → PAYMENT.cards)
+src/components/icons/index.ts    → íconos de la tienda (Phosphor): se cambian todos desde ese archivo
 config/site.ts                   → datos del negocio (WhatsApp, dirección, horarios, condiciones de pago)
 .env.local                       → ADMIN_PASSWORD y ADMIN_SESSION_SECRET (no se sube a git)
 src/middleware.ts                → protege /admin y /api/admin con la cookie de sesión

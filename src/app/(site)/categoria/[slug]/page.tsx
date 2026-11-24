@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getCategoryBySlug, getProductsByCategory } from '@/lib/data';
-import { getCategoryIcon } from '@/lib/icons';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getCategoryCover } from '@/lib/covers';
 import { CategoryBrowser } from '@/components/catalog/category-browser';
 import { SITE } from '../../../../../config/site';
 
@@ -35,21 +37,25 @@ export default async function CategoryPage({
   const initialSubcategory = category.subcategories.find((s) => s.slug === subSlug)?.label ?? null;
 
   const products = getProductsByCategory(slug);
-  const Icon = getCategoryIcon(category.icon);
 
   return (
     <div>
-      <div
-        className="relative overflow-hidden py-10 text-white sm:py-14"
-        style={{ background: category.accent }}
-      >
+      {/* Portada de la categoría: foto a todo el ancho, oscurecida para que se lea el título. */}
+      <div className="relative isolate overflow-hidden bg-brand-ink py-12 text-white sm:py-16 lg:py-20">
+        <Image src={getCategoryCover(category.slug)} alt="" fill preload sizes="100vw" className="-z-20 object-cover" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
-            {/* eslint-disable-next-line react-hooks/static-components -- Icon viene de un lookup estable en un Record de módulo */}
-            <Icon className="h-6 w-6" />
-          </span>
-          <h1 className="mt-4 font-heading text-3xl font-bold sm:text-4xl">{category.label}</h1>
-          <p className="mt-1 text-white/80">{category.count} productos</p>
+          <nav className="flex items-center gap-1.5 text-xs text-white/75">
+            <Link href="/" className="hover:text-white">
+              Inicio
+            </Link>
+            <span>/</span>
+            <span className="text-white">{category.label}</span>
+          </nav>
+          <h1 className="mt-3 font-heading text-4xl font-bold drop-shadow-sm sm:text-5xl">{category.label}</h1>
+          <p className="mt-2 text-white/85">
+            {category.count} productos · {category.subcategories.length} rubros
+          </p>
         </div>
       </div>
 

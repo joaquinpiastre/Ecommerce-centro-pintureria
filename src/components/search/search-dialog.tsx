@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Fuse from 'fuse.js';
-import { Search, X, Loader2 } from 'lucide-react';
+import { CircleNotch, MagnifyingGlass, X } from '@/components/icons';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ProductImage } from '@/components/product/product-image';
 
@@ -74,7 +74,7 @@ export function SearchDialog({ open, onOpenChange }: { open: boolean; onOpenChan
       <DialogContent showCloseButton={false} className="top-[8%] max-w-2xl translate-y-0 gap-0 overflow-hidden p-0 sm:rounded-2xl">
         <DialogTitle className="sr-only">Buscar productos</DialogTitle>
         <div className="flex items-center gap-3 border-b px-4 py-3">
-          <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
+          <MagnifyingGlass weight="bold" className="h-5 w-5 shrink-0 text-muted-foreground" />
           <input
             ref={inputRef}
             value={query}
@@ -82,13 +82,13 @@ export function SearchDialog({ open, onOpenChange }: { open: boolean; onOpenChan
             placeholder="Buscá por nombre, código o marca…"
             className="h-10 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
           />
-          {loading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
+          {loading && <CircleNotch weight="bold" className="h-4 w-4 animate-spin text-muted-foreground" />}
           <button
             onClick={() => onOpenChange(false)}
             className="rounded-full p-1.5 text-muted-foreground hover:bg-muted"
             aria-label="Cerrar búsqueda"
           >
-            <X className="h-4 w-4" />
+            <X weight="bold" className="h-4 w-4" />
           </button>
         </div>
 

@@ -157,4 +157,57 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* Carrusel infinito de tarjetas: el carril se desplaza media longitud y vuelve a empezar sin salto. */
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
+  }
+  /* Bordes del carrusel que se desvanecen. */
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  /* Texto con un brillo que lo recorre ("sin interés"). */
+  .shimmer-text {
+    background-image: linear-gradient(100deg, var(--brand-ink) 0%, var(--brand-ink) 40%, #b6f08a 50%, var(--brand-ink) 60%, var(--brand-ink) 100%);
+    background-size: 250% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shimmer 3.2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .shimmer-text {
+      animation: none;
+    }
+    /* Sin movimiento: se muestran las tarjetas una sola vez, quietas y centradas. */
+    .animate-marquee {
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    .marquee-dup {
+      display: none;
+    }
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  60%,
+  100% {
+    background-position: 0% 0;
+  }
 }

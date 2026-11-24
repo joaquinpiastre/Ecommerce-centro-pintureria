@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { CaretLeft, CaretRight } from '@/components/icons';
 import type { Product } from '@/lib/types';
 import { ProductCard } from '@/components/product/product-card';
 
@@ -56,7 +56,7 @@ export function ProductCarousel({ products }: { products: Product[] }) {
           aria-label="Anterior"
           className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-md transition-transform hover:scale-105 sm:flex"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <CaretLeft weight="bold" className="h-5 w-5" />
         </button>
       )}
       {canScrollNext && (
@@ -65,7 +65,7 @@ export function ProductCarousel({ products }: { products: Product[] }) {
           aria-label="Siguiente"
           className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-md transition-transform hover:scale-105 sm:flex"
         >
-          <ChevronRight className="h-5 w-5" />
+          <CaretRight weight="bold" className="h-5 w-5" />
         </button>
       )}
     </div>

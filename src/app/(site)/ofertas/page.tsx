@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Tag } from 'lucide-react';
+import { Tag } from '@/components/icons';
 import { getOfferProducts } from '@/lib/data';
 import { ProductCard } from '@/components/product/product-card';
 
@@ -12,7 +12,7 @@ export default function OffersPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <h1 className="flex items-center gap-2 font-heading text-3xl font-bold text-offer">
-        <Tag className="h-7 w-7" /> Ofertas
+        <Tag weight="fill" className="h-7 w-7" /> Ofertas
       </h1>
       <p className="mt-1 text-muted-foreground">{offers.length} productos con descuento sobre el precio de lista.</p>
       {offers.length === 0 ? (

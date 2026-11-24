@@ -1,6 +1,7 @@
 import { getCategories, getOfferProducts, getFeaturedBrands, getFeaturedProducts, getSubcategoryTiles } from '@/lib/data';
 import { Hero } from '@/components/home/hero';
 import { InfoStrip } from '@/components/home/info-strip';
+import { PaymentCards } from '@/components/home/payment-cards';
 import { CategoryGrid } from '@/components/home/category-grid';
 import { CategoryBanners } from '@/components/home/category-banners';
 import { TrustBadges } from '@/components/home/trust-badges';
@@ -24,7 +25,8 @@ export default function HomePage() {
 
   return (
     <>
-      <Hero />
+      <Hero hasOffers={offers.length > 0} />
+      <PaymentCards />
       <InfoStrip />
       <CategoryGrid tiles={tiles} />
       <ProductShelf title="Ofertas" tone="offer" products={offers} href="/ofertas" />

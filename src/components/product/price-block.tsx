@@ -1,4 +1,4 @@
-import { Banknote, CreditCard, Landmark } from 'lucide-react';
+import { Bank, CreditCard, Money } from '@/components/icons';
 import { PAYMENT } from '../../../config/site';
 import { formatPriceARS } from '@/lib/format';
 import { priceBreakdown } from '@/lib/pricing';
@@ -39,7 +39,7 @@ export function PriceBlock({ price, originalPrice, from, size = 'card' }: PriceB
       <div className="flex flex-col gap-2.5">
         <div className="flex items-baseline justify-between gap-2">
           <span className="flex items-center gap-1.5 text-sm font-semibold text-brand-ink">
-            <Banknote className="h-4 w-4" /> Efectivo
+            <Money weight="duotone" className="h-4 w-4" /> Efectivo
             <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold leading-none text-primary-foreground">
               {PAYMENT.cashDiscountPct}% OFF
             </span>
@@ -48,7 +48,7 @@ export function PriceBlock({ price, originalPrice, from, size = 'card' }: PriceB
         </div>
         <div className="flex items-baseline justify-between gap-2">
           <span className="flex items-center gap-1.5 text-sm font-medium text-foreground/80">
-            <Landmark className="h-4 w-4" /> Transferencia
+            <Bank weight="duotone" className="h-4 w-4" /> Transferencia
             <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-bold leading-none text-foreground/80">
               {PAYMENT.transferDiscountPct}% OFF
             </span>
@@ -63,7 +63,7 @@ export function PriceBlock({ price, originalPrice, from, size = 'card' }: PriceB
           </span>
         </div>
         <div className="mt-1 flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-2 text-sm font-semibold text-brand-ink">
-          <CreditCard className="h-4 w-4 shrink-0" />
+          <CreditCard weight="duotone" className="h-4 w-4 shrink-0" />
           <span>
             {PAYMENT.installments} cuotas sin interés de <strong>{formatPriceARS(p.installment)}</strong>
           </span>

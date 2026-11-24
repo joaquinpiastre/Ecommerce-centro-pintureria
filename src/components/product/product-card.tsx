@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Check, ListChecks } from 'lucide-react';
+import { Check, ListChecks, ShoppingCartSimple } from '@/components/icons';
 import { useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductImage } from './product-image';
@@ -77,7 +77,7 @@ export function ProductCard({ product, priority }: { product: Product; priority?
             )}
           </div>
           {product.brand && (
-            <span className="absolute right-2 top-2 rounded-full bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-foreground shadow backdrop-blur">
+            <span className="absolute bottom-2 right-2 max-w-[70%] truncate rounded-full bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-foreground shadow backdrop-blur">
               {product.brand}
             </span>
           )}
@@ -108,15 +108,15 @@ export function ProductCard({ product, priority }: { product: Product; priority?
       >
         {needsChoice ? (
           <>
-            <ListChecks className="h-4 w-4" /> Elegir opción
+            <ListChecks weight="bold" className="h-4 w-4" /> Elegir opción
           </>
         ) : justAdded ? (
           <>
-            <Check className="h-4 w-4" /> Agregado
+            <Check weight="bold" className="h-4 w-4" /> Agregado
           </>
         ) : (
           <>
-            <ShoppingCart className="h-4 w-4" /> Agregar al carrito
+            <ShoppingCartSimple weight="bold" className="h-4 w-4" /> Agregar al carrito
           </>
         )}
       </button>

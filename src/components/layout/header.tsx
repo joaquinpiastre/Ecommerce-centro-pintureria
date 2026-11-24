@@ -4,13 +4,22 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Menu, X, ChevronDown, MapPin, Home, Mail, Tag } from 'lucide-react';
+import { CaretDown, EnvelopeSimple, House, List, MagnifyingGlass, MapPin, ShoppingCartSimple, Tag, X } from '@/components/icons';
 import type { Category } from '@/lib/types';
 import { useCartCount, useCartStore } from '@/store/cart';
 import { SearchDialog } from '@/components/search/search-dialog';
-import { getCategoryIcon } from '@/lib/icons';
+import { getCategoryCover } from '@/lib/covers';
 import { useMounted } from '@/lib/use-mounted';
 import { SITE } from '../../../config/site';
+
+/** Miniatura de la categoría en los menús: su foto de portada. */
+function CategoryThumb({ slug, className }: { slug: string; className: string }) {
+  return (
+    <span className={`relative shrink-0 overflow-hidden shadow-sm ring-1 ring-black/5 ${className}`}>
+      <Image src={getCategoryCover(slug)} alt="" fill sizes="48px" className="object-cover" />
+    </span>
+  );
+}
 
 export function Header({ categories, hasOffers }: { categories: Category[]; hasOffers: boolean }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -49,7 +58,7 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menú"
           >
-            <Menu className="h-6 w-6" />
+            <List weight="bold" className="h-6 w-6" />
           </button>
 
           {/* El logo grande tiene el mismo verde de fondo que el encabezado: se recorta al logotipo para que se funda. */}
@@ -66,7 +75,7 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
             className="hidden h-11 flex-1 items-center gap-2 rounded-full bg-white px-4 text-sm text-muted-foreground shadow-inner transition-colors hover:bg-white/95 sm:flex"
             aria-label="Buscar productos"
           >
-            <Search className="h-4 w-4 shrink-0" />
+            <MagnifyingGlass weight="bold" className="h-4 w-4 shrink-0" />
             <span className="truncate">¿Qué estás buscando?</span>
           </button>
 
@@ -76,20 +85,20 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
               className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/15 sm:hidden"
               aria-label="Buscar productos"
             >
-              <Search className="h-5 w-5" />
+              <MagnifyingGlass weight="bold" className="h-5 w-5" />
             </button>
             <Link
               href="/contacto"
               className="hidden items-center gap-1.5 rounded-lg px-2 py-2 text-sm font-semibold hover:bg-white/15 lg:flex"
             >
-              <MapPin className="h-4.5 w-4.5" /> Dónde estamos
+              <MapPin weight="duotone" className="h-4.5 w-4.5" /> Dónde estamos
             </Link>
             <button
               onClick={openCart}
               className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/15"
               aria-label="Abrir carrito"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCartSimple weight="bold" className="h-5 w-5" />
               <AnimatePresence>
                 {mounted && count > 0 && (
                   <motion.span
@@ -117,9 +126,9 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold transition-colors hover:bg-white/15"
                 aria-expanded={menuOpen}
               >
-                <Menu className="h-4 w-4" />
+                <List weight="bold" className="h-4 w-4" />
                 Categorías
-                <ChevronDown className={`h-4 w-4 transition-transform ${menuOpen ? 'rotate-180' : ''}`} />
+                <CaretDown weight="bold" className={`h-4 w-4 transition-transform ${menuOpen ? 'rotate-180' : ''}`} />
               </button>
               <AnimatePresence>
                 {menuOpen && (
@@ -133,7 +142,6 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
                     {/* Una columna por categoría, con sus subcategorías debajo. */}
                     <div className="grid grid-cols-3 gap-x-4 gap-y-6">
                       {categories.map((c) => {
-                        const Icon = getCategoryIcon(c.icon);
                         return (
                           <div key={c.slug} className="min-w-0">
                             <Link
@@ -141,12 +149,7 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
                               onClick={() => setMenuOpen(false)}
                               className="flex items-center gap-3 rounded-xl px-2 py-2 text-sm font-bold text-foreground transition-colors hover:bg-muted"
                             >
-                              <span
-                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
-                                style={{ background: c.accent }}
-                              >
-                                <Icon className="h-4.5 w-4.5" />
-                              </span>
+                              <CategoryThumb slug={c.slug} className="h-11 w-11 rounded-xl" />
                               <span className="min-w-0 flex-1 truncate">{c.label}</span>
                               <span className="shrink-0 text-xs font-normal text-muted-foreground">{c.count}</span>
                             </Link>
@@ -185,7 +188,7 @@ export function Header({ categories, hasOffers }: { categories: Category[]; hasO
 
             {hasOffers && (
               <Link href="/ofertas" className="ml-2 flex items-center gap-1.5 rounded-full bg-offer px-3.5 py-1.5 text-sm font-bold text-white shadow-sm transition-transform hover:scale-105">
-                <Tag className="h-4 w-4" /> Ofertas
+                <Tag weight="fill" className="h-4 w-4" /> Ofertas
               </Link>
             )}
 
@@ -226,13 +229,13 @@ function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Cate
             <div className="mb-4 flex items-center justify-between">
               <span className="font-heading text-lg font-bold">Menú</span>
               <button onClick={onClose} className="rounded-full p-2 hover:bg-muted" aria-label="Cerrar menú">
-                <X className="h-5 w-5" />
+                <X weight="bold" className="h-5 w-5" />
               </button>
             </div>
             <nav className="flex flex-col gap-1 overflow-y-auto">
               <Link href="/" onClick={onClose} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium hover:bg-muted">
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-foreground">
-                  <Home className="h-4.5 w-4.5" />
+                  <House weight="duotone" className="h-4.5 w-4.5" />
                 </span>
                 Inicio
               </Link>
@@ -240,7 +243,7 @@ function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Cate
               {hasOffers && (
                 <Link href="/ofertas" onClick={onClose} className="mb-1 flex items-center gap-3 rounded-xl bg-offer/10 px-3 py-3 text-sm font-semibold text-offer">
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-offer text-white">
-                    <Tag className="h-4.5 w-4.5" />
+                    <Tag weight="fill" className="h-4.5 w-4.5" />
                   </span>
                   Ofertas
                 </Link>
@@ -248,18 +251,12 @@ function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Cate
 
               <p className="mb-1 mt-2 px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Categorías</p>
               {categories.map((c) => {
-                const Icon = getCategoryIcon(c.icon);
                 const isOpen = expanded === c.slug;
                 return (
                   <div key={c.slug}>
                     <div className="flex items-center rounded-xl hover:bg-muted">
                       <Link href={`/categoria/${c.slug}`} onClick={onClose} className="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 text-sm font-medium">
-                        <span
-                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
-                          style={{ background: c.accent }}
-                        >
-                          <Icon className="h-4.5 w-4.5" />
-                        </span>
+                        <CategoryThumb slug={c.slug} className="h-10 w-10 rounded-lg" />
                         <span className="truncate">{c.label}</span>
                         <span className="ml-auto text-xs text-muted-foreground">{c.count}</span>
                       </Link>
@@ -270,7 +267,7 @@ function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Cate
                           aria-label={`${isOpen ? 'Ocultar' : 'Ver'} subcategorías de ${c.label}`}
                           aria-expanded={isOpen}
                         >
-                          <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                          <CaretDown weight="bold" className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                         </button>
                       )}
                     </div>
@@ -297,7 +294,7 @@ function MobileMenu({ categories, hasOffers, open, onClose }: { categories: Cate
               <p className="mb-1 mt-2 px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Ayuda</p>
               <Link href="/contacto" onClick={onClose} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium hover:bg-muted">
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-foreground">
-                  <Mail className="h-4.5 w-4.5" />
+                  <EnvelopeSimple weight="duotone" className="h-4.5 w-4.5" />
                 </span>
                 Contacto y ubicación
               </Link>
